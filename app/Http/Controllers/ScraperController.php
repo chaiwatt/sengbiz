@@ -51,7 +51,7 @@ class ScraperController extends Controller
             return;
         }
 
-        $orgPostId = $pidScrapes->first()->pid;
+        $orgPostId = '119869'; //$pidScrapes->first()->pid;
 
         $url = 'https://www.thaibizpost.com/pid/'.$orgPostId;
         
@@ -232,7 +232,7 @@ class ScraperController extends Controller
 
             }       
         }
-//  dd($orgUser, $orgPostId ,$title,$price,$categories,$locations,$links,$nears,$coordinates,$result,$result2,$postTitle,$postDesctiption,$phoneNumbers,$stringContent,$htmlContent);
+    //dd($orgUser, $orgPostId ,$title,$price,$categories,$locations,$links,$nears,$coordinates,$result,$result2,$postTitle,$postDesctiption,$phoneNumbers,$stringContent,$htmlContent);
         if ($stringContent != "" && count($categories) != 0 && count($locations) != 0){
             $mainCategory = MainCategory::where('name',$categories[0])->first();
             $mainCategoryId = null;
@@ -245,9 +245,11 @@ class ScraperController extends Controller
                     $subCategoryId = $subCategory->id;
                 }
                 if ($mainCategoryId === 1){
-                    $subMinorCategory = SubMinorCategory::where('name',$categories[2])->first();
-                    if($subMinorCategory !== null){
-                        $subMinorCategoryId = $subMinorCategory->id;
+                    if(count($categories) == 3){
+                        $subMinorCategory = SubMinorCategory::where('name',$categories[2])->first();
+                        if($subMinorCategory !== null){
+                            $subMinorCategoryId = $subMinorCategory->id;
+                        }
                     }
                 }
             }
@@ -330,7 +332,7 @@ class ScraperController extends Controller
                     }
                 }
                 PidScrape::where('pid',$orgPostId)->delete();
-                //dd($orgUser, $orgPostId ,$title,$price,$categories,$locations,$links,$nears,$coordinates,$result,$result2,$postTitle,$postDesctiption,$phoneNumbers,$stringContent,$htmlContent);
+                dd($orgUser, $orgPostId ,$title,$price,$categories,$locations,$links,$nears,$coordinates,$result,$result2,$postTitle,$postDesctiption,$phoneNumbers,$stringContent,$htmlContent);
             }
         }    
     }

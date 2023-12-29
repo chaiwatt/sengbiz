@@ -264,10 +264,13 @@ class CreateScrapCron extends Command
                     $subCategoryId = $subCategory->id;
                 }
                 if ($mainCategoryId === 1){
-                    $subMinorCategory = SubMinorCategory::where('name',$categories[2])->first();
-                    if($subMinorCategory !== null){
-                        $subMinorCategoryId = $subMinorCategory->id;
+                    if(count($categories) == 3){
+                        $subMinorCategory = SubMinorCategory::where('name',$categories[2])->first();
+                        if($subMinorCategory !== null){
+                            $subMinorCategoryId = $subMinorCategory->id;
+                        }
                     }
+                    
                 }
             }
 
