@@ -238,8 +238,9 @@ class CreateScrapCron extends Command
                 // $filename = "download/{$filePrefix}-{$locationString}-{$index}.jpg";
                 // $filenames[] = $filename;
                 // Storage::put($filename, $content);
-                $filename = public_path("assets/download/{$filePrefix}-{$locationString}-{$index}.jpg");
-                $filenames[] = $filename;
+                $fname = "assets/download/{$filePrefix}-{$locationString}-{$index}.jpg";
+                $filename = public_path($fname);
+                $filenames[] = $fname;
                 // Storage::put($filename, $content);
                 file_put_contents($filename, $content);
                 $index++;
