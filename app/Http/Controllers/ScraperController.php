@@ -204,7 +204,7 @@ class ScraperController extends Controller
         $result = preg_replace('/\s{2,}/', ' ', $result);
         $result2 = preg_replace('/\s/', '-', $result);
 
-        $strFilename =$this->getString($title,$result,30);
+        //$strFilename =$this->getString($title,$result,30);
         $postTitle =$this->getString($title,$result,50);
         $postDesctiption =$this->getString($title,$result,110);
 
@@ -212,15 +212,17 @@ class ScraperController extends Controller
         $filenames = []; 
         
         if (count($links) > 0) {
+            $strFilename = mb_substr($result, 0, 30, 'UTF-8');
             $filePrefix = preg_replace('/\s/', '-', $strFilename);
-            $locationString = implode('-', $locations);
+            //$locationString = implode('-', $locations);
+           
             foreach ($links as $link) {
                 $response = Http::get($link);
                 $content = $response->body();
                 // $filename = "download/{$filePrefix}-{$locationString}-{$index}.jpg";
                 // $filenames[] = $filename;
                 // Storage::put($filename, $content);
-                $fname = "assets/download/{$filePrefix}-{$locationString}-{$index}.jpg";
+                $fname = "assets/download/{$filePrefix}-{$index}.jpg";
                 $filename = public_path($fname);
                 $filenames[] = $fname;
                 // Storage::put($filename, $content);

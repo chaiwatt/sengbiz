@@ -222,7 +222,7 @@ class CreateScrapCron extends Command
         $result = preg_replace('/\s{2,}/', ' ', $result);
         $result2 = preg_replace('/\s/', '-', $result);
 
-        $strFilename =$this->getString($title,$result,30);
+        //$strFilename =$this->getString($title,$result,30);
         $postTitle =$this->getString($title,$result,50);
         $postDesctiption =$this->getString($title,$result,110);
 
@@ -230,8 +230,11 @@ class CreateScrapCron extends Command
         $filenames = []; 
         
         if (count($links) > 0) {
+            // $filePrefix = preg_replace('/\s/', '-', $strFilename);
+            // $locationString = implode('-', $locations);
+            $strFilename = mb_substr($result, 0, 30, 'UTF-8');
             $filePrefix = preg_replace('/\s/', '-', $strFilename);
-            $locationString = implode('-', $locations);
+            
             foreach ($links as $link) {
                 $response = Http::get($link);
                 $content = $response->body();
