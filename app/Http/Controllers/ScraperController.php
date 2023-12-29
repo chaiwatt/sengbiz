@@ -239,19 +239,23 @@ class ScraperController extends Controller
             $subCategoryId = null;
             $subMinorCategoryId = null;
             if($mainCategory !== null){
-                $mainCategoryId = $mainCategory->id;
-                $subCategory = SubCategory::where('name',$categories[1])->first();
-                if($subCategory !== null){
-                    $subCategoryId = $subCategory->id;
-                }
-                if ($mainCategoryId === 1){
-                    if(count($categories) == 3){
-                        $subMinorCategory = SubMinorCategory::where('name',$categories[2])->first();
-                        if($subMinorCategory !== null){
-                            $subMinorCategoryId = $subMinorCategory->id;
+                if(count($categories) > 1 ){
+                    $mainCategoryId = $mainCategory->id;
+                    $subCategory = SubCategory::where('name',$categories[1])->first();
+                    if($subCategory !== null){
+                        $subCategoryId = $subCategory->id;
+                    }
+                    if ($mainCategoryId === 1){
+                        if(count($categories) == 3){
+                            $subMinorCategory = SubMinorCategory::where('name',$categories[2])->first();
+                            if($subMinorCategory !== null){
+                                $subMinorCategoryId = $subMinorCategory->id;
+                            }
                         }
+                        
                     }
                 }
+                
             }
 
             // 
