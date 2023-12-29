@@ -238,7 +238,7 @@ class CreateScrapCron extends Command
                 // $filename = "download/{$filePrefix}-{$locationString}-{$index}.jpg";
                 // $filenames[] = $filename;
                 // Storage::put($filename, $content);
-                $fname = "assets/download/{$filePrefix}-{$locationString}-{$index}.jpg";
+                $fname = "assets/download/{$filePrefix}-{$index}.jpg";
                 $filename = public_path($fname);
                 $filenames[] = $fname;
                 // Storage::put($filename, $content);
@@ -346,7 +346,7 @@ class CreateScrapCron extends Command
                     }
                 }
                 PidScrape::where('pid',$orgPostId)->delete();
-                //dd($orgUser, $orgPostId ,$title,$price,$categories,$locations,$links,$nears,$coordinates,$result,$result2,$postTitle,$postDesctiption,$phoneNumbers,$stringContent,$htmlContent);
+                
             }
         }    
     }

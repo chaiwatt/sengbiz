@@ -42,7 +42,7 @@ class ScraperController extends Controller
        dd('done');
     }
 
-    function scrap()
+     function scrap()
     {
 
         $pidScrapes = PidScrape::all();
@@ -218,16 +218,16 @@ class ScraperController extends Controller
                 $response = Http::get($link);
                 $content = $response->body();
                 // $filename = "download/{$filePrefix}-{$locationString}-{$index}.jpg";
-                $fpath = "assets/download/{$filePrefix}-{$locationString}-{$index}.jpg";
-                $filename = public_path($fpath);
-                $filenames[] = $fpath;
+                // $filenames[] = $filename;
                 // Storage::put($filename, $content);
-                // ==== สร้างโฟลเดอร์ assets/download manual (ใช้ mkdir)
-                // ==== ไม่งั้นเขียนไฟล์ไม่ได้ =====                
-                // chmod -R guo+w /var/www/html/npcsolutionandservice/public/assets/download
-
+                $fname = "assets/download/{$filePrefix}-{$locationString}-{$index}.jpg";
+                $filename = public_path($fname);
+                $filenames[] = $fname;
+                // Storage::put($filename, $content);
                 file_put_contents($filename, $content);
                 $index++;
+
+
             }       
         }
 //  dd($orgUser, $orgPostId ,$title,$price,$categories,$locations,$links,$nears,$coordinates,$result,$result2,$postTitle,$postDesctiption,$phoneNumbers,$stringContent,$htmlContent);
@@ -330,10 +330,7 @@ class ScraperController extends Controller
                 PidScrape::where('pid',$orgPostId)->delete();
                 //dd($orgUser, $orgPostId ,$title,$price,$categories,$locations,$links,$nears,$coordinates,$result,$result2,$postTitle,$postDesctiption,$phoneNumbers,$stringContent,$htmlContent);
             }
-            
-            
-        }
-          
+        }    
     }
 
     function getString($defaultTitle,$string,$len)
