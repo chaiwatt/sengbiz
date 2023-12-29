@@ -266,10 +266,12 @@ class ScraperController extends Controller
             }else{
                 $province = Province::where('name',$locations[1])->first();
                 if ($province !== null){
-                    $provinceId = $province->id;
-                    $amphur = Amphur::where('name',$locations[0])->first();
-                    if($amphur !== null){
-                        $amphurId = $amphur->id;
+                    if(count($locations) == 2){
+                        $provinceId = $province->id;
+                        $amphur = Amphur::where('name',$locations[0])->first();
+                        if($amphur !== null){
+                            $amphurId = $amphur->id;
+                        }
                     }
                 }
 
