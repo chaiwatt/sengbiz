@@ -51,7 +51,7 @@ class ScraperController extends Controller
             return;
         }
 
-        $orgPostId = '119869'; //$pidScrapes->first()->pid;
+        $orgPostId = $pidScrapes->first()->pid;
 
         $url = 'https://www.thaibizpost.com/pid/'.$orgPostId;
         
@@ -111,8 +111,8 @@ class ScraperController extends Controller
         });
 
 
-        // ใช้ selector CSS เพื่อค้นหา element <a> ที่มี data-fancybox="gallery"
-        $links = $crawler->filter('a[data-fancybox="gallery"]')->each(function ($link) {
+        // ใช้ selector CSS เพื่อค้นหา element <a> ที่มี data-fancybox="gallery" และ href ต้องมี "digitaloceanspaces"
+        $links = $crawler->filter('a[data-fancybox="gallery"][href*=digitaloceanspaces]')->each(function ($link) {
             return $link->attr('href');
         });
 
@@ -215,7 +215,7 @@ class ScraperController extends Controller
             $strFilename = mb_substr($result, 0, 30, 'UTF-8');
             $filePrefix = preg_replace('/\s/', '-', $strFilename);
             //$locationString = implode('-', $locations);
-           
+          
             foreach ($links as $link) {
                 $response = Http::get($link);
                 $content = $response->body();
@@ -283,7 +283,6 @@ class ScraperController extends Controller
             
 
             if ($subCategoryId !== null && $provinceId !== null && $price != ''){
-                
                 $post = Post::create([
                     'main_category_id' => $mainCategoryId,
                     'sub_category_id' => $subCategoryId,

@@ -129,8 +129,8 @@ class CreateScrapCron extends Command
         });
 
 
-        // ใช้ selector CSS เพื่อค้นหา element <a> ที่มี data-fancybox="gallery"
-        $links = $crawler->filter('a[data-fancybox="gallery"]')->each(function ($link) {
+                // ใช้ selector CSS เพื่อค้นหา element <a> ที่มี data-fancybox="gallery" และ href ต้องมี "digitaloceanspaces"
+        $links = $crawler->filter('a[data-fancybox="gallery"][href*=digitaloceanspaces]')->each(function ($link) {
             return $link->attr('href');
         });
 
