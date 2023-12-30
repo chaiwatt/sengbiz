@@ -17,6 +17,9 @@ return new class extends Migration
             $table->unsignedBigInteger('sub_category_id');
             $table->unsignedBigInteger('sub_minor_category_id')->nullable();
             $table->string('title');
+            $table->string('slug');
+            $table->string('org_slug');
+            $table->string('org_title');
             $table->double('price',20,0)->default(0);
             $table->string('description');
             $table->longText('body');

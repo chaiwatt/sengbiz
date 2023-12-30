@@ -63,6 +63,7 @@ class CreateScrapCron extends Command
     function scrap()
     {
 
+        
         $pidScrapes = PidScrape::all();
 
         if ($pidScrapes->count() == 0){
@@ -74,9 +75,6 @@ class CreateScrapCron extends Command
         $url = 'https://www.thaibizpost.com/pid/'.$orgPostId;
         
     
-
-        
-
         $postInfo = PostInfo::where('org_id',$orgPostId)->first();
 
         if ($postInfo !== null) {
@@ -107,7 +105,8 @@ class CreateScrapCron extends Command
         } 
 
         // ใช้ selector CSS เพื่อค้นหา element <h1>
-        $title = preg_replace('/[\x{200B}-\x{200D}\x{FEFF}]/u', '', $crawler->filter('h1.panel-title.topic-title')->text());
+        $orgTitle = preg_replace('/[\x{200B}-\x{200D}\x{FEFF}]/u', '', $crawler->filter('h1.panel-title.topic-title')->text());
+        $orgSlug = trim(str_replace(' ', '-', $orgTitle), '-');
         $price = $crawler->filter('meta[itemprop="price"]')->attr('content');
         $price = preg_replace('/[^0-9]/', '', $price);
 
@@ -196,6 +195,7 @@ class CreateScrapCron extends Command
             });
 
             $stringContent = preg_replace('/[\x{200B}-\x{200D}\x{FEFF}]/u', '', $forumContentDiv->text());
+            $stringContent = preg_replace("/\\\\u{[a-fA-F0-9]+}/u", '', $stringContent);
 
             // $matches[0] จะเก็บเบอร์โทรทั้งหมดที่พบ
             $pattern = '/(\d{10}|\d{3}-\d{3}-\d{4}|\d{3}\d{7})/';
@@ -208,6 +208,7 @@ class CreateScrapCron extends Command
 
             // แสดงข้อมูลที่ต้องการจาก <div> หลัก
             $content = preg_replace('/[\x{200B}-\x{200D}\x{FEFF}]/u', '', $forumContentDiv->html());
+            $content = preg_replace("/\\\\u{[a-fA-F0-9]+}/u", '', $content);
 
             // ลบ \n ทั้งหมด
             $content = str_replace("\n", '', $content);
@@ -218,13 +219,15 @@ class CreateScrapCron extends Command
         } 
 
         //dd($result = preg_replace('/\p{L}/u', '', $stringContent));
-        $result = preg_replace('/[^\p{L}\p{M}0-9\s]/u', '', $stringContent);
+        $result = preg_replace('/[^\p{L}\p{M}0-9\s.,-]/u', '', $stringContent);
         $result = preg_replace('/\s{2,}/', ' ', $result);
-        $result2 = preg_replace('/\s/', '-', $result);
+        //$result2 = preg_replace('/\s/', '-', $result);
 
-        //$strFilename =$this->getString($title,$result,30);
-        $postTitle =$this->getString($title,$result,50);
-        $postDesctiption =$this->getString($title,$result,110);
+        //$strFilename =$this->getString($orgTitle,$result,30);
+        $postTitle =$this->getString($orgTitle,$result,50);
+        $slug = trim(str_replace(' ', '-', $postTitle), '-');
+        $postDesctiption =trim($this->getString($orgTitle,$result,110));
+        // $postDesctiption =$orgTitle . ' ' . trim($this->getString($orgTitle,$result,80));
 
         $index = 1;
         $filenames = []; 
@@ -251,7 +254,7 @@ class CreateScrapCron extends Command
 
             }       
         }
-//  dd($orgUser, $orgPostId ,$title,$price,$categories,$locations,$links,$nears,$coordinates,$result,$result2,$postTitle,$postDesctiption,$phoneNumbers,$stringContent,$htmlContent);
+//  dd($orgUser, $orgPostId ,$orgTitle,$price,$categories,$locations,$links,$nears,$coordinates,$result,$result2,$postTitle,$postDesctiption,$phoneNumbers,$stringContent,$htmlContent);
         if ($stringContent != "" && count($categories) != 0 && count($locations) != 0){
             $mainCategory = MainCategory::where('name',$categories[0])->first();
             $mainCategoryId = null;
@@ -307,6 +310,9 @@ class CreateScrapCron extends Command
                     'sub_category_id' => $subCategoryId,
                     'sub_minor_category_id' => $subMinorCategoryId,
                     'title' => $postTitle,
+                    'org_title' => $orgTitle,
+                    'slug' => $slug,
+                    'org_slug' => $orgSlug,
                     'price' => $price,
                     'description' => $postDesctiption,
                     'body' => $htmlContent

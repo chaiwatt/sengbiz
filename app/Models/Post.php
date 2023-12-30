@@ -16,6 +16,9 @@ class Post extends Model
         'sub_category_id',
         'sub_minor_category_id',
         'title',
+        'org_title',
+        'slug',
+        'org_slug',
         'price',
         'description',
         'body'
