@@ -22,3 +22,6 @@ Route::get('/', function () {
  Route::get('scrap-list', [ScraperController::class, 'scrapList'])->name('scrap-list');
 
  
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

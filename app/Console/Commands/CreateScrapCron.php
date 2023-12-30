@@ -62,10 +62,7 @@ class CreateScrapCron extends Command
 
     function scrap()
     {
-
-        
         $pidScrapes = PidScrape::all();
-
         if ($pidScrapes->count() == 0){
             return;
         }
