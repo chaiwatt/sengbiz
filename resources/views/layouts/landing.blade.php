@@ -991,9 +991,9 @@
                 <div class="col-lg-auto">
                     <!-- start footer nav -->
                     <ul class="list-unstyled list-separator mb-2 footer-nav">
-                        <li class="list-inline-item"><a href="#">Privacy</a></li>
-                        <li class="list-inline-item"><a href="#">Sitemap</a></li>
-                        <li class="list-inline-item"><a href="#">Cookies</a></li>
+                        <li class="list-inline-item"><a href="#">นโยบายความเป็นส่วนตัว</a></li>
+                        <li class="list-inline-item"><a href="#">แผนผังเว็บไซต์</a></li>
+                        <li class="list-inline-item"><a href="#">คุ้กกี้</a></li>
                     </ul>
                     <!-- end /. footer nav -->
                 </div>
