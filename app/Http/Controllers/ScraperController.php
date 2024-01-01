@@ -10,6 +10,7 @@ use App\Models\Province;
 use App\Models\PidScrape;
 use App\Models\PostImage;
 use App\Models\SubCategory;
+use App\Help\WebsiteScraper;
 use App\Models\MainCategory;
 use Illuminate\Http\Request;
 use App\Models\PostNearPlace;
@@ -23,26 +24,36 @@ class ScraperController extends Controller
 
     function scrapList()
     {
-        for ($i = 2; $i >= 1; $i--) {
-            $url = 'https://www.thaibizpost.com/c/businesses-sale/?page=' . $i;
-            $client = new Client();
-            $crawler = $client->request('GET', $url);
-            $crawler->filter('div.listings-title a')->each(function ($node) use (&$ids) {
-                preg_match('/\/pid\/(\d+)\//', $node->attr('href'), $matches);
-                if (isset($matches[1])) {
-                   $pid = trim($matches[1]);
-                    $existingPid = PidScrape::where('pid',$pid)->first();
-                    if (!$existingPid) {
-                        PidScrape::create(['pid' => $pid]);
-                    } 
-                }
-            });
-            sleep(2);
-        }
-       dd('done');
+    //     for ($i = 2; $i >= 1; $i--) {
+    //         //https://www.thaibizpost.com/c/tea-shops/?page=1
+    //         //https://www.thaibizpost.com/c/properties/?page=1
+    //         //https://www.thaibizpost.com/c/shop-spaces/?page=1
+    //         $url = 'https://www.thaibizpost.com/listings/?page=' . $i;
+    //         $client = new Client();
+    //         $crawler = $client->request('GET', $url);
+    //         $crawler->filter('div.listings-title a')->each(function ($node) use (&$ids) {
+    //             preg_match('/\/pid\/(\d+)\//', $node->attr('href'), $matches);
+    //             if (isset($matches[1])) {
+    //                $pid = trim($matches[1]);
+    //                 $existingPid = PidScrape::where('pid',$pid)->first();
+    //                 if (!$existingPid) {
+    //                     PidScrape::create(['pid' => $pid]);
+    //                 } 
+    //             }
+    //         });
+    //         sleep(2);
+    //     }
+    //    dd('done');
+        $scraper = new WebsiteScraper();
+        $scraper->scrapList();
     }
 
-     function scrap()
+    function scrap(){
+        $scraper = new WebsiteScraper();
+        $scraper->scrap();
+    }
+
+    function scrap_()
     {
 
         $pidScrapes = PidScrape::all();

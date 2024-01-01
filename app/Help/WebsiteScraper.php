@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Help;
 
 use Goutte\Client;
 use App\Models\Post;
@@ -10,53 +10,26 @@ use App\Models\Province;
 use App\Models\PidScrape;
 use App\Models\PostImage;
 use App\Models\SubCategory;
-use App\Help\WebsiteScraper;
 use App\Models\MainCategory;
+use Illuminate\Http\Request;
 use App\Models\PostNearPlace;
-use Illuminate\Console\Command;
 use App\Models\PostContactPhone;
+use App\Models\Scraped;
 use App\Models\SubMinorCategory;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 
-class CreateScrapCron extends Command
+class WebsiteScraper
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'app:create-scrap-cron';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Command description';
-
-    /**
-     * Execute the console command.
-     */
-    public function handle()
-    {
-        $this->scrap();
-    }
     
-    function scrapList()
-    {
-        $scraper = new WebsiteScraper();
-        $scraper->scrapList();
-    }
 
-    function scrap(){
-        $scraper = new WebsiteScraper();
-        $scraper->scrap();
-    }
-
-    function scrapList_()
+    public function scrapList()
     {
         for ($i = 2; $i >= 1; $i--) {
-            $url = 'https://www.thaibizpost.com/c/businesses-sale/?page=' . $i;
+            //https://www.thaibizpost.com/c/tea-shops/?page=1
+            //https://www.thaibizpost.com/c/properties/?page=1
+            //https://www.thaibizpost.com/c/shop-spaces/?page=1
+            $url = 'https://www.thaibizpost.com/listings/?page=' . $i;
             $client = new Client();
             $crawler = $client->request('GET', $url);
             $crawler->filter('div.listings-title a')->each(function ($node) use (&$ids) {
@@ -73,9 +46,11 @@ class CreateScrapCron extends Command
         }
     }
 
-    function scrap_()
+    function scrap()
     {
+
         $pidScrapes = PidScrape::all();
+
         if ($pidScrapes->count() == 0){
             return;
         }
@@ -84,14 +59,13 @@ class CreateScrapCron extends Command
 
         $url = 'https://www.thaibizpost.com/pid/'.$orgPostId;
         
-    
         $postInfo = PostInfo::where('org_id',$orgPostId)->first();
+        $scrapedPid = Scraped::where('pid',$orgPostId)->first();
 
-        if ($postInfo !== null) {
-            return;
+        if ($postInfo !== null || $scrapedPid !== null) {
+             return;
         }
 
-       
         $client = new Client();
         $crawler = $client->request('GET', $url);
 
@@ -138,7 +112,7 @@ class CreateScrapCron extends Command
         });
 
 
-                // ใช้ selector CSS เพื่อค้นหา element <a> ที่มี data-fancybox="gallery" และ href ต้องมี "digitaloceanspaces"
+        // ใช้ selector CSS เพื่อค้นหา element <a> ที่มี data-fancybox="gallery" และ href ต้องมี "digitaloceanspaces"
         $links = $crawler->filter('a[data-fancybox="gallery"][href*=digitaloceanspaces]')->each(function ($link) {
             return $link->attr('href');
         });
@@ -205,6 +179,7 @@ class CreateScrapCron extends Command
             });
 
             $stringContent = preg_replace('/[\x{200B}-\x{200D}\x{FEFF}]/u', '', $forumContentDiv->text());
+
             $stringContent = preg_replace("/\\\\u{[a-fA-F0-9]+}/u", '', $stringContent);
 
             // $matches[0] จะเก็บเบอร์โทรทั้งหมดที่พบ
@@ -230,24 +205,24 @@ class CreateScrapCron extends Command
 
         //dd($result = preg_replace('/\p{L}/u', '', $stringContent));
         $result = preg_replace('/[^\p{L}\p{M}0-9\s.,-]/u', '', $stringContent);
+
         $result = preg_replace('/\s{2,}/', ' ', $result);
-        //$result2 = preg_replace('/\s/', '-', $result);
+        $result2 = preg_replace('/\s/', '-', $result);
 
         //$strFilename =$this->getString($orgTitle,$result,30);
         $postTitle =$this->getString($orgTitle,$result,50);
         $slug = trim(str_replace(' ', '-', $postTitle), '-');
         $postDesctiption =trim($this->getString($orgTitle,$result,110));
-        // $postDesctiption =$orgTitle . ' ' . trim($this->getString($orgTitle,$result,80));
+        //$postDesctiption =$orgTitle . ' ' . trim($this->getString($orgTitle,$result,80));
 
         $index = 1;
         $filenames = []; 
         
         if (count($links) > 0) {
-            // $filePrefix = preg_replace('/\s/', '-', $strFilename);
-            // $locationString = implode('-', $locations);
             $strFilename = mb_substr($result, 0, 30, 'UTF-8');
             $filePrefix = preg_replace('/\s/', '-', $strFilename);
-            
+            //$locationString = implode('-', $locations);
+          
             foreach ($links as $link) {
                 $response = Http::get($link);
                 $content = $response->body();
@@ -264,7 +239,7 @@ class CreateScrapCron extends Command
 
             }       
         }
-//  dd($orgUser, $orgPostId ,$orgTitle,$price,$categories,$locations,$links,$nears,$coordinates,$result,$result2,$postTitle,$postDesctiption,$phoneNumbers,$stringContent,$htmlContent);
+    //dd($orgUser, $orgPostId ,$orgTitle,$price,$categories,$locations,$links,$nears,$coordinates,$result,$result2,$postTitle,$postDesctiption,$phoneNumbers,$stringContent,$htmlContent);
         if ($stringContent != "" && count($categories) != 0 && count($locations) != 0){
             $mainCategory = MainCategory::where('name',$categories[0])->first();
             $mainCategoryId = null;
@@ -310,11 +285,11 @@ class CreateScrapCron extends Command
                         }
                     }
                 }
+
             }
             
 
             if ($subCategoryId !== null && $provinceId !== null && $price != ''){
-                
                 $post = Post::create([
                     'main_category_id' => $mainCategoryId,
                     'sub_category_id' => $subCategoryId,
@@ -372,7 +347,8 @@ class CreateScrapCron extends Command
                     }
                 }
                 PidScrape::where('pid',$orgPostId)->delete();
-                
+                Scraped::create(['pid' => $orgPostId]);
+                dd($orgUser, $orgPostId ,$orgTitle,$price,$categories,$locations,$links,$nears,$coordinates,$result,$result2,$postTitle,$postDesctiption,$phoneNumbers,$stringContent,$htmlContent);
             }
         }    
     }
@@ -398,4 +374,6 @@ class CreateScrapCron extends Command
         }
         return $trimmedResult;
     }
+
+
 }
