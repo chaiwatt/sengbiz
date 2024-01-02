@@ -23,6 +23,7 @@ return new class extends Migration
             $table->double('price',20,0)->default(0);
             $table->string('description');
             $table->longText('body');
+            $table->char('need_broker')->default(0);
             $table->timestamps();
         });
     }

@@ -21,7 +21,8 @@ class Post extends Model
         'org_slug',
         'price',
         'description',
-        'body'
+        'body',
+        'need_broker'
     ]; // ตัวอย่าง
 
     public function postInfo()
