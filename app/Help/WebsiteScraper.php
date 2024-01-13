@@ -221,12 +221,12 @@ class WebsiteScraper
         $index = 1;
         $filenames = []; 
         
-        // if (!File::exists(public_path('images'))) {
-        //     mkdir(public_path('images'));
-        // }
-        // if (!File::isWritable(public_path('images'))) {
-        //     chmod(public_path('images'), 0777);
-        // }
+        if (!File::exists(public_path('assets/download'))) {
+            mkdir(public_path('assets/download'));
+        }
+        if (!File::isWritable(public_path('assets/download'))) {
+            chmod(public_path('assets/download'), 0777);
+        }
 
         // if (!File::exists(storage_path('download'))) {
         //     mkdir(storage_path('download'));
