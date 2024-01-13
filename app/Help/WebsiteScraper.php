@@ -246,9 +246,9 @@ class WebsiteScraper
                 $filename = public_path($fname);
                 $filenames[] = $fname;
                 file_put_contents($filename, $content);
-                $index++;
+                // $index++;
 
-                // $manager = new ImageManager(new Driver());
+                $manager = new ImageManager(new Driver());
                 // $response = Http::get($link);
                 // $content = $response->body();
                 // $jpgfile= "download/{$orgSlug}-{$index}.jpg";
@@ -256,14 +256,14 @@ class WebsiteScraper
                 // Storage::put($jpgfile, $content);
                 // $file = Storage::get($jpgfile);
                 
-                // $image = $manager->read($file);
+                $image = $manager->read($filename);
                 // $image->place(Storage::get('download/logo.png'));
-                // $image->scale(width: 500);
-                // $output = public_path("images/"."{$orgSlug}-{$index}".".webp");
-                // $image->toWebp()->save($output);
-                // $filenames[] = $output;
+                $image->scale(width: 500);
+                $output = public_path("images/"."{$orgSlug}-{$index}".".webp");
+                $image->toWebp()->save($output);
+                $filenames[] = $output;
                 // Storage::delete($jpgfile);
-                // $index++;
+                $index++;
 
             }       
         }
