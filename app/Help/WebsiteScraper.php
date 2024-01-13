@@ -5,6 +5,7 @@ namespace App\Help;
 use Goutte\Client;
 use App\Models\Post;
 use App\Models\Amphur;
+use App\Models\Scraped;
 use App\Models\PostInfo;
 use App\Models\Province;
 use App\Models\PidScrape;
@@ -14,10 +15,12 @@ use App\Models\MainCategory;
 use Illuminate\Http\Request;
 use App\Models\PostNearPlace;
 use App\Models\PostContactPhone;
-use App\Models\Scraped;
 use App\Models\SubMinorCategory;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
+use Intervention\Image\ImageManager;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class WebsiteScraper
 {
@@ -218,24 +221,49 @@ class WebsiteScraper
         $index = 1;
         $filenames = []; 
         
+        if (!File::exists(public_path('images'))) {
+            mkdir(public_path('images'));
+        }
+        if (!File::isWritable(public_path('images'))) {
+            chmod(public_path('images'), 0777);
+        }
+
+        if (!File::exists(storage_path('download'))) {
+            mkdir(storage_path('download'));
+        }
+        if (!File::isWritable(storage_path('download'))) {
+            chmod(storage_path('download'), 0777);
+        }
+
         if (count($links) > 0) {
             $strFilename = mb_substr($result, 0, 30, 'UTF-8');
             $filePrefix = preg_replace('/\s/', '-', $strFilename);
-            //$locationString = implode('-', $locations);
           
             foreach ($links as $link) {
+                // $response = Http::get($link);
+                // $content = $response->body();
+                // $fname = "assets/download/{$filePrefix}-{$index}.jpg";
+                // $filename = public_path($fname);
+                // $filenames[] = $fname;
+                // file_put_contents($filename, $content);
+                // $index++;
+
+                $manager = new ImageManager(new Driver());
                 $response = Http::get($link);
                 $content = $response->body();
-                // $filename = "download/{$filePrefix}-{$locationString}-{$index}.jpg";
-                // $filenames[] = $filename;
-                // Storage::put($filename, $content);
-                $fname = "assets/download/{$filePrefix}-{$index}.jpg";
-                $filename = public_path($fname);
-                $filenames[] = $fname;
-                // Storage::put($filename, $content);
-                file_put_contents($filename, $content);
+                $jpgfile= "download/{$orgSlug}-{$index}.jpg";
+            
+                Storage::put($jpgfile, $content);
+                $file = Storage::get($jpgfile);
+                
+                $image = $manager->read($file);
+                $image->place(Storage::get('download/logo.png'));
+                $image->scale(width: 500);
+                $output = public_path("images/"."{$orgSlug}-{$index}".".webp");
+                $image->toWebp()->save($output);
+                $filenames[] = $output;
+                Storage::delete($jpgfile);
                 $index++;
-
 
             }       
         }
