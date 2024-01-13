@@ -221,19 +221,19 @@ class WebsiteScraper
         $index = 1;
         $filenames = []; 
         
-        if (!File::exists(public_path('images'))) {
-            mkdir(public_path('images'));
-        }
-        if (!File::isWritable(public_path('images'))) {
-            chmod(public_path('images'), 0777);
-        }
+        // if (!File::exists(public_path('images'))) {
+        //     mkdir(public_path('images'));
+        // }
+        // if (!File::isWritable(public_path('images'))) {
+        //     chmod(public_path('images'), 0777);
+        // }
 
-        if (!File::exists(storage_path('download'))) {
-            mkdir(storage_path('download'));
-        }
-        if (!File::isWritable(storage_path('download'))) {
-            chmod(storage_path('download'), 0777);
-        }
+        // if (!File::exists(storage_path('download'))) {
+        //     mkdir(storage_path('download'));
+        // }
+        // if (!File::isWritable(storage_path('download'))) {
+        //     chmod(storage_path('download'), 0777);
+        // }
 
         if (count($links) > 0) {
             $strFilename = mb_substr($result, 0, 30, 'UTF-8');
