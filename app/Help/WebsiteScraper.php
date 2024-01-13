@@ -267,6 +267,7 @@ class WebsiteScraper
 
             }       
         }
+        dd($filenames);
     //dd($orgUser, $orgPostId ,$orgTitle,$price,$categories,$locations,$links,$nears,$coordinates,$result,$result2,$postTitle,$postDesctiption,$phoneNumbers,$stringContent,$htmlContent);
         if ($stringContent != "" && count($categories) != 0 && count($locations) != 0){
             $mainCategory = MainCategory::where('name',$categories[0])->first();
