@@ -246,23 +246,13 @@ class WebsiteScraper
                 $filename = public_path($fname);
                 $filenames[] = $fname;
                 file_put_contents($filename, $content);
-                // $index++;
-
                 $manager = new ImageManager(new Driver());
-                // $response = Http::get($link);
-                // $content = $response->body();
-                // $jpgfile= "download/{$orgSlug}-{$index}.jpg";
-            
-                // Storage::put($jpgfile, $content);
-                // $file = Storage::get($jpgfile);
-                
                 $image = $manager->read($filename);
-                // $image->place(Storage::get('download/logo.png'));
                 $image->scale(width: 500);
                 $output = public_path("assets/download/{$filePrefix}-{$index}.webp");
                 $image->toWebp()->save($output);
+                unlink($filename);
                 $filenames[] = $output;
-                // Storage::delete($jpgfile);
                 $index++;
 
             }       
