@@ -259,7 +259,7 @@ class WebsiteScraper
                 $image = $manager->read($filename);
                 // $image->place(Storage::get('download/logo.png'));
                 $image->scale(width: 500);
-                $output = public_path("images/"."{$orgSlug}-{$index}".".webp");
+                $output = public_path("assets/download/{$filePrefix}-{$index}.webp");
                 $image->toWebp()->save($output);
                 $filenames[] = $output;
                 // Storage::delete($jpgfile);
