@@ -28,7 +28,7 @@ class WebsiteScraper
 
     public function scrapList()
     {
-        for ($i = 2; $i >= 1; $i--) {
+        for ($i = 4; $i >= 1; $i--) {
             //https://www.thaibizpost.com/c/tea-shops/?page=1
             //https://www.thaibizpost.com/c/properties/?page=1
             //https://www.thaibizpost.com/c/shop-spaces/?page=1
