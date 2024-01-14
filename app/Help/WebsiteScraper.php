@@ -244,7 +244,6 @@ class WebsiteScraper
                 $content = $response->body();
                 $fname = "assets/download/{$filePrefix}-{$index}.jpg";
                 $filename = public_path($fname);
-                $filenames[] = $fname;
                 file_put_contents($filename, $content);
                 $manager = new ImageManager(new Driver());
                 $image = $manager->read($filename);
