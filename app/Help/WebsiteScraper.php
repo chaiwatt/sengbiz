@@ -249,9 +249,10 @@ class WebsiteScraper
                 $image = $manager->read($filename);
                 $image->place(public_path("assets/images/logo.png"));
                 $image->scale(width: 500);
-                $output = public_path("images/{$filePrefix}-{$index}.webp");
+                $fname = "images/{$filePrefix}-{$index}.webp";
+                $output = public_path($fname);
                 $image->toWebp()->save($output);
-                unlink($filename);
+                unlink($fname);
                 $filenames[] = $output;
                 $index++;
 
