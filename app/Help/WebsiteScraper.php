@@ -252,8 +252,8 @@ class WebsiteScraper
                 $fname = "images/{$filePrefix}-{$index}.webp";
                 $output = public_path($fname);
                 $image->toWebp()->save($output);
-                unlink($fname);
-                $filenames[] = $output;
+                unlink($filename);
+                $filenames[] = $fname;
                 $index++;
 
             }       
