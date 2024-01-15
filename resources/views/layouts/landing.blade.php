@@ -426,7 +426,7 @@
                                 <div class="bg-white col-lg-5 col-md-5 col-xl-4 position-relative">
                                     <div class="card-image-hover dark-overlay h-100 overflow-hidden position-relative">
                                         <!-- start image -->
-                                        <img src="assets/images/place/01.jpg" alt=""
+                                        <img src="assets/images/place/01.webp" alt=""
                                             class="h-100 w-100 object-fit-cover"
                                             alt="เซ้งล๊อคขายอาหารในศูนย์อาหารฮ่องกงพลาซ่า"
                                             aria-label="เซ้งล๊อคขายอาหารในศูนย์อาหารฮ่องกงพลาซ่า" decoding="async">
@@ -542,7 +542,7 @@
                                 <div class="bg-white col-lg-5 col-md-5 col-xl-4 position-relative">
                                     <div class="card-image-hover dark-overlay h-100 overflow-hidden position-relative">
                                         <!-- start image -->
-                                        <img src="assets/images/place/01.jpg" alt="image" decoding="async"
+                                        <img src="assets/images/place/01.webp" alt="image" decoding="async"
                                             class="h-100 w-100 object-fit-cover">
                                         <!-- end /. image -->
                                         <div
@@ -655,7 +655,7 @@
                                 <div class="bg-white col-lg-5 col-md-5 col-xl-4 position-relative">
                                     <div class="card-image-hover dark-overlay h-100 overflow-hidden position-relative">
                                         <!-- start image -->
-                                        <img src="assets/images/place/01.jpg" alt="image" decoding="async"
+                                        <img src="assets/images/place/01.webp" alt="image" decoding="async"
                                             class="h-100 w-100 object-fit-cover">
                                         <!-- end /. image -->
                                         <div
@@ -768,7 +768,7 @@
                                 <div class="bg-white col-lg-5 col-md-5 col-xl-4 position-relative">
                                     <div class="card-image-hover dark-overlay h-100 overflow-hidden position-relative">
                                         <!-- start image -->
-                                        <img src="assets/images/place/01.jpg" alt="image" decoding="async"
+                                        <img src="assets/images/place/01.webp" alt="image" decoding="async"
                                             class="h-100 w-100 object-fit-cover">
                                         <!-- end /. image -->
                                         <div
