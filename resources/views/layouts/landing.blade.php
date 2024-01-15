@@ -40,26 +40,17 @@
                 </a>
                 <div class="d-flex order-lg-2">
                     <!-- start button -->
-                    <a href="signin.html"
+                    <a href="#"
                         class="d-flex align-items-center justify-content-center p-0 rounded-5 btn-user position-relative"
                         data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
-                        data-bs-title="Favourite" aria-label="signin">
+                        data-bs-title="envelope-count" aria-label="envelope-count">
                         <i class="fa-solid fa-envelope"></i>
                         <span
                             class="align-items-center bg-primary d-flex end-0 fs-11 justify-content-center nav-count position-absolute rounded-circle text-white">0</span>
                     </a>
-                    <!-- end /. button -->
-                    <!-- start button -->
-                    {{-- <a href="sign-in.html"
-                        class="d-flex align-items-center justify-content-center p-0 rounded-5 btn-user"
-                        data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
-                        data-bs-title="Sign In">
-                        <i class="fa-solid fa-user-plus"></i>
-                    </a> --}}
-                    <!-- end /. button -->
-                    <!-- start button -->
+
                     <a href="add-listing.html" class="btn btn-primary d-none d-sm-flex fw-medium gap-2 hstack rounded-5"
-                        aria-label="add-listing">
+                        aria-label="ลงประกาศ">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             class="bi bi-plus-circle" viewBox="0 0 16 16">
                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
@@ -174,8 +165,8 @@
                     </ul>
                     <div class="d-sm-none">
                         <!-- start button -->
-                        <a href="signin.html"
-                            class="btn btn-primary d-flex gap-2 hstack justify-content-center rounded-3">
+                        <a href="#" class="btn btn-primary d-flex gap-2 hstack justify-content-center rounded-3"
+                            aria-label="signin">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-plus-circle" viewBox="0 0 16 16">
                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
