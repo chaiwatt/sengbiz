@@ -36,7 +36,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-white">
             <div class="container">
                 <a class="navbar-brand" href="index.html" aria-label="navbar-brand">
-                    <img src="assets/images/logo.png" alt="">
+                    <img src="assets/images/logo.png" alt="logo" decoding="async">
                 </a>
                 <div class="d-flex order-lg-2">
                     <!-- start button -->
@@ -203,7 +203,7 @@
                 <div class="col-md-2 col-lg-2 col-xl-3 d-none d-lg-block">
                     <!-- Start Search Select -->
                     <div class="search-select has-icon position-relative">
-                        <select class="select2 form-select" aria-label="Default select example">
+                        <select class="select2 form-select" aria-label="===พื้นที่===">
                             <option selected>===พื้นที่===</option>
                             <option value="1">กระบี่</option>
                             <option value="2">กรุงเทพมหานคร</option>
@@ -224,7 +224,7 @@
                 <div class="col-md-2 col-lg-2 col-xl-3 d-none d-lg-block">
                     <!-- Start Search Select -->
                     <div class="search-select has-icon position-relative">
-                        <select class="select2 form-select" aria-label="Default select example">
+                        <select class="select2 form-select" aria-label="===หมวดหมู่===">
                             <option selected>===หมวดหมู่===</option>
                             <option value="1">อสังหาริมทรัพย์</option>
                             <option value="2">ขาย/เซ้งกิจการ</option>
@@ -388,7 +388,7 @@
                                     <p class="mb-0 small">เลือกรายการเรียงลำดับการแสดง</p>
                                 </div>
                                 <!-- Start Select2 -->
-                                <select class="form-select">
+                                <select class="form-select" aria-label="ล่าสุด">
                                     <option value="1">ล่าสุด</option>
                                     <option value="2">ใกล้ฉัน</option>
                                     <option value="3">โหวตสูงสุด</option>
@@ -551,7 +551,7 @@
                                 <div class="bg-white col-lg-5 col-md-5 col-xl-4 position-relative">
                                     <div class="card-image-hover dark-overlay h-100 overflow-hidden position-relative">
                                         <!-- start image -->
-                                        <img src="assets/images/place/01.jpg" alt=""
+                                        <img src="assets/images/place/01.jpg" alt="image" decoding="async"
                                             class="h-100 w-100 object-fit-cover">
                                         <!-- end /. image -->
                                         <div
@@ -664,7 +664,7 @@
                                 <div class="bg-white col-lg-5 col-md-5 col-xl-4 position-relative">
                                     <div class="card-image-hover dark-overlay h-100 overflow-hidden position-relative">
                                         <!-- start image -->
-                                        <img src="assets/images/place/01.jpg" alt=""
+                                        <img src="assets/images/place/01.jpg" alt="image" decoding="async"
                                             class="h-100 w-100 object-fit-cover">
                                         <!-- end /. image -->
                                         <div
@@ -777,17 +777,17 @@
                                 <div class="bg-white col-lg-5 col-md-5 col-xl-4 position-relative">
                                     <div class="card-image-hover dark-overlay h-100 overflow-hidden position-relative">
                                         <!-- start image -->
-                                        <img src="assets/images/place/01.jpg" alt=""
+                                        <img src="assets/images/place/01.jpg" alt="image" decoding="async"
                                             class="h-100 w-100 object-fit-cover">
                                         <!-- end /. image -->
                                         <div
                                             class="bg-blur card-badge d-inline-block position-absolute start-0 text-white z-2">
-                                            <a href="#aa">ขาย/เซ้งกิจการ</a>
+                                            <a href="#aa" aria-label="ขาย/เซ้งกิจการ">ขาย/เซ้งกิจการ</a>
 
                                         </div>
                                         <div
                                             class="bg-blur card-badge d-inline-block position-absolute start-0 text-white z-2">
-                                            <a href="#bb">เชียงใหม่</a>
+                                            <a href="#bb" aria-label="เชียงใหม่">เชียงใหม่</a>
                                         </div>
                                     </div>
                                 </div>
@@ -925,8 +925,8 @@
                 <div class="col-lg order-md-first">
                     <div class="align-items-center row">
                         <!-- start footer logo -->
-                        <a href="index.html" class="col-sm-auto footer-logo mb-2 mb-sm-0">
-                            <img src="assets/images/logo-white.png" alt="">
+                        <a href="index.html" class="col-sm-auto footer-logo mb-2 mb-sm-0" aria-label="logo">
+                            <img src="assets/images/logo-white.png" alt="logo" decoding="async">
                         </a>
                         <!-- end /. footer logo -->
                         <!-- start text -->
