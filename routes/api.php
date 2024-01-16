@@ -19,4 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('webhook', [FacebookWebhookController::class, 'webhook'])->name('webhook');
+Route::get('webhook', [FacebookWebhookController::class, 'webhook'])->name('webhook');
