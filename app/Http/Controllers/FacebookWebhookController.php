@@ -27,17 +27,17 @@ class FacebookWebhookController extends Controller
     // }
     public function webhook(Request $request)
     {
-        $hubVerifyToken = env('HUB_VERIFY_TOKEN');
-        $hubChallenge = $request->input('hub_challenge');
-        $hubVerifyToken = $request->input('hub_verify_token');
+        // $hubVerifyToken = env('HUB_VERIFY_TOKEN');
+        // $hubChallenge = $request->input('hub_challenge');
+        // $hubVerifyToken = $request->input('hub_verify_token');
 
         Test::create(['name' => 'ok']);
 
-        if ($hubVerifyToken === '123456') {
-            return response($hubChallenge); // ตอบกลับด้วย challenge เพื่อยืนยันการตรวจสอบ
-        } else {
-            // จัดการคำขอที่ไม่ถูกต้อง (เช่น คืนค่าการตอบสนองข้อผิดพลาด)
-        }
+        // if ($hubVerifyToken === '123456') {
+        //     return response($hubChallenge); // ตอบกลับด้วย challenge เพื่อยืนยันการตรวจสอบ
+        // } else {
+        //     // จัดการคำขอที่ไม่ถูกต้อง (เช่น คืนค่าการตอบสนองข้อผิดพลาด)
+        // }
 
         $input = $request->all();
             $messages = [
