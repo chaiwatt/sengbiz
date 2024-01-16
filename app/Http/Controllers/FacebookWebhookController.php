@@ -1,0 +1,80 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use GuzzleHttp\Client;
+use Illuminate\Http\Request;
+
+class FacebookWebhookController extends Controller
+{
+    public function webhook(Request $request)
+    {
+        $input = $request->all();
+            $messages = [
+                'I_want_to_buy' => 'We will contact you as soon as possible once we see it sent. If you have other questions, you can ask me!',
+                'I_dont_want_to_buy' => 'Thank you for contacting us. If you have other questions, you can ask me!',
+            ];
+
+            if (isset($input['object']) && $input['object'] === 'page') {
+                foreach ($input['entry'] as $entry) {
+                    foreach ($entry['messaging'] as $event) {
+                        $senderId = $event['sender']['id'];
+              
+                        if (isset($event['message']['attachments'][0]['type']) && $event['message']['attachments'][0]['type'] === 'image') {
+                            // Handle image attachment
+                            // You can access the image URL like this:
+                            $imageUrl = $event['message']['attachments'][0]['payload']['url'];
+
+                            // Respond to the image message, e.g., acknowledge receipt
+                            $response_text = 'Received an image: ' . $imageUrl;
+                        } else {
+                            if (isset($event['message']['quick_reply']['payload'])) {
+                                $payload = $event['message']['quick_reply']['payload'];
+                                $response_text = $messages[$payload];
+                            } else {
+                                $messageText = $event['message']['text'];
+                                $response_text = 'You said: ' . $messageText;
+                            }
+                        }
+
+                        // Send a response_text
+                        $gg = $this->sendTextMessage($senderId, $response_text);
+                        if (!$gg) {
+                            return response('EVENT_RECEIVED', 200);
+                        } else {
+                            // Log::error($gg);
+                            return $gg . '<br>' . $senderId . '<br>' . $messageText;
+                        }
+                    }
+                }
+            }
+
+            return 'ummm';
+    }
+
+    private function sendTextMessage($recipientId, $messageText)
+    {
+        $pageAccessToken = env('PAGE_ACCESS_TOKEN');
+        $client = new Client();
+
+        $data = [
+            'recipient' => ['id' => $recipientId],
+            'message' => ['text' => $messageText],
+        ];
+
+        try {
+            $response = $client->post('https://graph.facebook.com/v18.0/me/messages', [
+                'query' => ['access_token' => $pageAccessToken],
+                'json' => $data,
+            ]);
+
+            // Check the response and handle any errors if necessary
+            $responseBody = $response->getBody()->getContents();
+            return false;
+            // You can log or process the response as needed
+        } catch (\Exception $e) {
+            // Handle any exceptions, e.g., log the error
+            return $e->getMessage();
+        }
+    }
+}

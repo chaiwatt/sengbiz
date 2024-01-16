@@ -181,6 +181,9 @@
                 </div>
             </div>
         </nav>
+
+
+
         <!-- end /. navbar -->
         <!-- start header search bar  -->
         <div class="bg-white border-bottom border-top p-3 p-xl-0 search-bar">
@@ -295,9 +298,13 @@
         </div>
         <!-- end /. header search bar  -->
     </div>
+
+
+
     <!-- end /. header -->
     <div class="py-3 py-xl-5 bg-gradient">
         <div class="container">
+
             <div class="row">
 
 
