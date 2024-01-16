@@ -10,15 +10,15 @@ class FacebookWebhookController extends Controller
 {
     public function webhook(Request $request)
     {
-        $envHubVerifyToken = env('HUB_VERIFY_TOKEN');
-        $hubChallenge = $request->input('hub_challenge');
-        $hubVerifyToken = $request->input('hub_verify_token');
+        // $envHubVerifyToken = env('HUB_VERIFY_TOKEN');
+        // $hubChallenge = $request->input('hub_challenge');
+        // $hubVerifyToken = $request->input('hub_verify_token');
 
-        if ($envHubVerifyToken === $hubVerifyToken) {
-            return response($hubChallenge); 
-        } else {
-            return response()->json(['error' => 'HUB_VERIFY_TOKEN ไม่ตรงกัน']);
-        }
+        // if ($envHubVerifyToken === $hubVerifyToken) {
+        //     return response($hubChallenge); 
+        // } else {
+        //     return response()->json(['error' => 'HUB_VERIFY_TOKEN ไม่ตรงกัน']);
+        // }
 
         $input = $request->all();
             $messages = [
