@@ -52,13 +52,15 @@ class WebsiteScraper
     function scrap()
     {
 
-        $pidScrapes = PidScrape::all();
+        $latestPidScrape = PidScrape::orderByDesc('id')->first();
 
-        if ($pidScrapes->count() == 0){
+        if ($latestPidScrape === null) {
+            // Collection ว่างเปล่า
             return;
         }
 
-        $orgPostId = $pidScrapes->first()->pid;
+        $orgPostId = $latestPidScrape->pid;
+   
 
         $url = 'https://www.thaibizpost.com/pid/'.$orgPostId;
         
