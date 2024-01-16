@@ -8,36 +8,17 @@ use Illuminate\Http\Request;
 
 class FacebookWebhookController extends Controller
 {
-
-
-
-    // public function verify(Request $request)
-    // {
-    //     $hubChallenge = $request->input('hub_challenge');
-    //     $hubVerifyToken = $request->input('hub_verify_token');
-
-    //     // return 'ummm';
-    //     // Your verification logic here
-    //     // \Log::error($hubVerifyToken);
-    //     if ($hubVerifyToken === 'sengBizMessage') {
-    //         return response($hubChallenge, 200);
-    //     }
-
-    //     return response('Invalid verification token', 403);
-    // }
     public function webhook(Request $request)
     {
-        // $hubVerifyToken = env('HUB_VERIFY_TOKEN');
-        // $hubChallenge = $request->input('hub_challenge');
-        // $hubVerifyToken = $request->input('hub_verify_token');
+        $envHubVerifyToken = env('HUB_VERIFY_TOKEN');
+        $hubChallenge = $request->input('hub_challenge');
+        $hubVerifyToken = $request->input('hub_verify_token');
 
-        Test::create(['name' => 'ok']);
-
-        // if ($hubVerifyToken === '123456') {
-        //     return response($hubChallenge); // ตอบกลับด้วย challenge เพื่อยืนยันการตรวจสอบ
-        // } else {
-        //     // จัดการคำขอที่ไม่ถูกต้อง (เช่น คืนค่าการตอบสนองข้อผิดพลาด)
-        // }
+        if ($envHubVerifyToken === $hubVerifyToken) {
+            return response($hubChallenge); 
+        } else {
+            return response()->json(['error' => 'HUB_VERIFY_TOKEN ไม่ตรงกัน']);
+        }
 
         $input = $request->all();
             $messages = [
