@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Test;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 
@@ -29,6 +30,8 @@ class FacebookWebhookController extends Controller
         $hubVerifyToken = env('HUB_VERIFY_TOKEN');
         $hubChallenge = $request->input('hub_challenge');
         $hubVerifyToken = $request->input('hub_verify_token');
+
+        Test::create(['name' => 'ok']);
 
         if ($hubVerifyToken === '123456') {
             return response($hubChallenge); // ตอบกลับด้วย challenge เพื่อยืนยันการตรวจสอบ
