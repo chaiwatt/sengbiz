@@ -27,11 +27,11 @@ class FacebookWebhookController extends Controller
     public function webhook(Request $request)
     {
         $hubVerifyToken = env('HUB_VERIFY_TOKEN');
-        $challenge = $request->input('hub_challenge');
-        $verifyToken = $request->input('hub_verify_token');
+        $hubChallenge = $request->input('hub_challenge');
+        $hubVerifyToken = $request->input('hub_verify_token');
 
-        if ($verifyToken === $hubVerifyToken) {
-            return response($challenge); // ตอบกลับด้วย challenge เพื่อยืนยันการตรวจสอบ
+        if ($hubVerifyToken === '123456') {
+            return response($hubChallenge); // ตอบกลับด้วย challenge เพื่อยืนยันการตรวจสอบ
         } else {
             // จัดการคำขอที่ไม่ถูกต้อง (เช่น คืนค่าการตอบสนองข้อผิดพลาด)
         }
