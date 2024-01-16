@@ -7,8 +7,35 @@ use Illuminate\Http\Request;
 
 class FacebookWebhookController extends Controller
 {
+
+
+
+    // public function verify(Request $request)
+    // {
+    //     $hubChallenge = $request->input('hub_challenge');
+    //     $hubVerifyToken = $request->input('hub_verify_token');
+
+    //     // return 'ummm';
+    //     // Your verification logic here
+    //     // \Log::error($hubVerifyToken);
+    //     if ($hubVerifyToken === 'sengBizMessage') {
+    //         return response($hubChallenge, 200);
+    //     }
+
+    //     return response('Invalid verification token', 403);
+    // }
     public function webhook(Request $request)
     {
+        $hubVerifyToken = env('HUB_VERIFY_TOKEN');
+        $challenge = $request->input('hub.challenge');
+        $verifyToken = $request->input('hub.verify_token');
+
+        if ($verifyToken === $hubVerifyToken) {
+            return response($challenge); // ตอบกลับด้วย challenge เพื่อยืนยันการตรวจสอบ
+        } else {
+            // จัดการคำขอที่ไม่ถูกต้อง (เช่น คืนค่าการตอบสนองข้อผิดพลาด)
+        }
+
         $input = $request->all();
             $messages = [
                 'I_want_to_buy' => 'We will contact you as soon as possible once we see it sent. If you have other questions, you can ask me!',
