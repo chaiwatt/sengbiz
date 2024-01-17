@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ScraperController;
 use App\Http\Controllers\ImageIntervensionController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SiteMapController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,16 +22,16 @@ use App\Http\Controllers\PostController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-
- Route::get('scrap', [ScraperController::class, 'scrap'])->name('scrap');
- Route::get('scrap-list', [ScraperController::class, 'scrapList'])->name('scrap-list');
+Route::get('sitemap.xml', [SiteMapController::class, 'index'])->name('sitemap');
+Route::get('scrap', [ScraperController::class, 'scrap'])->name('scrap');
+Route::get('scrap-list', [ScraperController::class, 'scrapList'])->name('scrap-list');
 
  
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+// Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('test', [ImageIntervensionController::class, 'test'])->name('test');
+// Route::get('test', [ImageIntervensionController::class, 'test'])->name('test');
 
 
 
@@ -38,12 +39,20 @@ Route::get('test', [ImageIntervensionController::class, 'test'])->name('test');
 //     Route::get('', [PostController::class, 'index'])->name('index');
 //     Route::get('/{slug}', [PostController::class, 'view'])->name('blog.view');
 
-// });
 
-Route::group([], function () {
-    Route::get('', [PostController::class, 'index'])->name('index');
-    Route::get('/{slug}', [PostController::class, 'view'])->name('view');
-});
+// Route::get('sitemap.xml', [SiteMapController::class, 'index'])->name('sitemap');
+
+// Route::get('', [PostController::class, 'index'])->name('index');
+// Route::get('/{slug}', [PostController::class, 'view'])->name('view');
+
+
+
+Route::get('/{slug}', [PostController::class, 'view'])->name('view');
+Route::get('', [PostController::class, 'index'])->name('index');
+
+
+
+
 
 
 
