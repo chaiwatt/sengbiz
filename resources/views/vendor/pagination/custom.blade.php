@@ -42,8 +42,6 @@
         @endforeach
 
 
-
-
         {{-- Next Page Link --}}
         @if ($paginator->hasMorePages())
 
