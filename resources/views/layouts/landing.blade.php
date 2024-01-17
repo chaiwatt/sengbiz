@@ -25,7 +25,7 @@
     <link href="assets/plugins/select2/select2.min.css" rel="stylesheet">
     <link href="assets/plugins/select2-bootstrap-5/select2-bootstrap-5-theme.min.css" rel="stylesheet">
     <!-- Custom style for this template -->
-    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/style.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -364,7 +364,7 @@
     <script src="assets/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
     <script src="assets/plugins/select2/select2.min.js"></script>
     <!-- Custom script for this template -->
-    <script src="assets/js/script.js"></script>
+    <script src="assets/js/script.min.js"></script>
 </body>
 
 
