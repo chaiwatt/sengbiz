@@ -16,11 +16,12 @@ class AppServiceProvider extends ServiceProvider
         //
     }
 
+
     public function boot(): void
     {
         View::composer('layouts.partial.sidebar', function ($view) {
-            $asidePosts = Post::paginate(20);
-            $view->with('asidePosts', $asidePosts);
+            $asidePosts = Post::orderByDesc('updated_at')->paginate(20);
+            $view->with(['asidePosts' => $asidePosts]);
         });
     }
 }

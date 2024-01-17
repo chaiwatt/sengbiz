@@ -14,16 +14,31 @@
                     <div class="card-image-hover dark-overlay h-100 overflow-hidden position-relative">
                         <!-- start image -->
                         {{-- --}}
-                        <img src="{{asset($post->postImages->first()->path)}}" alt="image" decoding="async"
+
+                        @if ($post->postImages->first() && $post->postImages->first()->path !== null)
+                        <img src="{{ asset($post->postImages->first()->path) }}" alt="{{$post->title}}"
                             class="h-100 w-100 object-fit-cover" style="max-height: 200px !important">
+                        @else
+                        <img src="{{ asset('assets/images/no-image/no-image-' . rand(1, 2) . '.webp') }}"
+                            class="h-100 w-100 object-fit-cover" style="max-height: 200px !important"
+                            alt="{{$post->title}}">
+                        @endif
+
                         <!-- end /. image -->
+
+                        @if (@$post->subCategory->name !== null)
                         <div class="bg-blur card-badge d-inline-block position-absolute start-0 text-white z-2">
                             <a href="#aa">{{$post->subCategory->name}}</a>
-
                         </div>
+                        @endif
+
+                        @if (@$post->postInfo->province->name !== null)
                         <div class="bg-blur card-badge d-inline-block position-absolute start-0 text-white z-2">
                             <a href="#bb">{{$post->postInfo->province->name}}</a>
                         </div>
+                        @endif
+
+
                     </div>
                 </div>
                 <div class="col-lg-7 col-md-7 col-xl-8 p-3 p-lg-4 p-md-3 p-sm-4">
@@ -64,10 +79,16 @@
                                         d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10" />
                                     <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
                                 </svg>
-                                <span><a href="">{{$post->postInfo->amphur->name}}</a>,
+                                <span>
+                                    @if (@$post->postInfo->amphur->name !== null)
+                                    <a href="">{{$post->postInfo->amphur->name}}</a>,
+                                    @endif
+                                    @if (@$post->postInfo->province->name !== null)
                                     <a href="">{{$post->postInfo->province->name}}</a></span>
+                                @endif
 
                             </div>
+                            @if ($post->mainCategory->name !== null)
                             <a href="#" class="d-flex gap-2 align-items-center fs-13 fw-semibold">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#9b9b9b"
                                     class="bi bi-tags" viewBox="0 0 16 16">
@@ -78,6 +99,8 @@
                                 </svg>
                                 <span>{{$post->mainCategory->name}}</span>
                             </a>
+                            @endif
+
                             @if ($post->postNearPlace !== null)
                             <a href="#" class="d-flex gap-2 align-items-center fs-13 fw-semibold">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#9b9b9b"
@@ -98,16 +121,6 @@
                                 <span>รับนายหน้า</span>
                             </a>
                             @endif
-
-                            {{-- <a href="#" class="d-flex gap-2 align-items-center fs-13 fw-semibold">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#9b9b9b"
-                                    class="bi bi-compass" viewBox="0 0 16 16">
-                                    <path
-                                        d="M8 16.016a7.5 7.5 0 0 0 1.962-14.74A1 1 0 0 0 9 0H7a1 1 0 0 0-.962 1.276A7.5 7.5 0 0 0 8 16.016zm6.5-7.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
-                                    <path d="m6.94 7.44 4.95-2.83-2.83 4.95-4.949 2.83 2.828-4.95z" />
-                                </svg>
-                                <span>Directions</span>
-                            </a> --}}
                         </div>
                         <!-- end contact content -->
                     </div>
@@ -121,24 +134,7 @@
 
     <!-- start pagination -->
     <nav class="justify-content-center mt-5 pagination align-items-center">
-        <a class="prev page-numbers" href="#">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                class="bi bi-arrow-left-short" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                    d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
-            </svg>
-            ก่อนหน้า
-        </a>
-        <span class="page-numbers current">1</span>
-        <a class="page-numbers" href="#">2</a>
-        <a class="next page-numbers" href="#">
-            ถัดไป
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                class="bi bi-arrow-right-short" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                    d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
-            </svg>
-        </a>
+        {{$posts->links('vendor.pagination.custom')}}
     </nav>
     <!-- end /. pagination -->
 </div>
