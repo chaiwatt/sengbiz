@@ -18,8 +18,10 @@ class PostController extends Controller
     }
     public function view($slug)
     {
-        $posts = Post::paginate(20);
+        $posts = Post::paginate(4);
+        $post = Post::where('slug',$slug)->first();
         return view('post.view',[
+            'post' => $post,
             'posts' => $posts,
             'searchTerm' => null,
             'tag' => null

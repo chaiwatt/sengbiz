@@ -5,8 +5,7 @@
 
     @foreach ($posts->reverse() as $post)
     <div class="card border-0 shadow-sm overflow-hidden rounded-4 mb-4 card-hover">
-        <a href="{{route('view',['slug' => $post->slug])}}" class="stretched-link"
-            aria-label="เซ้งล๊อคขายอาหารในศูนย์อาหารฮ่องกงพลาซ่า"></a>
+        <a href="{{route('view',['slug' => $post->slug])}}" class="stretched-link" aria-label="{{$post->title}}"></a>
         <div class="card-body p-0">
 
             <div class="g-0 row">
@@ -17,24 +16,25 @@
 
                         @if ($post->postImages->first() && $post->postImages->first()->path !== null)
                         <img src="{{ asset($post->postImages->first()->path) }}" alt="{{$post->title}}"
-                            class="h-100 w-100 object-fit-cover" style="max-height: 200px !important">
+                            class="h-100 w-100 object-fit-cover" style="max-height: 200px !important" decoding="async">
                         @else
                         <img src="{{ asset('assets/images/no-image/no-image-' . rand(1, 2) . '.webp') }}"
                             class="h-100 w-100 object-fit-cover" style="max-height: 200px !important"
-                            alt="{{$post->title}}">
+                            alt="{{$post->title}}" decoding="async">
                         @endif
 
                         <!-- end /. image -->
 
                         @if (@$post->subCategory->name !== null)
                         <div class="bg-blur card-badge d-inline-block position-absolute start-0 text-white z-2">
-                            <a href="#aa">{{$post->subCategory->name}}</a>
+                            <a href="#aa" aria-label="{{$post->subCategory->name}}">{{$post->subCategory->name}}</a>
                         </div>
                         @endif
 
                         @if (@$post->postInfo->province->name !== null)
                         <div class="bg-blur card-badge d-inline-block position-absolute start-0 text-white z-2">
-                            <a href="#bb">{{$post->postInfo->province->name}}</a>
+                            <a href="#bb"
+                                aria-label="{{$post->postInfo->province->name}}">{{$post->postInfo->province->name}}</a>
                         </div>
                         @endif
 
@@ -63,7 +63,8 @@
                         <!-- end /. card description -->
                         <!-- start contact content -->
                         <div class="d-flex flex-wrap gap-3 mt-auto z-1">
-                            <a href="#" class="d-flex gap-2 align-items-center fs-13 fw-semibold">
+                            <a href="#" class="d-flex gap-2 align-items-center fs-13 fw-semibold"
+                                aria-label="{{$post->PostDate}}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#9b9b9b"
                                     class="bi bi-clock" viewBox="0 0 16 16">
                                     <path
@@ -81,15 +82,18 @@
                                 </svg>
                                 <span>
                                     @if (@$post->postInfo->amphur->name !== null)
-                                    <a href="">{{$post->postInfo->amphur->name}}</a>,
+                                    <a href=""
+                                        aria-label="{{$post->postInfo->amphur->name}}">{{$post->postInfo->amphur->name}}</a>,
                                     @endif
                                     @if (@$post->postInfo->province->name !== null)
-                                    <a href="">{{$post->postInfo->province->name}}</a></span>
+                                    <a href=""
+                                        aria-label="{{$post->postInfo->province->name}}">{{$post->postInfo->province->name}}</a></span>
                                 @endif
 
                             </div>
                             @if ($post->mainCategory->name !== null)
-                            <a href="#" class="d-flex gap-2 align-items-center fs-13 fw-semibold">
+                            <a href="#" class="d-flex gap-2 align-items-center fs-13 fw-semibold"
+                                aria-label="{{$post->mainCategory->name}}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#9b9b9b"
                                     class="bi bi-tags" viewBox="0 0 16 16">
                                     <path
@@ -102,7 +106,8 @@
                             @endif
 
                             @if ($post->postNearPlace !== null)
-                            <a href="#" class="d-flex gap-2 align-items-center fs-13 fw-semibold">
+                            <a href="#" class="d-flex gap-2 align-items-center fs-13 fw-semibold"
+                                aria-label="{{$post->postNearPlace->name}}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#9b9b9b"
                                     class="bi bi-train-lightrail-front" viewBox="0 0 16 16">
                                     <path
@@ -112,7 +117,8 @@
                             </a>
                             @endif
                             @if (intVal($post->need_broker) === 1)
-                            <a href="#" class="d-flex gap-2 align-items-center fs-13 fw-semibold">
+                            <a href="#" class="d-flex gap-2 align-items-center fs-13 fw-semibold"
+                                aria-label="รับนายหน้า">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#9b9b9b"
                                     class="bi bi-currency-dollar" viewBox="0 0 16 16">
                                     <path
