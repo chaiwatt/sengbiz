@@ -11,6 +11,7 @@ use App\Models\Province;
 use App\Models\PidScrape;
 use App\Models\PostImage;
 use App\Models\SubCategory;
+use Illuminate\Support\Str;
 use App\Models\MainCategory;
 use Illuminate\Http\Request;
 use App\Models\PostNearPlace;
@@ -217,6 +218,16 @@ class WebsiteScraper
         //$strFilename =$this->getString($orgTitle,$result,30);
         $postTitle =$this->getString($orgTitle,$result,50);
         $slug = trim(str_replace(' ', '-', $postTitle), '-');
+        // $slug = Str::slug($postTitle, '-', 150);
+        $slug = preg_replace('/--/', '-', $slug);
+        $slug = preg_replace('/---/', '-', $slug);
+        // $slug = trim($this->getString($orgTitle,$result,150));
+        // dd($slug,mb_strlen($slug, 'UTF-8'));
+      
+        if(mb_strlen($slug, 'UTF-8') > 70){
+            $slug = mb_substr($slug, 0, 70, 'UTF-8');
+        }
+        
         $postDesctiption =trim($this->getString($orgTitle,$result,110));
         //$postDesctiption =$orgTitle . ' ' . trim($this->getString($orgTitle,$result,80));
 
@@ -318,7 +329,7 @@ class WebsiteScraper
                     'sub_minor_category_id' => $subMinorCategoryId,
                     'title' => $postTitle,
                     'org_title' => $orgTitle,
-                    'slug' => $slug,
+                    'slug' => $slug ,
                     'org_slug' => $orgSlug,
                     'price' => $price,
                     'description' => $postDesctiption,
