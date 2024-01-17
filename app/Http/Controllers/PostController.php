@@ -20,6 +20,7 @@ class PostController extends Controller
     {
         $posts = Post::paginate(4);
         $post = Post::where('slug',$slug)->first();
+        dd($post);
         return view('post.view',[
             'post' => $post,
             'posts' => $posts,
