@@ -207,7 +207,7 @@ class WebsiteScraper
             // ลบ """ ทั้งหมด
             $content = str_replace('"""', '', $content);
             $htmlContent = preg_replace('/<br\s*\/?>\s*<br\s*\/?>/i', '<br>', $content);
-            $postTitle = preg_replace('/WAN\d{3}/', '', $htmlContent);
+            $htmlContent = preg_replace('/WAN\d{3}/', '', $htmlContent);
         } 
 
         //dd($result = preg_replace('/\p{L}/u', '', $stringContent));
