@@ -111,8 +111,7 @@
             <!-- end /. card link -->
             <!-- start card image wrap -->
             <div class="card-img-wrap card-image-hover overflow-hidden">
-                <img src="{{asset($asidePost->postImages->first()->path)}}" alt="" class="img-fluid"
-                    style="max-height: 250px">
+                <img src="{{asset($asidePost->postImages->first()->path)}}" alt="" class="img-fluid" style="width:100%">
 
                 <div class="bg-blur card-badge d-inline-block position-absolute start-0 text-white z-2">
                     <a href="#bb">{{$asidePost->postInfo->province->name}}</a>
