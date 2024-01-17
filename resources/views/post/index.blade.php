@@ -5,7 +5,7 @@
 
     @foreach ($posts as $post)
     <div class="card border-0 shadow-sm overflow-hidden rounded-4 mb-4 card-hover">
-        <a href="{{route('view',['slug' => $post->slug])}}" class="stretched-link" aria-label="{{$post->title}}"></a>
+        <a href="{{route('view',['slug' => $post->slug])}}" class="stretched-link"></a>
         <div class="card-body p-0">
 
             <div class="g-0 row">
@@ -33,7 +33,7 @@
 
                         @if (@$post->postInfo->province->name !== null)
                         <div class="bg-blur card-badge d-inline-block position-absolute start-0 text-white z-2">
-                            <a href="#bb"
+                            <a href="#"
                                 aria-label="{{$post->postInfo->province->name}}">{{$post->postInfo->province->name}}</a>
                         </div>
                         @endif
