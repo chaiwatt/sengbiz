@@ -191,10 +191,10 @@
                                         <!-- end /. rating counter text -->
                                     </div>
                                     <!-- start card title -->
-                                    <h4 class="fs-18 fw-semibold mb-0">
+                                    <h2 class="fs-18 fw-semibold mb-0">
                                         {{$post->title}}
 
-                                    </h4>
+                                    </h2>
                                     <!-- end /. card title -->
                                     <!-- start card description -->
                                     <p class="mt-3 fs-15">{{$post->description}}
