@@ -290,6 +290,14 @@
                         <div class="col-sm-12">
                             <!-- start form group -->
                             <div class="form-group">
+                                <label class="required fw-medium mb-2">เบอร์โทรศัพท์</label>
+                                <input type="text" class="form-control" placeholder="">
+                            </div>
+                            <!-- end /. form group -->
+                        </div>
+                        <div class="col-sm-12">
+                            <!-- start form group -->
+                            <div class="form-group">
                                 <label class="required fw-medium mb-2">อีเมล</label>
                                 <input type="text" class="form-control" placeholder="">
                             </div>
