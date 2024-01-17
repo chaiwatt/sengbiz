@@ -84,7 +84,7 @@
                 <!-- /.End Select2 -->
             </div> --}}
             <!-- start apply button -->
-            <button type="button" class="btn btn-primary w-100">ค้นหา</button>
+            {{-- <button type="button" class="btn btn-primary w-100">ค้นหา</button> --}}
             <!-- end /. apply button -->
             <!-- start clear filters -->
             {{-- <a href="#"
