@@ -27,13 +27,14 @@
                 <ul class="fs-14 fw-medium list-inline list-separator mb-0 text-muted">
                     <li class="list-inline-item">{{$post->PostDate}}</li>
                     @if (@$post->postInfo->province->name !== null)
-                    <li class="list-inline-item"><a href="#">
-                            @if (@$post->postInfo->amphur->name !== null)
-                            <a href="">{{$post->postInfo->amphur->name}}</a>,
-                            @endif
+                    <li class="list-inline-item">
+                        @if (@$post->postInfo->amphur->name !== null)
+                        <a href="" aria-label="{{$post->postInfo->amphur->name}}">{{$post->postInfo->amphur->name}}</a>,
+                        @endif
 
-                            <a href="">{{$post->postInfo->province->name}}</a>
-                        </a>
+                        <a href=""
+                            aria-label="{{$post->postInfo->province->name}}">{{$post->postInfo->province->name}}</a>
+
                     </li>
                     @endif
                     @if ($post->postNearPlace !== null)
