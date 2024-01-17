@@ -5,8 +5,7 @@
 
     @foreach ($posts as $post)
     <div class="card border-0 shadow-sm overflow-hidden rounded-4 mb-4 card-hover">
-        <a href="{{route('view',['slug' => $post->slug])}}" class="stretched-link" aria-label="{{$post->title}}"><span
-                style="display: none">{{$post->title}}</span></a>
+        <a href="{{route('view',['slug' => $post->slug])}}" class="stretched-link" aria-label="{{$post->title}}"></a>
         <div class="card-body p-0">
 
             <div class="g-0 row">
