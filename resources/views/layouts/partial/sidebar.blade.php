@@ -17,7 +17,7 @@
         </div>
         <!-- end /. filter header -->
         <div class="sidebar-filters-body p-3 p-xl-0">
-            <div class="mb-4 border-bottom pb-4">
+            {{-- <div class="mb-4 border-bottom pb-4">
                 <div class="mb-3">
                     <h4 class="fs-5 fw-semibold mb-1">ช่วงราคา</h4>
                     <p class="mb-0 small">กำหนดช่วงราคาค้นหา</p>
@@ -25,7 +25,7 @@
                 <!-- Start Range Slider -->
                 <div class="js-range-slider"></div>
                 <!-- End Range Slider -->
-            </div>
+            </div> --}}
             <div class="mb-4 border-bottom pb-4">
                 <div class="mb-3">
                     <h4 class="fs-5 fw-semibold mb-2">หมวดหมู่</h4>
