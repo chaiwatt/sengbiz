@@ -3,7 +3,7 @@
 
 <div class="col-xl-9 ps-lg-4 ps-xl-5 sidebar">
 
-    @foreach ($posts->reverse() as $post)
+    @foreach ($posts as $post)
     <div class="card border-0 shadow-sm overflow-hidden rounded-4 mb-4 card-hover">
         <a href="{{route('view',['slug' => $post->slug])}}" class="stretched-link" aria-label="{{$post->title}}"></a>
         <div class="card-body p-0">
