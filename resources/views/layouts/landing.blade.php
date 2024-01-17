@@ -283,17 +283,8 @@
                                 </svg>
                             </a>
                         </div>
-                        <!-- select -->
-                        {{-- <select class="input-select position-absolute top-50">
-                            <option selected>0.5 km</option>
-                            <option value="1">1 km</option>
-                            <option value="2">5 km</option>
-                            <option value="3">10 km</option>
-                        </select> --}}
                     </div>
-
                 </div>
-                {{-- <button type="button" class="btn btn-primary w-30">Apply filters</button> --}}
             </div>
         </div>
         <!-- end /. header search bar  -->
@@ -307,7 +298,7 @@
 
             <div class="row">
 
-
+                @include('layouts.partial.sidebar')
 
 
                 @yield('content')
