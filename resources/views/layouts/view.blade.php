@@ -8,6 +8,7 @@
     <title>@yield('title')</title>
     <meta name="description" content="@yield('description')">
     <meta name="keywords" content="@yield('keywords')">
+    <meta name="theme-color" content="#FFFFFF">
     <link rel="canonical" href="{{urldecode(request()->url())}}" />
     <meta property="og:locale" content="th_TH" />
     <meta property="og:locale:alternate" content="en_US" />
