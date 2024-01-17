@@ -33,7 +33,17 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('test', [ImageIntervensionController::class, 'test'])->name('test');
 
 
-Route::get('', [PostController::class, 'index'])->name('index');
+
+// Route::group(['prefix' => ''], function () {
+//     Route::get('', [PostController::class, 'index'])->name('index');
+//     Route::get('/{slug}', [PostController::class, 'view'])->name('blog.view');
+
+// });
+
+Route::group([], function () {
+    Route::get('', [PostController::class, 'index'])->name('index');
+    Route::get('/{slug}', [PostController::class, 'view'])->name('view');
+});
 
 
 

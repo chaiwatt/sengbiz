@@ -102,7 +102,7 @@
             <!-- end /. clear filters -->
         </div>
     </div>
-    @foreach ($posts->reverse() as $post)
+    @foreach ($posts->reverse() as $asidePost)
     <!-- end /. sidebar filters -->
     <div class="owl-item mt-3 active" style="width: 100%; margin-right: 10px;">
         <div class="card rounded-3 w-100 flex-fill overflow-hidden border-0 dark-overlay">
@@ -111,18 +111,18 @@
             <!-- end /. card link -->
             <!-- start card image wrap -->
             <div class="card-img-wrap card-image-hover overflow-hidden">
-                <img src="{{asset($post->postImages->first()->path)}}" alt="" class="img-fluid"
+                <img src="{{asset($asidePost->postImages->first()->path)}}" alt="" class="img-fluid"
                     style="max-height: 250px">
 
                 <div class="bg-blur card-badge d-inline-block position-absolute start-0 text-white z-2">
-                    <a href="#bb">เชียงใหม่</a>
+                    <a href="#bb">{{$asidePost->postInfo->province->name}}</a>
                 </div>
 
                 <!-- end /. card image wrap -->
                 <div class="bottom-0 d-flex flex-column p-4 position-absolute position-relative text-white w-80 z-1">
 
                     <!-- start card title -->
-                    <h3 class="fs-6 fw-semibold mb-0">{{$posts->first()->title}}</h3>
+                    <h3 class="fs-6 fw-semibold mb-0">{{$asidePost->title}}</h3>
                     <!-- end /. card title -->
                 </div>
             </div>
@@ -136,7 +136,8 @@
 
     @foreach ($posts->reverse() as $post)
     <div class="card border-0 shadow-sm overflow-hidden rounded-4 mb-4 card-hover">
-        <a href="listing-details.html" class="stretched-link" aria-label="เซ้งล๊อคขายอาหารในศูนย์อาหารฮ่องกงพลาซ่า"></a>
+        <a href="{{route('view',['slug' => $post->slug])}}" class="stretched-link"
+            aria-label="เซ้งล๊อคขายอาหารในศูนย์อาหารฮ่องกงพลาซ่า"></a>
         <div class="card-body p-0">
 
             <div class="g-0 row">
@@ -178,7 +179,7 @@
                         <!-- end /. card description -->
                         <!-- start contact content -->
                         <div class="d-flex flex-wrap gap-3 mt-auto z-1">
-                            <a href="tel:+4733378901" class="d-flex gap-2 align-items-center fs-13 fw-semibold">
+                            <a href="#" class="d-flex gap-2 align-items-center fs-13 fw-semibold">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#9b9b9b"
                                     class="bi bi-clock" viewBox="0 0 16 16">
                                     <path
@@ -187,16 +188,17 @@
                                 </svg>
                                 <span>{{$post->PostDate}}</span>
                             </a>
-                            <a href="#" class="d-flex gap-2 align-items-center fs-13 fw-semibold">
+                            <div href="#" class="d-flex gap-2 align-items-center fs-13 fw-semibold">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#9b9b9b"
                                     class="bi bi-geo-alt" viewBox="0 0 16 16">
                                     <path
                                         d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10" />
                                     <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
                                 </svg>
-                                <span>{{$post->postInfo->amphur->name}}, {{$post->postInfo->province->name}}</span>
+                                <span><a href="">{{$post->postInfo->amphur->name}}</a>,
+                                    <a href="">{{$post->postInfo->province->name}}</a></span>
 
-                            </a>
+                            </div>
                             <a href="#" class="d-flex gap-2 align-items-center fs-13 fw-semibold">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#9b9b9b"
                                     class="bi bi-tags" viewBox="0 0 16 16">
