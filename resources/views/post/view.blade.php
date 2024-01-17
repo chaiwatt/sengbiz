@@ -263,7 +263,8 @@
             <div class="rounded-4 overflow-hidden">
                 <div class="row gx-2 zoom-gallery">
                     <div class="col-md-8">
-                        <a class="d-block position-relative" href="{{ asset($image1) }}">
+                        <a class="d-block position-relative" href="{{ asset($image1) }}"
+                            data-source="{{ asset($image1) }}">
                             <img class="img-fluid" src="{{ asset($image1) }}" alt="{{$post->title}}"
                                 aria-label="{{$post->title}}" style="height: 526px;width:100%">
                             <div class="position-absolute bottom-0 end-0 mb-3 me-3">
@@ -276,11 +277,12 @@
                         </a>
                     </div>
                     <div class="col-md-4 d-none d-md-inline-block">
-                        <a class="d-block mb-2" href="{{ asset($image2) }}">
+                        <a class="d-block mb-2" href="{{ asset($image2) }}" data-source="{{ asset($image2) }}">
                             <img class="img-fluid w-100" src="{{ asset($image2) }}" alt="{{$post->title}}"
                                 aria-label="{{$post->title}}" style="height: 259px">
                         </a>
-                        <a class="d-block position-relative" href="{{ asset($image3) }}">
+                        <a class="d-block position-relative" href="{{ asset($image3) }}"
+                            data-source="{{ asset($image3) }}">
                             <img class="img-fluid w-100" src="{{ asset($image3) }}" alt="{{$post->title}}"
                                 aria-label="{{$post->title}}" style="height: 259px">
                             <div class="position-absolute bottom-0 end-0 mb-3 me-3">
