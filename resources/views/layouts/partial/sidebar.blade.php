@@ -31,40 +31,41 @@
                     <h4 class="fs-5 fw-semibold mb-2">หมวดหมู่</h4>
                     <p class="mb-0 small">เลือกหมวดหมู่ค้นหา</p>
                 </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" value="" id="skillsOne" checked>
+                    <label class="form-check-label" for="skillsOne">อสังหาริมทรัพย์<span
+                            class="count fs-13 ms-1 text-muted">({{$allPosts->where('main_category_id',5)->count()}})</span></label>
+                </div>
                 <!-- Start Form Check -->
                 <div class="form-check mb-2">
-                    <input class="form-check-input" type="checkbox" value="" id="skillsTwo" checked>
+                    <input class="form-check-input" type="checkbox" value="" id="skillsTwo">
                     <label class="form-check-label" for="skillsTwo">ขาย/เซ้งกิจการ<span
-                            class="count fs-13 ms-1 text-muted">(31)</span></label>
+                            class="count fs-13 ms-1 text-muted">({{$allPosts->where('main_category_id',1)->count()}})</span></label>
                 </div>
                 <!-- End Form Check -->
                 <!-- Start Form Check -->
-                <div class="form-check mb-2">
-                    <input class="form-check-input" type="checkbox" value="" id="skillsOne">
-                    <label class="form-check-label" for="skillsOne">อสังหาริมทรัพย์<span
-                            class="count fs-13 ms-1 text-muted">(62)</span></label>
-                </div>
+
                 <!-- End Form Check -->
 
                 <!-- Start Form Check -->
                 <div class="form-check mb-2">
                     <input class="form-check-input" type="checkbox" value="" id="skillsThree">
                     <label class="form-check-label" for="skillsThree">แฟรนไชส์<span
-                            class="count fs-13 ms-1 text-muted">(20)</span></label>
+                            class="count fs-13 ms-1 text-muted">({{$allPosts->where('main_category_id',4)->count()}})</span></label>
                 </div>
                 <!-- End Form Check -->
                 <!-- Start Form Check -->
                 <div class="form-check mb-2">
                     <input class="form-check-input" type="checkbox" value="" id="skillsFour">
                     <label class="form-check-label" for="skillsFour">รับฝากขาย<span
-                            class="count fs-13 ms-1 text-muted">(43)</span></label>
+                            class="count fs-13 ms-1 text-muted">({{$allPosts->where('main_category_id',3)->count()}})</span></label>
                 </div>
                 <!-- End Form Check -->
                 <!-- Start Form Check -->
                 <div class="form-check mb-2">
                     <input class="form-check-input" type="checkbox" value="" id="skillsFive">
                     <label class="form-check-label" for="skillsFive">พื้นที่ให้เช่า<span
-                            class="count fs-13 ms-1 text-muted">(16)</span></label>
+                            class="count fs-13 ms-1 text-muted">({{$allPosts->where('main_category_id',2)->count()}})</span></label>
                 </div>
                 <!-- End Form Check -->
 
@@ -101,7 +102,7 @@
             <!-- end /. clear filters -->
         </div>
     </div>
-    @foreach ($asidePosts->reverse() as $asidePost)
+    @foreach ($asidePosts as $asidePost)
     <!-- end /. sidebar filters -->
     <div class="owl-item mt-3 active" style="width: 100%; margin-right: 10px;">
         <div class="card rounded-3 w-100 flex-fill overflow-hidden border-0 dark-overlay">
