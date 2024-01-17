@@ -87,7 +87,8 @@
             <button type="button" class="btn btn-primary w-100">ค้นหา</button>
             <!-- end /. apply button -->
             <!-- start clear filters -->
-            <a href="#" class="align-items-center d-flex fw-medium gap-2 justify-content-center mt-2 small text-center"
+            {{-- <a href="#"
+                class="align-items-center d-flex fw-medium gap-2 justify-content-center mt-2 small text-center"
                 aria-label="ล้างข้อมูล">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
@@ -96,7 +97,7 @@
                         d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" />
                 </svg>
                 ล้างข้อมูล
-            </a>
+            </a> --}}
             <!-- end /. clear filters -->
         </div>
     </div>
