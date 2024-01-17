@@ -2,11 +2,59 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <link rel="shortcut icon" href="assets/images/favicon.png">
     <title>ประกาศฟรี เซ้ง/ขายกิจการ ขายอสังหาริมทรัพท์ | เซ้งกิจการ SengBiz</title>
+    <meta name="description"
+        content="ประกาศฟรี เซ้ง/ขายกิจการ ขายอสังหาริมทรัพท์ เซ้งกิจการ ขายกิจการ ขายคอนโด ขายบ้านเดี่ยว ขายทาว์นโฮม ขายตึกแถว/อาคารพาณิชย์ ขายที่ดิน ขายแฟรนไชส์">
+    <meta name="keywords"
+        content="'เซ้งกิจการ,ขายกิจการ,ขายคอนโด,ขายบ้านเดี่ยว,ขายทาว์นโฮม,ขายตึกแถว/อาคารพาณิชย์,ขายที่ดิน,ขายแฟรนไชส์,ให้เช่าที่,ฝากขาย,นายหน้าอสังหาริมทรัพย์">
+    <meta name="theme-color" content="#FFFFFF">
+    <link rel="canonical" href="{{urldecode(request()->url())}}" />
+    <meta property="og:locale" content="th_TH" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="ประกาศฟรี เซ้ง/ขายกิจการ ขายอสังหาริมทรัพท์ | เซ้งกิจการ SengBiz" />
+    <meta property="og:description"
+        content="ประกาศฟรี เซ้ง/ขายกิจการ ขายอสังหาริมทรัพท์ เซ้งกิจการ ขายกิจการ ขายคอนโด ขายบ้านเดี่ยว ขายทาว์นโฮม ขายตึกแถว/อาคารพาณิชย์ ขายที่ดิน ขายแฟรนไชส์" />
+    <meta property="og:url" content="{{urldecode(request()->url())}}" />
+    <meta property="og:site_name" content="เซ้งบิช" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    @php
+    use Carbon\Carbon;
+
+    // สุ่มจำนวนวันระหว่าง 50 ถึง 80
+    $randomDays = mt_rand(50, 80);
+
+    // วันที่ปัจจุบัน
+    $now = Carbon::now();
+
+    // หักจำนวนวันที่สุ่มได้
+    $dateModified = $now->subDays($randomDays)->toDateString();
+    @endphp
+    <script type="application/ld+json">
+        {
+                    "@context": "https://schema.org",
+                    "@type": "WebPage",
+                    "url": "{{urldecode(request()->url())}}",
+                    "name": "@yield('title')",
+                    "description": "@yield('description')",
+                    "datePublished": "2023-05-10",
+                    "dateModified": "{{ $dateModified }}",
+                    "publisher": {
+                        "@type": "Organization",
+                        "name": "เซ้งบิช",
+                        "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{url('/')}}/assets/images/logo.webp",
+                        "width": 96,
+                        "height": 96
+                        }
+                    }
+                }
+    </script>
 
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
