@@ -279,7 +279,7 @@ class WebsiteScraper
             $strFilename = mb_substr($result, 0, 30, 'UTF-8');
             $filePrefix = preg_replace('/\s/', '-', $strFilename);
           
-            foreach ($links as $link) {
+            foreach ($links as $index => $link) {
                 $response = Http::get($link);
                 $content = $response->body();
                 $fname = "images/{$filePrefix}-{$index}.jpg";
@@ -288,14 +288,17 @@ class WebsiteScraper
                 $manager = new ImageManager(new Driver());
                 $image = $manager->read($filename);
                 $image->place(public_path("assets/images/logo.png"));
-                $image->scale(width: 500);
+                if ($index === 1) {
+                    $image->scale(width: 800);
+                } else {
+                    $image->scale(width: 500);
+                }
                 $fname = "images/{$filePrefix}-{$index}.webp";
                 $output = public_path($fname);
                 $image->toWebp()->save($output);
                 unlink($filename);
                 $filenames[] = $fname;
                 $index++;
-
             }       
         }
         // dd($filenames);
