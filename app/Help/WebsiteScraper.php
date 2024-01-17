@@ -207,6 +207,7 @@ class WebsiteScraper
             // ลบ """ ทั้งหมด
             $content = str_replace('"""', '', $content);
             $htmlContent = preg_replace('/<br\s*\/?>\s*<br\s*\/?>/i', '<br>', $content);
+            $postTitle = preg_replace('/WAN\d{3}/', '', $htmlContent);
         } 
 
         //dd($result = preg_replace('/\p{L}/u', '', $stringContent));
@@ -216,19 +217,21 @@ class WebsiteScraper
         $result2 = preg_replace('/\s/', '-', $result);
 
         //$strFilename =$this->getString($orgTitle,$result,30);
+        
         $postTitle =$this->getString($orgTitle,$result,50);
+        $postTitle = preg_replace('/WAN\d{3}/', '', $postTitle);
         $slug = trim(str_replace(' ', '-', $postTitle), '-');
         // $slug = Str::slug($postTitle, '-', 150);
         $slug = preg_replace('/--/', '-', $slug);
         $slug = preg_replace('/---/', '-', $slug);
-        // $slug = trim($this->getString($orgTitle,$result,150));
-        // dd($slug,mb_strlen($slug, 'UTF-8'));
+    
       
         if(mb_strlen($slug, 'UTF-8') > 70){
             $slug = mb_substr($slug, 0, 70, 'UTF-8');
         }
         
         $postDesctiption =trim($this->getString($orgTitle,$result,110));
+        $postDesctiption = preg_replace('/WAN\d{3}/', '', $postDesctiption);
         //$postDesctiption =$orgTitle . ' ' . trim($this->getString($orgTitle,$result,80));
 
         $index = 1;
