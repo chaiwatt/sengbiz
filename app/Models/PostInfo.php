@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Models\Post;
+use App\Models\Amphur;
+use App\Models\Province;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -23,5 +25,18 @@ class PostInfo extends Model
     {
         return $this->belongsTo(Post::class, 'post_id');
     }
+
+    public function province()
+    {
+        return $this->belongsTo(Province::class, 'province_id');
+    }
+
+    public function amphur()
+    {
+        return $this->belongsTo(Amphur::class, 'amphur_id');
+    }
+
+ 
+
 }
 

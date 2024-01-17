@@ -2,8 +2,10 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ScraperController;
 use App\Http\Controllers\ImageIntervensionController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +18,9 @@ use App\Http\Controllers\ImageIntervensionController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
  Route::get('scrap', [ScraperController::class, 'scrap'])->name('scrap');
  Route::get('scrap-list', [ScraperController::class, 'scrapList'])->name('scrap-list');
@@ -26,9 +28,13 @@ Route::get('/', function () {
  
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('test', [ImageIntervensionController::class, 'test'])->name('test');
+
+
+Route::get('', [PostController::class, 'index'])->name('index');
+
 
 
 
