@@ -1,4 +1,8 @@
 @extends('layouts.view')
+@section('title', $post->title)
+@section('description', $post->org_title . ' ' . $post->description)
+@section('keywords',
+'เซ้งกิจการ,ขายกิจการ,ขายคอนโด,ขายบ้านเดี่ยว,ขายทาว์นโฮม,ขายตึกแถว/อาคารพาณิชย์,ขายที่ดิน,ขายแฟรนไชส์,ให้เช่าที่,ฝากขาย,นายหน้าอสังหาริมทรัพย์')
 @section('content')
 <div class="py-4 bg-gradient">
     <div class="container">

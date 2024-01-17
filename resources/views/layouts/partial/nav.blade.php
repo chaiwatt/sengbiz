@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white">
     <div class="container">
         <a class="navbar-brand" href="{{url('/')}}" aria-label="navbar-brand">
-            <img src="assets/images/logo.png" alt="logo" decoding="async">
+            <img src="assets/images/logo.webp" alt="logo" decoding="async">
         </a>
         <div class="d-flex order-lg-2">
             <!-- start button -->

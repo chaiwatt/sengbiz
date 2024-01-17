@@ -14,7 +14,7 @@
                 <div class="align-items-center row">
                     <!-- start footer logo -->
                     <a href="{{url('/')}}" class="col-sm-auto footer-logo mb-2 mb-sm-0" aria-label="logo">
-                        <img src="assets/images/logo-white.png" alt="logo" decoding="async">
+                        <img src="assets/images/logo-white.webp" alt="logo" decoding="async">
                     </a>
                     <!-- end /. footer logo -->
                     <!-- start text -->
