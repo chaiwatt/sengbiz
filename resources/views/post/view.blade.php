@@ -261,14 +261,14 @@
             </div>
             <div class="col-lg-4 ps-xxl-5 sidebar">
                 <div class="border mb-4 p-4 rounded-4">
-                    <h4 class="fw-semibold mb-4">สนใจประกาศ<span class="font-caveat text-primary"> ติดต่อ</span>
+                    <h4 class="fw-semibold mb-4">สนใจ<span class="font-caveat text-primary"> ติดต่อผู้ประกาศ</span>
                     </h4>
                     <form class="row g-4">
                         <div class="col-sm-12">
                             <!-- start form group -->
                             <div class="form-group">
                                 <label class="required fw-medium mb-2">ชื่อ-สกุล</label>
-                                <input type="text" class="form-control" placeholder="ชื่อ-สกุล" required="">
+                                <input type="text" class="form-control" placeholder="" required="">
                             </div>
                             <!-- end /. form group -->
                         </div>
@@ -276,7 +276,7 @@
                             <!-- start form group -->
                             <div class="form-group">
                                 <label class="required fw-medium mb-2">อีเมล</label>
-                                <input type="text" class="form-control" placeholder="อีเมล">
+                                <input type="text" class="form-control" placeholder="">
                             </div>
                             <!-- end /. form group -->
                         </div>

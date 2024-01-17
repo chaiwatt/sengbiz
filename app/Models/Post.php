@@ -25,7 +25,8 @@ class Post extends Model
         'price',
         'description',
         'body',
-        'need_broker'
+        'need_broker',
+        'is_ads'
     ]; // ตัวอย่าง
 
     public function postInfo()

@@ -23,7 +23,8 @@ return new class extends Migration
             $table->double('price',20,0)->default(0);
             $table->string('description');
             $table->longText('body');
-            $table->char('need_broker')->default(0);
+            $table->char('need_broker',1)->default(0);
+            $table->char('is_ads',1)->default(0);
             $table->timestamps();
         });
     }
