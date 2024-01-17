@@ -21,7 +21,7 @@
     @endif
 
 
-    {{-- @foreach ($elements as $element)
+    @foreach ($elements as $key => $element)
     @if (is_array($element))
     @foreach ($element as $page => $url)
     @if ($page == $paginator->currentPage())
@@ -31,7 +31,11 @@
     @endif
     @endforeach
     @endif
-    @endforeach --}}
+    @if ($key + 1 > 5)
+    ...
+    @break
+    @endif
+    @endforeach
 
     {{-- Next Page Link --}}
     @if ($paginator->hasMorePages())
