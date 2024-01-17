@@ -102,7 +102,7 @@
             <!-- end /. clear filters -->
         </div>
     </div>
-    @foreach ($posts as $post)
+    @foreach ($posts->reverse() as $post)
     <!-- end /. sidebar filters -->
     <div class="owl-item mt-3 active" style="width: 100%; margin-right: 10px;">
         <div class="card rounded-3 w-100 flex-fill overflow-hidden border-0 dark-overlay">
@@ -134,7 +134,7 @@
 </aside>
 <div class="col-xl-9 ps-lg-4 ps-xl-5 sidebar">
 
-    @foreach ($posts as $post)
+    @foreach ($posts->reverse() as $post)
     <div class="card border-0 shadow-sm overflow-hidden rounded-4 mb-4 card-hover">
         <a href="listing-details.html" class="stretched-link" aria-label="เซ้งล๊อคขายอาหารในศูนย์อาหารฮ่องกงพลาซ่า"></a>
         <div class="card-body p-0">
