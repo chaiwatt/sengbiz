@@ -297,7 +297,8 @@
                             <!-- start form group -->
                             <div class="form-group">
                                 <label class="required fw-medium mb-2">ชื่อ-สกุล</label>
-                                <input type="text" class="form-control" placeholder="" required="">
+                                <input type="text" class="form-control" aria-label="ชื่อ-สกุล" placeholder=""
+                                    required="">
                             </div>
                             <!-- end /. form group -->
                         </div>
@@ -305,7 +306,7 @@
                             <!-- start form group -->
                             <div class="form-group">
                                 <label class="required fw-medium mb-2">เบอร์โทรศัพท์</label>
-                                <input type="text" class="form-control" placeholder="">
+                                <input type="text" class="form-control" aria-label="เบอร์โทรศัพท์" placeholder="">
                             </div>
                             <!-- end /. form group -->
                         </div>
@@ -313,7 +314,7 @@
                             <!-- start form group -->
                             <div class="form-group">
                                 <label class="required fw-medium mb-2">อีเมล</label>
-                                <input type="text" class="form-control" placeholder="">
+                                <input type="text" class="form-control" aria-label="อีเมล" placeholder="">
                             </div>
                             <!-- end /. form group -->
                         </div>
@@ -321,7 +322,8 @@
                             <!-- start form group -->
                             <div class="form-group">
                                 <label class="required fw-medium mb-2">ข้อความ</label>
-                                <textarea class="form-control" rows="7" placeholder="ข้อความฝากถึงผู้ประกาศ"></textarea>
+                                <textarea class="form-control" rows="7" aria-label="ข้อความฝากถึงผู้ประกาศ"
+                                    placeholder="ข้อความฝากถึงผู้ประกาศ"></textarea>
                             </div>
                             <!-- end /. form group -->
                         </div>
