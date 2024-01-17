@@ -23,41 +23,40 @@
 
     @foreach ($elements as $key => $element)
     @if (is_array($element))
-    @foreach ($element as $page => $url)
-    @if ($page == $paginator->currentPage())
-    <span class="page-numbers current">{{ $page }}</span>
-    @else
-    <a class="page-numbers" href="{{ $url }}">{{ $page }}</a>
-    @endif
-    @endforeach
-    @endif
-    @if ($key + 1 > 5)
-    ...
-    @break
-    @endif
-    @endforeach
+    @for ($i = 1; $i <= 5; $i++) @if ($i==$paginator->currentPage())
+        <span class="page-numbers current">{{ $i }}</span>
+        @else
+        <a class="page-numbers" href="{{ $paginator->url($i) }}">{{ $i }}</a>
+        @endif
+        @endfor
+        @endif
+        @if ($key + 1 > 5)
+        ...
+        @break
+        @endif
+        @endforeach
 
-    {{-- Next Page Link --}}
-    @if ($paginator->hasMorePages())
+        {{-- Next Page Link --}}
+        @if ($paginator->hasMorePages())
 
-    <a class="next page-numbers" href="{{ $paginator->nextPageUrl() }}">
-        ถัดไป
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-            class="bi bi-arrow-right-short" viewBox="0 0 16 16">
-            <path fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
-        </svg>
-    </a>
-    @else
+        <a class="next page-numbers" href="{{ $paginator->nextPageUrl() }}">
+            ถัดไป
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+            </svg>
+        </a>
+        @else
 
-    <a class="next page-numbers" href="#">
-        ถัดไป
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-            class="bi bi-arrow-right-short" viewBox="0 0 16 16">
-            <path fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
-        </svg>
-    </a>
-    @endif
+        <a class="next page-numbers" href="#">
+            ถัดไป
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+            </svg>
+        </a>
+        @endif
 </div>
 @endif
