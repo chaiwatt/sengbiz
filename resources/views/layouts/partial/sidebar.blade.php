@@ -69,7 +69,7 @@
                 <!-- End Form Check -->
 
             </div>
-            <div class="mb-4 border-bottom pb-4">
+            {{-- <div class="mb-4 border-bottom pb-4">
                 <div class="mb-3">
                     <h4 class="fs-5 fw-semibold mb-1">เรียงลำดับ</h4>
                     <p class="mb-0 small">เลือกรายการเรียงลำดับการแสดง</p>
@@ -82,7 +82,7 @@
                     <option value="4">ตามตัวอักษร</option>
                 </select>
                 <!-- /.End Select2 -->
-            </div>
+            </div> --}}
             <!-- start apply button -->
             <button type="button" class="btn btn-primary w-100">ค้นหา</button>
             <!-- end /. apply button -->
