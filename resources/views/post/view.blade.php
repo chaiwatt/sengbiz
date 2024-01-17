@@ -120,6 +120,19 @@
             <div class="col-lg-8 content">
                 <div class="mb-4">
                     {!!$post->body!!}
+
+
+                    @if (@$post->postInfo->lat !== null && @$post->postInfo->lng !== null)
+                    <p class="mt-2">
+                        <u>แผนที่</u>
+                    </p>
+                    <a class="popup-gmaps"
+                        href="https://maps.google.com/maps?q={{$post->postInfo->lat}},{{$post->postInfo->lng}}">
+                        <img src="{{asset('assets/images/map-cover/map.webp')}}" alt="" style="max-width: 600px">
+                    </a>
+
+                    @endif
+
                 </div>
 
                 <hr class="my-5">
@@ -251,7 +264,9 @@
                                         @endif
                                     </div>
                                     <!-- end contact content -->
+
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -298,4 +313,20 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script type="text/javascript">
+    $(document).ready(function() {
+                $('.popup-youtube, .popup-gmaps').magnificPopup({
+                  disableOn: 700,
+                  type: 'iframe',
+                  mainClass: 'mfp-fade',
+                  removalDelay: 160,
+                  preloader: false,
+        
+                  fixedContentPos: false
+                });
+              });
+</script>
+@endpush
 @endsection

@@ -210,6 +210,8 @@
     <script src="assets/plugins/select2/select2.min.js"></script>
     <!-- Custom script for this template -->
     <script src="assets/js/script.min.js"></script>
+
+    @stack('scripts')
 </body>
 
 
