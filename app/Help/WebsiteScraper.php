@@ -52,7 +52,25 @@ class WebsiteScraper
 
     function scrap()
     {
-
+         $removePatterns = [
+            '/Email:/' => '',
+            '/Email :/' => '',
+            '/email :/' => '',
+            '/email :/' => '',
+            '/อีเมล :/' => '',
+            '/อีเมล:/' => '',
+            '/อีเมล์ :/' => '',
+            '/อีเมล์:/' => '',
+            '/Email/' => '',
+            '/อีเมล/' => '',
+            '/อีเมล์/' => '',
+            '/WAN\d{3}/' => '',
+            '/------/' => '-',
+            '/-----/' => '-',
+            '/----/' => '-',
+            '/---/' => '-',
+            '/--/' => '-',
+        ];
         $latestPidScrape = PidScrape::orderByDesc('id')->first();
 
         if ($latestPidScrape === null) {
@@ -208,6 +226,8 @@ class WebsiteScraper
             $content = str_replace('"""', '', $content);
             $htmlContent = preg_replace('/<br\s*\/?>\s*<br\s*\/?>/i', '<br>', $content);
             $htmlContent = preg_replace('/WAN\d{3}/', '', $htmlContent);
+        
+            $htmlContent = preg_replace(array_keys($removePatterns), array_values($removePatterns), $htmlContent);
         } 
 
         //dd($result = preg_replace('/\p{L}/u', '', $stringContent));
@@ -219,19 +239,22 @@ class WebsiteScraper
         //$strFilename =$this->getString($orgTitle,$result,30);
         
         $postTitle =$this->getString($orgTitle,$result,50);
-        $postTitle = preg_replace('/WAN\d{3}/', '', $postTitle);
+        // $postTitle = preg_replace('/WAN\d{3}/', '', $postTitle);
+        $postTitle = preg_replace(array_keys($removePatterns), array_values($removePatterns), $postTitle);
         $slug = trim(str_replace(' ', '-', $postTitle), '-');
         // $slug = Str::slug($postTitle, '-', 150);
-        $slug = preg_replace('/--/', '-', $slug);
-        $slug = preg_replace('/---/', '-', $slug);
-    
+        // $slug = preg_replace('/--/', '-', $slug);
+        // $slug = preg_replace('/---/', '-', $slug);
+
+
+        $slug = preg_replace(array_keys($removePatterns), array_values($removePatterns), $slug);
       
         if(mb_strlen($slug, 'UTF-8') > 70){
             $slug = mb_substr($slug, 0, 70, 'UTF-8');
         }
         
         $postDesctiption =trim($this->getString($orgTitle,$result,110));
-        $postDesctiption = preg_replace('/WAN\d{3}/', '', $postDesctiption);
+        $postDesctiption = preg_replace(array_keys($removePatterns), array_values($removePatterns), $postDesctiption);
         //$postDesctiption =$orgTitle . ' ' . trim($this->getString($orgTitle,$result,80));
 
         $index = 1;
