@@ -121,8 +121,8 @@
                 <div class="col-md-2 col-lg-2 col-xl-3 d-none d-lg-block">
                     <!-- Start Search Select -->
                     <div class="search-select has-icon position-relative">
-                        <select class="select2 form-select" aria-label="===หมวดหมู่===">
-                            <option selected>===หมวดหมู่===</option>
+                        <select class="select2 form-select" aria-label="==หมวดหมู่==">
+                            <option selected>==หมวดหมู่==</option>
                             <option value="5">อสังหาริมทรัพย์</option>
                             <option value="1">ขายกิจการ</option>
                             <option value="4">แฟรนไชส์</option>
