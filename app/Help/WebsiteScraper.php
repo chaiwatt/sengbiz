@@ -16,6 +16,7 @@ use App\Models\MainCategory;
 use Illuminate\Http\Request;
 use App\Models\PostNearPlace;
 use App\Models\PostContactPhone;
+use App\Models\PostView;
 use App\Models\SubMinorCategory;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
@@ -376,6 +377,7 @@ class WebsiteScraper
                     'body' => $htmlContent
                 ]);
 
+
                 $lat = null;
                 $ng = null;
                 if (count($coordinates) != 0){
@@ -390,6 +392,11 @@ class WebsiteScraper
                     'lng' => $ng,
                     'province_id' => $provinceId,
                     'amphur_id' => $amphurId,
+                ]);
+
+                PostView::create([
+                    'post_id' => $post->id,
+                    'view' => rand(50, 650)
                 ]);
 
                 if (count($filenames) != 0){
