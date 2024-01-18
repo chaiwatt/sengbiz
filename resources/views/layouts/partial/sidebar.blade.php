@@ -74,7 +74,7 @@
 
                 <!-- Start Select2 -->
                 <select class="form-select" aria-label="ล่าสุด">
-                    <option value="1">==พื้นที่==</option>
+                    <option value="0">==พื้นที่==</option>
                     @foreach ($provinces as $province)
                     <option value="{{$province->id}}">{{$province->name}}</option>
                     @endforeach
