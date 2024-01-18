@@ -64,9 +64,10 @@
                             <!-- end /. rating counter text -->
 
                             <div class="d-flex end-0 gap-2 me-3 mt-3 position-absolute top-0 z-1">
-                                <a href=""
+                                <a href="#"
                                     class="btn-icon shadow-sm d-flex align-items-center justify-content-center text-primary bg-white rounded-circle"
-                                    data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Bookmark">
+                                    data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Bookmark"
+                                    aria-label="{{$post->title}}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-heart" viewBox="0 0 16 16">
                                         <path
