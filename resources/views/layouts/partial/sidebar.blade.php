@@ -17,87 +17,75 @@
         </div>
         <!-- end /. filter header -->
         <div class="sidebar-filters-body p-3 p-xl-0">
-            {{-- <div class="mb-4 border-bottom pb-4">
-                <div class="mb-3">
-                    <h4 class="fs-5 fw-semibold mb-1">ช่วงราคา</h4>
-                    <p class="mb-0 small">กำหนดช่วงราคาค้นหา</p>
-                </div>
-                <!-- Start Range Slider -->
-                <div class="js-range-slider"></div>
-                <!-- End Range Slider -->
-            </div> --}}
-            <div class="mb-4">
-                <div class="mb-3">
-                    <h4 class="fs-5 fw-semibold mb-2">หมวดหมู่</h4>
-                    <p class="mb-0 small">เลือกหมวดหมู่ค้นหา</p>
-                </div>
-                <div class="form-check mb-2">
-                    <input class="form-check-input" type="checkbox" value="" id="skillsOne" checked>
-                    <label class="form-check-label" for="skillsOne">อสังหาริมทรัพย์<span
-                            class="count fs-13 ms-1 text-muted">({{$allPosts->where('main_category_id',5)->count()}})</span></label>
-                </div>
-                <!-- Start Form Check -->
-                <div class="form-check mb-2">
-                    <input class="form-check-input" type="checkbox" value="" id="skillsTwo">
-                    <label class="form-check-label" for="skillsTwo">ขายกิจการ<span
-                            class="count fs-13 ms-1 text-muted">({{$allPosts->where('main_category_id',1)->count()}})</span></label>
-                </div>
-                <!-- End Form Check -->
-                <!-- Start Form Check -->
+            <form action="{{route('search')}}" method="GET">
+                <div class="mb-4">
+                    <div class="mb-3">
+                        <h4 class="fs-5 fw-semibold mb-2">หมวดหมู่</h4>
+                        <p class="mb-0 small">เลือกหมวดหมู่ค้นหา</p>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" value="5" name="categories[]">
+                        <label class="form-check-label" for="skillsOne">อสังหาริมทรัพย์<span
+                                class="count fs-13 ms-1 text-muted">({{$allPosts->where('main_category_id',5)->count()}})</span></label>
+                    </div>
+                    <!-- Start Form Check -->
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" value="1" name="categories[]">
+                        <label class="form-check-label" for="skillsTwo">ขายกิจการ<span
+                                class="count fs-13 ms-1 text-muted">({{$allPosts->where('main_category_id',1)->count()}})</span></label>
+                    </div>
+                    <!-- End Form Check -->
+                    <!-- Start Form Check -->
 
-                <!-- End Form Check -->
+                    <!-- End Form Check -->
 
-                <!-- Start Form Check -->
-                <div class="form-check mb-2">
-                    <input class="form-check-input" type="checkbox" value="" id="skillsThree">
-                    <label class="form-check-label" for="skillsThree">แฟรนไชส์<span
-                            class="count fs-13 ms-1 text-muted">({{$allPosts->where('main_category_id',4)->count()}})</span></label>
-                </div>
-                <!-- End Form Check -->
-                <!-- Start Form Check -->
-                <div class="form-check mb-2">
-                    <input class="form-check-input" type="checkbox" value="" id="skillsFour">
-                    <label class="form-check-label" for="skillsFour">รับฝากขาย<span
-                            class="count fs-13 ms-1 text-muted">({{$allPosts->where('main_category_id',3)->count()}})</span></label>
-                </div>
-                <!-- End Form Check -->
-                <!-- Start Form Check -->
-                <div class="form-check mb-2">
-                    <input class="form-check-input" type="checkbox" value="" id="skillsFive">
-                    <label class="form-check-label" for="skillsFive">พื้นที่ให้เช่า<span
-                            class="count fs-13 ms-1 text-muted">({{$allPosts->where('main_category_id',2)->count()}})</span></label>
-                </div>
-                <!-- End Form Check -->
+                    <!-- Start Form Check -->
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" value="4" name="categories[]">
+                        <label class="form-check-label" for="skillsThree">แฟรนไชส์<span
+                                class="count fs-13 ms-1 text-muted">({{$allPosts->where('main_category_id',4)->count()}})</span></label>
+                    </div>
+                    <!-- End Form Check -->
+                    <!-- Start Form Check -->
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" value="3" name="categories[]">
+                        <label class="form-check-label" for="skillsFour">รับฝากขาย<span
+                                class="count fs-13 ms-1 text-muted">({{$allPosts->where('main_category_id',3)->count()}})</span></label>
+                    </div>
+                    <!-- End Form Check -->
+                    <!-- Start Form Check -->
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" value="2" name="categories[]">
+                        <label class="form-check-label" for="skillsFive">พื้นที่ให้เช่า<span
+                                class="count fs-13 ms-1 text-muted">({{$allPosts->where('main_category_id',2)->count()}})</span></label>
+                    </div>
+                    <!-- End Form Check -->
 
-            </div>
-            <div class="mb-4">
-                <!-- Start Select2 -->
-                <select class="form-select" name="province" aria-label="ล่าสุด">
-                    <option value="{{null}}">==จังหวัด==</option>
-                    @foreach ($provinces as $province)
-                    <option value="{{$province->name}}">
-                        {{$province->name}} ({{$province->postInfos->count()}})</option>
-                    @endforeach
-                </select>
-                <!-- /.End Select2 -->
-            </div>
-            <div class="mb-4 border-bottom pb-4">
-                <!-- Start Select2 -->
-                <select class="form-select" name="price" aria-label="ล่าสุด">
-                    <option value="1">น้อยกว่า 500,000</option>
-                    <option value="2">500,001 - 1,000,000 </option>
-                    <option value="4">1,000,001 - 3,000,000</option>
-                    <option value="4">3,000,001 - 5,000,000</option>
-                    <option value="4">5,000,001 - 7,000,000</option>
-                    <option value="4">7,000,001 - 10,000,000</option>
-                    <option value="4">10,000,001 - 15,000,000</option>
-                    <option value="4">มากกว่า 15,000,000</option>
-                </select>
-                <!-- /.End Select2 -->
-            </div>
-            <!-- start apply button -->
-            <button type="button" class="btn btn-primary w-100">ค้นหา</button>
-
+                </div>
+                <div class="mb-4">
+                    <!-- Start Select2 -->
+                    <select class="form-select" name="province" aria-label="ล่าสุด">
+                        <option value="{{null}}">==จังหวัด==</option>
+                        @foreach ($provinces as $province)
+                        <option value="{{$province->name}}">
+                            {{$province->name}} ({{$province->postInfos->count()}})</option>
+                        @endforeach
+                    </select>
+                    <!-- /.End Select2 -->
+                </div>
+                <div class="mb-4 border-bottom pb-4">
+                    <!-- Start Select2 -->
+                    <select class="form-select" name="price" aria-label="ล่าสุด">
+                        <option value="{{null}}">==ช่วงราคา==</option>
+                        @foreach ($priceRanges as $priceRange)
+                        <option value="{{$priceRange->id}}">{{$priceRange->name}}</option>
+                        @endforeach
+                    </select>
+                    <!-- /.End Select2 -->
+                </div>
+                <!-- start apply button -->
+                <button type="submit" class="btn btn-primary w-100">ค้นหา</button>
+            </form>
         </div>
     </div>
     @foreach ($asidePosts as $asidePost)

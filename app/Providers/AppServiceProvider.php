@@ -2,9 +2,10 @@
 
 namespace App\Providers;
 
-use App\Models\MainCategory;
 use App\Models\Post;
 use App\Models\Province;
+use App\Models\PriceRange;
+use App\Models\MainCategory;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -27,11 +28,13 @@ class AppServiceProvider extends ServiceProvider
             $mainCategories = MainCategory::all();
             $asidePosts = Post::orderByDesc('updated_at')->paginate(21);
             $allPosts = Post::all();
+            $priceRanges = PriceRange::all();
             $view->with([
                 'asidePosts' => $asidePosts,
                 'allPosts' => $allPosts,
                 'provinces' => $provinces,
                 'mainCategories' => $mainCategories,
+                'priceRanges' => $priceRanges
             ]);
         });
 
