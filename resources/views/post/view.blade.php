@@ -187,6 +187,13 @@
                                     </div>
                                     @endif
 
+                                    @if (@intVal($post->price) !== 0)
+                                    <div class="bg-blur card-badge d-inline-block position-absolute start-0 text-white z-3"
+                                        style="margin-top: 35px">
+                                        {{number_format($post->price)}}
+                                    </div>
+                                    @endif
+
 
                                 </div>
                             </div>
