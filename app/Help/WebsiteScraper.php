@@ -66,6 +66,12 @@ class WebsiteScraper
             '/อีเมล์/' => '',
             '/WAN\d{3}/' => '',
             '/FPL\d{3}/' => '',
+            '/รหัสทรัพย์\d{3}/' => '',
+            '/รหัสทรัพย์\d{3}/' => '',
+            '/รหัสทรัพย์-\d{4}/' => '',
+            '/รหัสทรัพย์-\d{4}/' => '',
+            '/รหัสทรัพย์ : \d{4}/' => '',
+            '/รหัสทรัพย์ : \d{4}/' => '',
             '/------/' => '-',
             '/-----/' => '-',
             '/----/' => '-',
@@ -256,6 +262,8 @@ class WebsiteScraper
         
         $postDesctiption =trim($this->getString($orgTitle,$result,110));
         $postDesctiption = preg_replace(array_keys($removePatterns), array_values($removePatterns), $postDesctiption);
+        $orgTitle = preg_replace(array_keys($removePatterns), array_values($removePatterns), $orgTitle);
+        $orgSlug = preg_replace(array_keys($removePatterns), array_values($removePatterns), $orgSlug);
         //$postDesctiption =$orgTitle . ' ' . trim($this->getString($orgTitle,$result,80));
 
         $index = 1;
