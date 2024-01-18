@@ -71,9 +71,8 @@
 
             </div>
             <div class="mb-4">
-
                 <!-- Start Select2 -->
-                <select class="form-select" aria-label="ล่าสุด">
+                <select class="form-select" name="province" aria-label="ล่าสุด">
                     <option value="0">==จังหวัด==</option>
                     @foreach ($provinces as $province)
                     <option value="{{$province->id}}">{{$province->name}}</option>
@@ -83,7 +82,7 @@
             </div>
             <div class="mb-4 border-bottom pb-4">
                 <!-- Start Select2 -->
-                <select class="form-select" aria-label="ล่าสุด">
+                <select class="form-select" name="price" aria-label="ล่าสุด">
                     <option value="1">น้อยกว่า 500,000</option>
                     <option value="2">500,001 - 1,000,000 </option>
                     <option value="4">1,000,001 - 3,000,000</option>
@@ -97,20 +96,7 @@
             </div>
             <!-- start apply button -->
             <button type="button" class="btn btn-primary w-100">ค้นหา</button>
-            <!-- end /. apply button -->
-            <!-- start clear filters -->
-            {{-- <a href="#"
-                class="align-items-center d-flex fw-medium gap-2 justify-content-center mt-2 small text-center"
-                aria-label="ล้างข้อมูล">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z" />
-                    <path
-                        d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" />
-                </svg>
-                ล้างข้อมูล
-            </a> --}}
-            <!-- end /. clear filters -->
+
         </div>
     </div>
     @foreach ($asidePosts as $asidePost)
@@ -137,7 +123,7 @@
 
                 @if (@$asidePost->postInfo->province->name !== null)
                 <div class="bg-blur card-badge d-inline-block position-absolute start-0 text-white z-2">
-                    <a href="#"
+                    <a href="{{ route('search', ['province' => $asidePost->postInfo->province->name]) }}"
                         aria-label="{{$asidePost->postInfo->province->name}}">{{$asidePost->postInfo->province->name}}</a>
                 </div>
                 @endif

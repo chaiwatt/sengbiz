@@ -45,9 +45,10 @@ Auth::routes();
 // Route::get('/{slug}', [PostController::class, 'view'])->name('view');
 
 
-
+Route::get('search', [PostController::class, 'search'])->name('search');
 Route::get('/{slug}', [PostController::class, 'view'])->name('view');
 Route::get('', [PostController::class, 'index'])->name('index');
+
 
 
 

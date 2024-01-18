@@ -25,21 +25,19 @@
                                 class="h-100 w-100 object-fit-cover" style="max-height: 200px !important"
                                 alt="{{$post->title}}" decoding="async">
                             @endif
-
                         </a>
-
-
                         <!-- end /. image -->
 
                         @if (@$post->subCategory->name !== null)
                         <div class="bg-blur card-badge d-inline-block position-absolute start-0 text-white z-2">
-                            <a href="#aa" aria-label="{{$post->subCategory->name}}">{{$post->subCategory->name}}</a>
+                            <a href="{{ route('search', ['selectedSubCategory' => $post->subCategory->name]) }}"
+                                aria-label="{{$post->subCategory->name}}">{{$post->subCategory->name}}</a>
                         </div>
                         @endif
 
                         @if (@$post->postInfo->province->name !== null)
                         <div class="bg-blur card-badge d-inline-block position-absolute start-0 text-white z-2">
-                            <a href="#"
+                            <a href="{{ route('search', ['province' => $post->postInfo->province->name]) }}"
                                 aria-label="{{$post->postInfo->province->name}}">{{$post->postInfo->province->name}}</a>
                         </div>
                         @endif
@@ -82,7 +80,7 @@
                         <!-- end /. card description -->
                         <!-- start contact content -->
                         <div class="d-flex flex-wrap gap-3 mt-auto z-1">
-                            <a href="#" class="d-flex gap-2 align-items-center fs-13 fw-semibold"
+                            <span class="d-flex gap-2 align-items-center fs-13 fw-semibold"
                                 aria-label="{{$post->PostDate}}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#9b9b9b"
                                     class="bi bi-clock" viewBox="0 0 16 16">
@@ -91,7 +89,7 @@
                                     <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0" />
                                 </svg>
                                 <span>{{$post->PostDate}}</span>
-                            </a>
+                            </span>
                             <div href="#" class="d-flex gap-2 align-items-center fs-13 fw-semibold">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#9b9b9b"
                                     class="bi bi-geo-alt" viewBox="0 0 16 16">
@@ -101,17 +99,18 @@
                                 </svg>
                                 <span>
                                     @if (@$post->postInfo->amphur->name !== null)
-                                    <a href=""
+                                    <a href="{{ route('search', ['amphur' => $post->postInfo->amphur->name]) }}"
                                         aria-label="{{$post->postInfo->amphur->name}}">{{$post->postInfo->amphur->name}}</a>,
                                     @endif
                                     @if (@$post->postInfo->province->name !== null)
-                                    <a href=""
+                                    <a href="{{ route('search', ['province' => $post->postInfo->province->name]) }}"
                                         aria-label="{{$post->postInfo->province->name}}">{{$post->postInfo->province->name}}</a></span>
                                 @endif
 
                             </div>
                             @if ($post->mainCategory->name !== null)
-                            <a href="#" class="d-flex gap-2 align-items-center fs-13 fw-semibold"
+                            <a href="{{ route('search', ['selectedMainCategory' => $post->mainCategory->name]) }}"
+                                class="d-flex gap-2 align-items-center fs-13 fw-semibold"
                                 aria-label="{{$post->mainCategory->name}}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#9b9b9b"
                                     class="bi bi-tags" viewBox="0 0 16 16">
