@@ -98,9 +98,10 @@
                         <!-- Start Search Select -->
                         <div class="search-select has-icon position-relative">
                             <select class="select2 form-select" name="province" aria-label="==จังหวัด==">
-                                <option selected>==จังหวัด==</option>
+                                <option value="{{null}}" selected>==จังหวัด==</option>
                                 @foreach ($provinces as $province)
-                                <option value="{{$province->name}}">{{$province->name}}</option>
+                                <option value="{{$province->name}}">
+                                    {{$province->name}} ({{$province->postInfos->count()}})</option>
                                 @endforeach
                             </select>
                             <svg class="form-icon-start position-absolute top-50 search-icon z-1 bi bi-geo-alt"
@@ -117,7 +118,7 @@
                         <!-- Start Search Select -->
                         <div class="search-select has-icon position-relative">
                             <select class="select2 form-select" name="mainCategory" aria-label="==หมวดหมู่==">
-                                <option selected>==หมวดหมู่==</option>
+                                <option value="{{null}}" selected>==หมวดหมู่==</option>
                                 <option value="อสังหาริมทรัพย์">อสังหาริมทรัพย์</option>
                                 <option value="ขายกิจการ">ขายกิจการ</option>
                                 <option value="แฟรนไชส์">แฟรนไชส์</option>

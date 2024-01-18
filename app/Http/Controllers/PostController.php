@@ -41,30 +41,20 @@ class PostController extends Controller
 
     public function search()
     {
-        // $provinceId = null;
-        // $amphurId = null;
-        // $queryInput = null;
-        // $mainCategoryId = null;
-        // $subCategoryId = null;
-        // $subMinorCategoryId = null;
+        $provinceId = null;
+        $amphurId = null;
+        $queryInput = null;
+        $mainCategoryId = null;
+        $subCategoryId = null;
+        $subMinorCategoryId = null;
 
-      
+        $provinceInput = request()->input('province', null);
+        $amphurInput = request()->input('amphur', null);
+        $mainCategoryInput = request()->input('mainCategory', null);
+        $subCategoryInput = request()->input('subCategory', null);
+        $subMinorCategoryInput = request()->input('subMinorCategory', null);
+        $queryInput = request()->input('queryInput', null);
 
-        // $provinceInput = request()->input('province', null);
-        // $amphurInput = request()->input('amphur', null);
-        // $mainCategoryInput = request()->input('mainCategory', null);
-        // $subCategoryInput = request()->input('subCategory', null);
-        // $subMinorCategoryInput = request()->input('subMinorCategory', null);
-        // $queryInput = request()->input('queryInput', null);
-
-        // if($mainCategoryInput === "==หมวดหมู่=="){
-        //     $mainCategoryInput = null;
-        // }
-        // if($provinceInput === "==จังหวัด=="){
-        //     $provinceInput = null;
-        // }
-
-        // // dd($mainCategoryInput);
         
         // if ($provinceInput  !== null){
         //     $provinceId = Province::where('name',$provinceInput)->first()->id;
@@ -84,33 +74,14 @@ class PostController extends Controller
         //     $subMinorCategoryInput = urldecode($subMinorCategoryInput);
         //     $subMinorCategoryId = SubMinorCategory::where('name', $subMinorCategoryInput)->first()->id;
         // }
+
+        $provinceId = optional(Province::where('name', $provinceInput)->first())->id;
+        $amphurId = optional(Amphur::where('name', $amphurInput)->first())->id;
+        $mainCategoryId = optional(MainCategory::where('name', urldecode($mainCategoryInput))->first())->id;
+        $subCategoryId = optional(SubCategory::where('name', urldecode($subCategoryInput))->first())->id;
+        $subMinorCategoryId = optional(SubMinorCategory::where('name', urldecode($subMinorCategoryInput))->first())->id;
+
        
-        $provinceId = null;
-        $amphurId = null;
-        $queryInput = null;
-        $mainCategoryId = null;
-        $subCategoryId = null;
-        $subMinorCategoryId = null;
-
-        $provinceInput = request()->input('province', null);
-        $amphurInput = request()->input('amphur', null);
-        $mainCategoryInput = request()->input('mainCategory', null);
-        $subCategoryInput = request()->input('subCategory', null);
-        $subMinorCategoryInput = request()->input('subMinorCategory', null);
-        $queryInput = request()->input('queryInput', null);
-
-        // ตรวจสอบและแปลงค่าที่ไม่ต้องการเพื่อป้องกันการเกิด exception
-        $mainCategoryInput = ($mainCategoryInput === "==หมวดหมู่==") ? null : urldecode($mainCategoryInput);
-        $provinceInput = ($provinceInput === "==จังหวัด==") ? null : $provinceInput;
-
-        // ใช้ null coalescing operator (`??`) เพื่อกำหนดค่า default เป็น null ถ้าไม่มีค่า
-        $provinceId = $provinceInput ? Province::where('name', $provinceInput)->value('id') ?? null : null;
-        $amphurId = $amphurInput ? Amphur::where('name', $amphurInput)->value('id') ?? null : null;
-        $mainCategoryId = $mainCategoryInput ? MainCategory::where('name', $mainCategoryInput)->value('id') ?? null : null;
-        $subCategoryId = $subCategoryInput ? SubCategory::where('name', $subCategoryInput)->value('id') ?? null : null;
-        $subMinorCategoryId = $subMinorCategoryInput ? SubMinorCategory::where('name', $subMinorCategoryInput)->value('id') ?? null : null;
-
-
         $posts = Post::where(function ($query) use ($queryInput, $mainCategoryId, $subCategoryId, $subMinorCategoryId, $provinceId, $amphurId) {
             $query->when($queryInput, function ($query, $input) {
                 return $query->where('title', 'like', '%' . $input . '%')

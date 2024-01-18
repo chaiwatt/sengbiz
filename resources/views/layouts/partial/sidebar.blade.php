@@ -73,9 +73,10 @@
             <div class="mb-4">
                 <!-- Start Select2 -->
                 <select class="form-select" name="province" aria-label="ล่าสุด">
-                    <option value="0">==จังหวัด==</option>
+                    <option value="{{null}}">==จังหวัด==</option>
                     @foreach ($provinces as $province)
-                    <option value="{{$province->id}}">{{$province->name}}</option>
+                    <option value="{{$province->name}}">
+                        {{$province->name}} ({{$province->postInfos->count()}})</option>
                     @endforeach
                 </select>
                 <!-- /.End Select2 -->
