@@ -131,10 +131,11 @@
                 <hr class="my-5">
                 <!-- start pricing  section -->
 
-                @foreach ($posts->reverse() as $post)
+                @foreach ($posts as $post)
                 <div class="card border-0 shadow-sm overflow-hidden rounded-4 mb-4 card-hover">
-                    <a href="{{route('view',['slug' => $post->slug])}}" class="stretched-link"
-                        aria-label="{{$post->slug}}"></a>
+                    {{-- <a href="{{route('view',['slug' => $post->slug])}}" class="stretched-link"
+                        aria-label="stretched-link"></a>
+                    --}}
                     <div class="card-body p-0">
 
                         <div class="g-0 row">
@@ -142,24 +143,24 @@
                                 <div class="card-image-hover dark-overlay h-100 overflow-hidden position-relative">
                                     <!-- start image -->
                                     {{-- --}}
-
-                                    @if ($post->postImages->first() && $post->postImages->first()->path !==
-                                    null)
-                                    <img src="{{ asset($post->postImages->first()->path) }}" alt="{{$post->title}}"
-                                        aria-label="{{$post->title}}" class="h-100 w-100 object-fit-cover"
-                                        style="max-height: 200px !important" decoding="async">
-                                    @else
-                                    <img src="{{ asset('assets/images/no-image/no-image-' . rand(1, 2) . '.webp') }}"
-                                        class="h-100 w-100 object-fit-cover" style="max-height: 200px !important"
-                                        alt="{{$post->title}}" aria-label="{{$post->title}}" decoding="async">
-                                    @endif
-
+                                    <a href="{{route('view',['slug' => $post->slug])}}" class="stretched-link"
+                                        aria-label="{{$post->title}}">
+                                        @if ($post->postImages->first() && $post->postImages->first()->path !== null)
+                                        <img src="{{ asset($post->postImages->first()->path) }}" alt="{{$post->title}}"
+                                            class="h-100 w-100 object-fit-cover" style="max-height: 200px !important"
+                                            decoding="async">
+                                        @else
+                                        <img src="{{ asset('assets/images/no-image/no-image-' . rand(1, 2) . '.webp') }}"
+                                            class="h-100 w-100 object-fit-cover" style="max-height: 200px !important"
+                                            alt="{{$post->title}}" decoding="async">
+                                        @endif
+                                    </a>
                                     <!-- end /. image -->
 
                                     @if (@$post->subCategory->name !== null)
                                     <div
                                         class="bg-blur card-badge d-inline-block position-absolute start-0 text-white z-2">
-                                        <a href="#"
+                                        <a href="{{ route('search', ['subCategory' => $post->subCategory->name]) }}"
                                             aria-label="{{$post->subCategory->name}}">{{$post->subCategory->name}}</a>
                                     </div>
                                     @endif
@@ -167,7 +168,7 @@
                                     @if (@$post->postInfo->province->name !== null)
                                     <div
                                         class="bg-blur card-badge d-inline-block position-absolute start-0 text-white z-2">
-                                        <a href="#"
+                                        <a href="{{ route('search', ['province' => $post->postInfo->province->name]) }}"
                                             aria-label="{{$post->postInfo->province->name}}">{{$post->postInfo->province->name}}</a>
                                     </div>
                                     @endif
@@ -193,15 +194,36 @@
                                         <span class="fw-medium text-primary">จำนวนดู {{ isset($post->postView->view) ?
                                             $post->postView->view : '-' }} ครั้ง</span>
                                         <!-- end /. rating counter text -->
+
+                                        <div class="d-flex end-0 gap-2 me-3 mt-3 position-absolute top-0 z-1">
+                                            <a href="#"
+                                                class="btn-icon shadow-sm d-flex align-items-center justify-content-center text-primary bg-white rounded-circle"
+                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                data-bs-title="Bookmark" aria-label="{{$post->title}}">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z">
+                                                    </path>
+                                                </svg>
+                                            </a>
+                                        </div>
                                     </div>
                                     <!-- start card title -->
-                                    <h2 class="fs-18 fw-semibold mb-0">
-                                        {{$post->title}}
-
-                                    </h2>
+                                    <h4 class="fs-18 fw-semibold mb-0">
+                                        <a href="{{route('view',['slug' => $post->slug])}}"
+                                            aria-label="{{$post->title}}">
+                                            {{$post->title}}
+                                        </a>
+                                    </h4>
                                     <!-- end /. card title -->
                                     <!-- start card description -->
-                                    <p class="mt-3 fs-15">{{$post->description}}
+                                    <p class="mt-3 fs-15">
+                                        <a href="{{route('view',['slug' => $post->slug])}}"
+                                            aria-label="{{$post->description}}">
+                                            {{$post->description}}
+                                        </a>
+
                                     </p>
                                     <!-- end /. card description -->
                                     <!-- start contact content -->
@@ -275,9 +297,7 @@
                                         @endif
                                     </div>
                                     <!-- end contact content -->
-
                                 </div>
-
                             </div>
                         </div>
                     </div>
