@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GoogleIndexingController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -44,10 +45,12 @@ Auth::routes();
 // Route::get('', [PostController::class, 'index'])->name('index');
 // Route::get('/{slug}', [PostController::class, 'view'])->name('view');
 
-
+Route::get('indexing', [GoogleIndexingController::class, 'index'])->name('indexing');
 Route::get('search', [PostController::class, 'search'])->name('search');
 Route::get('/{slug}', [PostController::class, 'view'])->name('view');
 Route::get('', [PostController::class, 'index'])->name('index');
+
+
 
 
 
