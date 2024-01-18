@@ -14,9 +14,9 @@ class GoogleIndexingController extends Controller
 {
     public function index()
     {
-        
-        $client = new Google_Client();
         dd('ok1');
+        $client = new Google_Client();
+        
         $client->setAuthConfig(public_path('assets/json/service_account_1.json'));
         $client->addScope('https://www.googleapis.com/auth/indexing');
 
