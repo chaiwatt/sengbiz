@@ -148,7 +148,8 @@
                     <div class="col-md-9 col-lg-5 col-xl-6">
                         <div class="search-select-input has-icon has-icon-y position-relative">
                             <!-- input -->
-                            <input class="form-control" type="text" name="queryInput" placeholder="คำค้นหา ...">
+                            <input class="form-control" type="text" name="queryInput" placeholder="คำค้นหา ..."
+                                value="{{null}}">
                             <!-- icon -->
                             <svg class="form-icon-start position-absolute top-50 bi bi-pin-map-fill"
                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
@@ -172,8 +173,6 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </form>
