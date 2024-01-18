@@ -131,7 +131,7 @@
 
                     @if (@$post->postInfo->lat !== null && @$post->postInfo->lng !== null)
                     <p class="mt-2">
-                        คลิกเปิดแผนที่
+                        คลิกที่แผนที่
                     </p>
                     <a class="popup-gmaps"
                         href="https://maps.google.com/maps?q={{$post->postInfo->lat}},{{$post->postInfo->lng}}">
