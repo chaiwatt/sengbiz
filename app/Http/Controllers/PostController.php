@@ -112,7 +112,6 @@ class PostController extends Controller
             ->orderByDesc('updated_at')
             ->paginate(20);
 
-
     return view('post.index',[
             'posts' => $posts
         ]);
