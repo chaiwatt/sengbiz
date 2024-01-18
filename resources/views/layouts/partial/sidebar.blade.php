@@ -70,20 +70,23 @@
                 <!-- End Form Check -->
 
             </div>
-            {{-- <div class="mb-4 border-bottom pb-4">
+            <div class="mb-4 border-bottom pb-4">
                 <div class="mb-3">
-                    <h4 class="fs-5 fw-semibold mb-1">เรียงลำดับ</h4>
-                    <p class="mb-0 small">เลือกรายการเรียงลำดับการแสดง</p>
+                    <h4 class="fs-5 fw-semibold mb-1">ราคา</h4>
                 </div>
                 <!-- Start Select2 -->
                 <select class="form-select" aria-label="ล่าสุด">
-                    <option value="1">ล่าสุด</option>
-                    <option value="2">ใกล้ฉัน</option>
-                    <option value="3">โหวตสูงสุด</option>
-                    <option value="4">ตามตัวอักษร</option>
+                    <option value="1">น้อยกว่า 500,000</option>
+                    <option value="2">500,001 - 1,000,000 </option>
+                    <option value="4">1,000,001 - 3,000,000</option>
+                    <option value="4">3,000,001 - 5,000,000</option>
+                    <option value="4">5,000,001 - 7,000,000</option>
+                    <option value="4">7,000,001 - 10,000,000</option>
+                    <option value="4">10,000,001 - 15,000,000</option>
+                    <option value="4">มากกว่า 15,000,000</option>
                 </select>
                 <!-- /.End Select2 -->
-            </div> --}}
+            </div>
             <!-- start apply button -->
             <button type="button" class="btn btn-primary w-100">ค้นหา</button>
             <!-- end /. apply button -->
