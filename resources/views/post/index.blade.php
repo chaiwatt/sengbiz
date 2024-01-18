@@ -5,7 +5,8 @@
 
     @foreach ($posts as $post)
     <div class="card border-0 shadow-sm overflow-hidden rounded-4 mb-4 card-hover">
-        <a href="{{route('view',['slug' => $post->slug])}}" class="stretched-link" aria-label="stretched-link"></a>
+        {{-- <a href="{{route('view',['slug' => $post->slug])}}" class="stretched-link" aria-label="stretched-link"></a>
+        --}}
         <div class="card-body p-0">
 
             <div class="g-0 row">
@@ -13,15 +14,19 @@
                     <div class="card-image-hover dark-overlay h-100 overflow-hidden position-relative">
                         <!-- start image -->
                         {{-- --}}
+                        <a href="#" class="stretched-link" aria-label="{{$post->title}}">
+                            @if ($post->postImages->first() && $post->postImages->first()->path !== null)
+                            <img src="{{ asset($post->postImages->first()->path) }}" alt="{{$post->title}}"
+                                class="h-100 w-100 object-fit-cover" style="max-height: 200px !important"
+                                decoding="async">
+                            @else
+                            <img src="{{ asset('assets/images/no-image/no-image-' . rand(1, 2) . '.webp') }}"
+                                class="h-100 w-100 object-fit-cover" style="max-height: 200px !important"
+                                alt="{{$post->title}}" decoding="async">
+                            @endif
 
-                        @if ($post->postImages->first() && $post->postImages->first()->path !== null)
-                        <img src="{{ asset($post->postImages->first()->path) }}" alt="{{$post->title}}"
-                            class="h-100 w-100 object-fit-cover" style="max-height: 200px !important" decoding="async">
-                        @else
-                        <img src="{{ asset('assets/images/no-image/no-image-' . rand(1, 2) . '.webp') }}"
-                            class="h-100 w-100 object-fit-cover" style="max-height: 200px !important"
-                            alt="{{$post->title}}" decoding="async">
-                        @endif
+                        </a>
+
 
                         <!-- end /. image -->
 
@@ -53,12 +58,17 @@
                         </div>
                         <!-- start card title -->
                         <h4 class="fs-18 fw-semibold mb-0">
-                            {{$post->title}}
-
+                            <a href="#" aria-label="{{$post->title}}">
+                                {{$post->title}}
+                            </a>
                         </h4>
                         <!-- end /. card title -->
                         <!-- start card description -->
-                        <p class="mt-3 fs-15">{{$post->description}}
+                        <p class="mt-3 fs-15">
+                            <a href="#" aria-label="{{$post->description}}">
+                                {{$post->description}}
+                            </a>
+
                         </p>
                         <!-- end /. card description -->
                         <!-- start contact content -->
