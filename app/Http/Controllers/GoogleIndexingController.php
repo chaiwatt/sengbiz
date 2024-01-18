@@ -14,6 +14,7 @@ class GoogleIndexingController extends Controller
 {
     public function index()
     {
+        dd('ok');
         $client = new Google_Client();
 
 
