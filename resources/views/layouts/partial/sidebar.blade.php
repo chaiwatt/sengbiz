@@ -107,31 +107,37 @@
     <div class="owl-item mt-3 active" style="width: 100%; margin-right: 10px;">
         <div class="card rounded-3 w-100 flex-fill overflow-hidden border-0 dark-overlay">
             <!-- start card link -->
-            <a href="{{route('view',['slug' => $asidePost->slug])}}" class="stretched-link z-2"></a>
+            {{-- <a href="{{route('view',['slug' => $asidePost->slug])}}" class="stretched-link z-2"></a> --}}
             <!-- end /. card link -->
             <!-- start card image wrap -->
             <div class="card-img-wrap card-image-hover overflow-hidden">
                 {{-- <img src="{{asset($asidePost->postImages->first()->path)}}" alt="" class="img-fluid"
                     style="width:100%"> --}}
-                @if ($asidePost->postImages->first() && $asidePost->postImages->first()->path !== null)
-                <img src="{{ asset($asidePost->postImages->first()->path) }}" alt="" class="img-fluid"
-                    style="width:100%">
-                @else
-                <img src="{{ asset('assets/images/no-image/no-image-' . rand(1, 2) . '.webp') }}" alt=""
-                    class="img-fluid" style="width:100%">
-                @endif
+                <a href="{{route('view',['slug' => $asidePost->slug])}}" class="stretched-link z-2"
+                    aria-label="{{$asidePost->title}}">
+                    @if ($asidePost->postImages->first() && $asidePost->postImages->first()->path !== null)
+                    <img src="{{ asset($asidePost->postImages->first()->path) }}" alt="" class="img-fluid"
+                        style="width:100%">
+                    @else
+                    <img src="{{ asset('assets/images/no-image/no-image-' . rand(1, 2) . '.webp') }}" alt=""
+                        class="img-fluid" style="width:100%">
+                    @endif
+                </a>
 
                 @if (@$asidePost->postInfo->province->name !== null)
                 <div class="bg-blur card-badge d-inline-block position-absolute start-0 text-white z-2">
-                    <a href="#bb">{{$asidePost->postInfo->province->name}}</a>
+                    <a href="#"
+                        aria-label="{{$asidePost->postInfo->province->name}}">{{$asidePost->postInfo->province->name}}</a>
                 </div>
                 @endif
 
                 <!-- end /. card image wrap -->
                 <div class="bottom-0 d-flex flex-column p-4 position-absolute position-relative text-white w-80 z-1">
-
+                    <a href="{{route('view',['slug' => $asidePost->slug])}}" aria-label="{{$asidePost->title}}">
+                        <h3 class="fs-6 fw-semibold mb-0">{{$asidePost->title}}</h3>
+                    </a>
                     <!-- start card title -->
-                    <h3 class="fs-6 fw-semibold mb-0">{{$asidePost->title}}</h3>
+
                     <!-- end /. card title -->
                 </div>
             </div>

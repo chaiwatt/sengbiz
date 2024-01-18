@@ -14,7 +14,8 @@
                     <div class="card-image-hover dark-overlay h-100 overflow-hidden position-relative">
                         <!-- start image -->
                         {{-- --}}
-                        <a href="#" class="stretched-link" aria-label="{{$post->title}}">
+                        <a href="{{route('view',['slug' => $post->slug])}}" class="stretched-link"
+                            aria-label="{{$post->title}}">
                             @if ($post->postImages->first() && $post->postImages->first()->path !== null)
                             <img src="{{ asset($post->postImages->first()->path) }}" alt="{{$post->title}}"
                                 class="h-100 w-100 object-fit-cover" style="max-height: 200px !important"
@@ -58,14 +59,14 @@
                         </div>
                         <!-- start card title -->
                         <h4 class="fs-18 fw-semibold mb-0">
-                            <a href="#" aria-label="{{$post->title}}">
+                            <a href="{{route('view',['slug' => $post->slug])}}" aria-label="{{$post->title}}">
                                 {{$post->title}}
                             </a>
                         </h4>
                         <!-- end /. card title -->
                         <!-- start card description -->
                         <p class="mt-3 fs-15">
-                            <a href="#" aria-label="{{$post->description}}">
+                            <a href="{{route('view',['slug' => $post->slug])}}" aria-label="{{$post->description}}">
                                 {{$post->description}}
                             </a>
 
