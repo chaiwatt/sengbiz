@@ -25,6 +25,8 @@ use App\Http\Controllers\SiteMapController;
 Route::get('sitemap.xml', [SiteMapController::class, 'index'])->name('sitemap');
 Route::get('scrap', [ScraperController::class, 'scrap'])->name('scrap');
 Route::get('scrap-list', [ScraperController::class, 'scrapList'])->name('scrap-list');
+Route::get('updatepostview', [ScraperController::class, 'updatePostView'])->name('updatepostview');
+
 
 Auth::routes();
 

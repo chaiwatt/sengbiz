@@ -6,6 +6,7 @@ use Goutte\Client;
 use App\Models\Post;
 use App\Models\Amphur;
 use App\Models\PostInfo;
+use App\Models\PostView;
 use App\Models\Province;
 use App\Models\PidScrape;
 use App\Models\PostImage;
@@ -55,6 +56,19 @@ class ScraperController extends Controller
             }
         }
         return $trimmedResult;
+    }
+
+    public function updatePostView()
+    {
+        $posts = Post::all();
+        foreach ($posts as $post)
+        {
+            $postView = PostView::where('post_id', $post->id)->first();
+            $postView === null
+                ? PostView::create(['post_id' => $post->id,'view' => rand(50, 650)])
+                : $postView->update(['view' => rand(50, 650)]);
+
+        }
     }
 
 }
