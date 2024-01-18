@@ -15,8 +15,7 @@
                     @if (@$post->mainCategory->name !== null)
 
                     <li class="list-inline-item">
-                        <a class="fw-medium"
-                            href="{{ route('search', ['selectedMainCategory' => $post->mainCategory->name]) }}"
+                        <a class="fw-medium" href="{{ route('search', ['mainCategory' => $post->mainCategory->name]) }}"
                             aria-label="{{$post->mainCategory->name}}">{{$post->mainCategory->name}}</a>
                     </li>
                     @endif
@@ -24,8 +23,7 @@
                     @if (@$post->subCategory->name !== null)
 
                     <li class="list-inline-item">
-                        <a class="fw-medium"
-                            href="{{ route('search', ['selectedSubCategory' => $post->subCategory->name]) }}"
+                        <a class="fw-medium" href="{{ route('search', ['subCategory' => $post->subCategory->name]) }}"
                             aria-label="{{$post->subCategory->name}}">{{$post->subCategory->name}}</a>
                     </li>
                     @endif
@@ -238,7 +236,7 @@
 
                                         </div>
                                         @if ($post->mainCategory->name !== null)
-                                        <a href="{{ route('search', ['selectedMainCategory' => $post->mainCategory->name]) }}"
+                                        <a href="{{ route('search', ['mainCategory' => $post->mainCategory->name]) }}"
                                             class="d-flex gap-2 align-items-center fs-13 fw-semibold"
                                             aria-label="{{$post->mainCategory->name}}">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"

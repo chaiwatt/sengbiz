@@ -30,7 +30,7 @@
 
                         @if (@$post->subCategory->name !== null)
                         <div class="bg-blur card-badge d-inline-block position-absolute start-0 text-white z-2">
-                            <a href="{{ route('search', ['selectedSubCategory' => $post->subCategory->name]) }}"
+                            <a href="{{ route('search', ['subCategory' => $post->subCategory->name]) }}"
                                 aria-label="{{$post->subCategory->name}}">{{$post->subCategory->name}}</a>
                         </div>
                         @endif
@@ -109,7 +109,7 @@
 
                             </div>
                             @if ($post->mainCategory->name !== null)
-                            <a href="{{ route('search', ['selectedMainCategory' => $post->mainCategory->name]) }}"
+                            <a href="{{ route('search', ['mainCategory' => $post->mainCategory->name]) }}"
                                 class="d-flex gap-2 align-items-center fs-13 fw-semibold"
                                 aria-label="{{$post->mainCategory->name}}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#9b9b9b"

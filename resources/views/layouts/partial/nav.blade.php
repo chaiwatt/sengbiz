@@ -49,7 +49,7 @@
                     <ul class="dropdown-menu">
                         @foreach ($mainCategories->where('id',5)->first()->subCategories as $subCategory)
                         <li><a class="dropdown-item"
-                                href="{{ route('search', ['selectedSubCategory' => $subCategory->name]) }}">{{$subCategory->name}}
+                                href="{{ route('search', ['subCategory' => $subCategory->name]) }}">{{$subCategory->name}}
                                 ({{$subCategory->posts->count()}})</a></li>
                         @endforeach
                     </ul>
@@ -69,7 +69,7 @@
                             <ul class="dropdown-menu">
                                 @foreach ($subCategory->subMinorCategories as $subMinorCategory)
                                 <li><a class="dropdown-item"
-                                        href="{{ route('search', ['selectedSubMinorCategory' => $subMinorCategory->name]) }}">{{$subMinorCategory->name}}
+                                        href="{{ route('search', ['subMinorCategory' => $subMinorCategory->name]) }}">{{$subMinorCategory->name}}
                                         ({{$subMinorCategory->posts->count()}})</a>
                                     @endforeach
                             </ul>
@@ -89,7 +89,7 @@
                         @foreach ($mainCategories->where('id',4)->first()->subCategories as $subCategory)
 
                         <li><a class="dropdown-item"
-                                href="{{ route('search', ['selectedSubCategory' => $subCategory->name]) }}">{{$subCategory->name}}
+                                href="{{ route('search', ['subCategory' => $subCategory->name]) }}">{{$subCategory->name}}
                                 ({{$subCategory->posts->count()}})</a></li>
                         @endforeach
 
@@ -106,7 +106,7 @@
                         @foreach ($mainCategories->where('id',2)->first()->subCategories as $subCategory)
 
                         <li><a class="dropdown-item"
-                                href="{{ route('search', ['selectedSubCategory' => $subCategory->name]) }}">{{$subCategory->name}}
+                                href="{{ route('search', ['subCategory' => $subCategory->name]) }}">{{$subCategory->name}}
                                 ({{$subCategory->posts->count()}})</a></li>
                         @endforeach
 

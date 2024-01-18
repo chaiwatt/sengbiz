@@ -44,16 +44,16 @@ class PostController extends Controller
         $provinceId = null;
         $amphurId = null;
         $queryInput = null;
-        $selectedMainCategoryId = null;
-        $selectedSubCategoryId = null;
-        $selectedSubMinorCategoryId = null;
+        $mainCategoryId = null;
+        $subCategoryId = null;
+        $subMinorCategoryId = null;
 
 
         $provinceInput = request()->input('province', null);
         $amphurInput = request()->input('amphur', null);
-        $selectedMainCategoryInput = request()->input('selectedMainCategory', null);
-        $selectedSubCategoryInput = request()->input('selectedSubCategory', null);
-        $selectedSubMinorCategoryInput = request()->input('selectedSubMinorCategory', null);
+        $mainCategoryInput = request()->input('mainCategory', null);
+        $subCategoryInput = request()->input('subCategory', null);
+        $subMinorCategoryInput = request()->input('subMinorCategory', null);
         $queryInput = request()->input('queryInput', null);
         
         if ($provinceInput  !== null){
@@ -62,34 +62,34 @@ class PostController extends Controller
         if ($amphurInput  !== null){
             $amphurId = Amphur::where('name',$amphurInput)->first()->id;
         }
-        if ($selectedMainCategoryInput  !== null){
-            $selectedMainCategoryInput = urldecode($selectedMainCategoryInput);
-            $selectedMainCategoryId = MainCategory::where('name',$selectedMainCategoryInput)->first()->id;
+        if ($mainCategoryInput  !== null){
+            $mainCategoryInput = urldecode($mainCategoryInput);
+            $mainCategoryId = MainCategory::where('name',$mainCategoryInput)->first()->id;
         }
-        if ($selectedSubCategoryInput  !== null){
-            $selectedSubCategoryInput = urldecode($selectedSubCategoryInput);
-            $selectedSubCategoryId = SubCategory::where('name',$selectedSubCategoryInput)->first()->id;
+        if ($subCategoryInput  !== null){
+            $subCategoryInput = urldecode($subCategoryInput);
+            $subCategoryId = SubCategory::where('name',$subCategoryInput)->first()->id;
         }
-        if ($selectedSubMinorCategoryInput  !== null){
-            // $selectedSubCategoryId = SubMinorCategory::where('name',$selectedSubMinorCategoryInput)->first()->id;
-            $selectedSubMinorCategoryInput = urldecode($selectedSubMinorCategoryInput);
-            $selectedSubMinorCategoryId = SubMinorCategory::where('name', $selectedSubMinorCategoryInput)->first()->id;
+        if ($subMinorCategoryInput  !== null){
+            // $subCategoryId = SubMinorCategory::where('name',$subMinorCategoryInput)->first()->id;
+            $subMinorCategoryInput = urldecode($subMinorCategoryInput);
+            $subMinorCategoryId = SubMinorCategory::where('name', $subMinorCategoryInput)->first()->id;
 
         }
        
 
-        $posts = Post::where(function ($query) use ($queryInput, $selectedMainCategoryId, $selectedSubCategoryId, $selectedSubMinorCategoryId, $provinceId, $amphurId) {
+        $posts = Post::where(function ($query) use ($queryInput, $mainCategoryId, $subCategoryId, $subMinorCategoryId, $provinceId, $amphurId) {
             $query->when($queryInput, function ($query, $input) {
                 return $query->where('title', 'like', '%' . $input . '%')
                             ->where('description', 'like', '%' . $input . '%');
             })
-            ->when($selectedMainCategoryId, function ($query, $categoryId) {
+            ->when($mainCategoryId, function ($query, $categoryId) {
                 return $query->where('main_category_id', $categoryId);
             })
-            ->when($selectedSubCategoryId, function ($query, $subCategoryId) {
+            ->when($subCategoryId, function ($query, $subCategoryId) {
                 return $query->where('sub_category_id', $subCategoryId);
             })
-            ->when($selectedSubMinorCategoryId, function ($query, $subMinorCategoryId) {
+            ->when($subMinorCategoryId, function ($query, $subMinorCategoryId) {
                 return $query->where('sub_minor_category_id', $subMinorCategoryId);
             })
             ->when($provinceId || $amphurId, function ($query) use ($provinceId, $amphurId) {
