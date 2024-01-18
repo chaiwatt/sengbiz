@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('post_id');
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
-            $table->char('view',50)->default('0');
-            $table->char('unique_view',50)->default('0');
+            $table->integer('view')->default(0);
+            $table->integer('unique_view')->default(0);
             $table->timestamps();
         });
     }

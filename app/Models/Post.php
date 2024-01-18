@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use App\Models\PostInfo;
+use App\Models\PostView;
 use App\Models\PostImage;
 use App\Models\MainCategory;
 use App\Models\PostNearPlace;
@@ -29,6 +30,10 @@ class Post extends Model
         'is_ads'
     ]; // ตัวอย่าง
 
+    public function postView()
+    {
+        return $this->hasOne(PostView::class, 'post_id');
+    }
     public function postInfo()
     {
         return $this->hasOne(PostInfo::class, 'post_id');

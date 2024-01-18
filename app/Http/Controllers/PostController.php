@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\PostView;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -20,6 +21,12 @@ class PostController extends Controller
     {
         $posts = Post::paginate(4);
         $post = Post::where('slug',$slug)->first();
+        if($post !== null){
+            $postView = PostView::where('post_id', $post->id)->first();
+            $postView === null
+                ? PostView::create(['post_id' => $post->id,'view' => 1])
+                : $postView->update(['view' => $postView->view + 1]);
+        }
 
         return view('post.view',[
             'post' => $post,

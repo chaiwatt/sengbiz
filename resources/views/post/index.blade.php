@@ -61,7 +61,8 @@
                             <i class="fa-solid fa-eye"></i>
                             <!-- end /. ratings -->
                             <!-- start rating counter text -->
-                            <span class="fw-medium text-primary">จำนวนดู - ครั้ง</span>
+                            <span class="fw-medium text-primary">จำนวนดู {{ isset($post->postView->view) ?
+                                $post->postView->view : '-' }} ครั้ง</span>
                             <!-- end /. rating counter text -->
                         </div>
                         <!-- start card title -->
