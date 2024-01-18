@@ -39,7 +39,7 @@
                 <!-- Start Form Check -->
                 <div class="form-check mb-2">
                     <input class="form-check-input" type="checkbox" value="" id="skillsTwo">
-                    <label class="form-check-label" for="skillsTwo">ขาย/เซ้งกิจการ<span
+                    <label class="form-check-label" for="skillsTwo">ขายกิจการ<span
                             class="count fs-13 ms-1 text-muted">({{$allPosts->where('main_category_id',1)->count()}})</span></label>
                 </div>
                 <!-- End Form Check -->

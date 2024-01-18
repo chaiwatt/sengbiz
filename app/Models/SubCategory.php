@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Post;
 use App\Models\MainCategory;
 use App\Models\SubMinorCategory;
 use Illuminate\Database\Eloquent\Model;
@@ -19,5 +20,9 @@ class SubCategory extends Model
     public function subMinorCategories()
     {
         return $this->hasMany(SubMinorCategory::class, 'sub_category_id');
+    }
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'sub_category_id');
     }
 }

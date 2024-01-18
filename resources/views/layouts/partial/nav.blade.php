@@ -41,83 +41,71 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav m-auto mb-2 mb-lg-0">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown"
-                        data-bs-auto-close="outside" aria-expanded="false">
-                        ขาย/เซ้งกิจการ
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i
+                            class="typcn typcn-weather-stormy top-menu-icon"></i>{{$mainCategories->where('id',5)->first()->name}}
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="nav-item dropdown">
-                            <a class="dropdown-item dropdown-toggle active" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">ธุรกิจก่อสร้าง/วิศวกรรม</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item active" href="listings-list-left.html">รับเหมาก่อสร้าง</a>
-                                </li>
-                                <li><a class="dropdown-item" href="listings-list-right.html">ร้านขายวัสดุก่อสร้าง</a>
-                                </li>
-                                <li><a class="dropdown-item"
-                                        href="listings-list-right.html">ธุรกิจด้านการก่อสร้างอื่นๆ</a>
-                                </li>
-                            </ul>
-                        </li>
+                        @foreach ($mainCategories->where('id',5)->first()->subCategories as $subCategory)
+
+                        <li><a class="dropdown-item" href="#">{{$subCategory->name}}
+                                ({{$subCategory->posts->count()}})</a></li>
+                        @endforeach
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle material-ripple" href="#" role="button" data-bs-toggle="dropdown"
+                        data-bs-auto-close="outside" aria-expanded="false">
+                        {{$mainCategories->where('id',1)->first()->name}}
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        @foreach ($mainCategories->where('id',1)->first()->subCategories as $subCategory)
                         <li class="nav-item dropdown">
                             <a class="dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">ธุรกิจการเกษตร</a>
+                                aria-expanded="false">{{$subCategory->name}} ({{$subCategory->posts->count()}})</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="listings-grid-1-left.html">ฟาร์มเลี้ยงสัตว์</a>
-                                </li>
-                                <li><a class="dropdown-item"
-                                        href="listings-grid-1-right.html">ร้านขายอุปกรณ์การเกษตร</a>
-                                </li>
-                                <li><a class="dropdown-item" href="listings-grid-1-right.html">ไร่นา</a>
-                                </li>
-                                <li><a class="dropdown-item" href="listings-grid-1-right.html">ธุรกิจการเกษตรอื่นๆ</a>
-                                </li>
+                                @foreach ($subCategory->subMinorCategories as $subMinorCategory)
+                                <li><a class="dropdown-item" href="listings-list-left.html">{{$subMinorCategory->name}}
+                                        ({{$subMinorCategory->posts->count()}})</a>
+                                    @endforeach
                             </ul>
                         </li>
+                        @endforeach
                     </ul>
                 </li>
+
+
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle material-ripple " href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="typcn typcn-weather-stormy top-menu-icon"></i>อสังหาริมทรัพย์
+                    <a class="nav-link dropdown-toggle material-ripple" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i
+                            class="typcn typcn-weather-stormy top-menu-icon"></i>{{$mainCategories->where('id',4)->first()->name}}
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="dashboard/dashboard.html">บ้านเดี่ยว</a></li>
-                        <li><a class="dropdown-item" href="dashboard/bookings.html">คอนโด</a></li>
-                        <li><a class="dropdown-item" href="dashboard/messages.html">ทาว์นโฮม</a></li>
-                        <li><a class="dropdown-item" href="dashboard/wallet.html">ตึกแถว/อาคารพาณิชย์</a></li>
-                        <li><a class="dropdown-item" href="dashboard/profile.html">ที่ดิน</a></li>
-                        <li><a class="dropdown-item" href="dashboard/add-listing.html">อสังหาฯอื่นๆ</a></li>
+                        @foreach ($mainCategories->where('id',4)->first()->subCategories as $subCategory)
+
+                        <li><a class="dropdown-item" href="#">{{$subCategory->name}}
+                                ({{$subCategory->posts->count()}})</a></li>
+                        @endforeach
+
                     </ul>
                 </li>
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle material-ripple" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        <i class="typcn typcn-weather-stormy top-menu-icon"></i>แฟรนไชส์
+                        <i
+                            class="typcn typcn-weather-stormy top-menu-icon"></i>{{$mainCategories->where('id',2)->first()->name}}
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="dashboard/dashboard.html">แฟรนไชส์ก๋วยเตี๋ยว</a></li>
-                        <li><a class="dropdown-item" href="dashboard/bookings.html">แฟรนไชส์กาแฟ</a></li>
-                        <li><a class="dropdown-item" href="dashboard/messages.html">แฟรนไชส์เครื่องดื่ม</a></li>
-                        <li><a class="dropdown-item" href="dashboard/wallet.html">แฟรนไชส์อาหาร</a></li>
-                        <li><a class="dropdown-item" href="dashboard/profile.html">แฟรนไชส์ไอศครีม</a></li>
-                        <li><a class="dropdown-item" href="dashboard/add-listing.html">แฟรนไชส์อื่นๆ</a></li>
-                    </ul>
-                </li>
+                        @foreach ($mainCategories->where('id',2)->first()->subCategories as $subCategory)
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle material-ripple" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        <i class="typcn typcn-weather-stormy top-menu-icon"></i>พื้นที่ให้เช่า
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="dashboard/dashboard.html">แฟรนไชส์ก๋วยเตี๋ยว</a></li>
-                        <li><a class="dropdown-item" href="dashboard/bookings.html">แฟรนไชส์กาแฟ</a></li>
-                        <li><a class="dropdown-item" href="dashboard/messages.html">แฟรนไชส์เครื่องดื่ม</a></li>
-                        <li><a class="dropdown-item" href="dashboard/wallet.html">แฟรนไชส์อาหาร</a></li>
-                        <li><a class="dropdown-item" href="dashboard/profile.html">แฟรนไชส์ไอศครีม</a></li>
-                        <li><a class="dropdown-item" href="dashboard/add-listing.html">แฟรนไชส์อื่นๆ</a></li>
+                        <li><a class="dropdown-item" href="#">{{$subCategory->name}}
+                                ({{$subCategory->posts->count()}})</a></li>
+                        @endforeach
+
                     </ul>
                 </li>
                 <li class="nav-item">

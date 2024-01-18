@@ -86,7 +86,7 @@
     <div class="bg-white sticky-top header">
         <!-- start navbar -->
 
-        @include('layouts.partial.nav')
+        @include('layouts.partial.nav',['mainCategories' => $mainCategories])
 
 
         <!-- end /. navbar -->
@@ -104,11 +104,9 @@
                     <div class="search-select has-icon position-relative">
                         <select class="select2 form-select" aria-label="===พื้นที่===">
                             <option selected>===พื้นที่===</option>
-                            <option value="1">กระบี่</option>
-                            <option value="2">กรุงเทพมหานคร</option>
-                            <option value="3">ขอนแก่น</option>
-                            <option value="4">Sales & Marketing</option>
-                            <option value="5">Music & Audio</option>
+                            @foreach ($provinces as $province)
+                            <option value="{{$province->id}}">{{$province->name}}</option>
+                            @endforeach
                         </select>
                         <svg class="form-icon-start position-absolute top-50 search-icon z-1 bi bi-geo-alt"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
@@ -125,10 +123,10 @@
                     <div class="search-select has-icon position-relative">
                         <select class="select2 form-select" aria-label="===หมวดหมู่===">
                             <option selected>===หมวดหมู่===</option>
-                            <option value="1">อสังหาริมทรัพย์</option>
-                            <option value="2">ขาย/เซ้งกิจการ</option>
-                            <option value="3">แฟรนไชส์</option>
-                            <option value="4">พื้นที่ให้เช่า</option>
+                            <option value="5">อสังหาริมทรัพย์</option>
+                            <option value="1">ขายกิจการ</option>
+                            <option value="4">แฟรนไชส์</option>
+                            <option value="2">พื้นที่ให้เช่า</option>
                             {{-- <option value="5">Music & Audio</option> --}}
                         </select>
 
