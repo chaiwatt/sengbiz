@@ -26,7 +26,7 @@
                 <div class="js-range-slider"></div>
                 <!-- End Range Slider -->
             </div> --}}
-            <div class="mb-4 border-bottom pb-4">
+            <div class="mb-4">
                 <div class="mb-3">
                     <h4 class="fs-5 fw-semibold mb-2">หมวดหมู่</h4>
                     <p class="mb-0 small">เลือกหมวดหมู่ค้นหา</p>
@@ -70,10 +70,25 @@
                 <!-- End Form Check -->
 
             </div>
+            <div class="mb-4">
+
+                <!-- Start Select2 -->
+                <select class="form-select" aria-label="ล่าสุด">
+                    <option value="1">==พื้นที่==</option>
+                    @foreach ($provinces as $province)
+                    <option value="{{$province->id}}">{{$province->name}}</option>
+                    @endforeach
+
+                    <option value="4">1,000,001 - 3,000,000</option>
+                    <option value="4">3,000,001 - 5,000,000</option>
+                    <option value="4">5,000,001 - 7,000,000</option>
+                    <option value="4">7,000,001 - 10,000,000</option>
+                    <option value="4">10,000,001 - 15,000,000</option>
+                    <option value="4">มากกว่า 15,000,000</option>
+                </select>
+                <!-- /.End Select2 -->
+            </div>
             <div class="mb-4 border-bottom pb-4">
-                <div class="mb-3">
-                    <h4 class="fs-5 fw-semibold mb-1">ราคา</h4>
-                </div>
                 <!-- Start Select2 -->
                 <select class="form-select" aria-label="ล่าสุด">
                     <option value="1">น้อยกว่า 500,000</option>
