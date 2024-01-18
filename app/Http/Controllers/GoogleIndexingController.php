@@ -16,10 +16,10 @@ class GoogleIndexingController extends Controller
     {
         // dd('ok1');
         $client = new Google_Client();
-        
+        dd('ok1');
         $client->setAuthConfig(public_path('assets/json/service_account_1.json'));
         $client->addScope('https://www.googleapis.com/auth/indexing');
-dd('ok1');
+
         // Get a Guzzle HTTP Client
         $httpClient = $client->authorize();
         $endpoint = 'https://indexing.googleapis.com/v3/urlNotifications:publish';
