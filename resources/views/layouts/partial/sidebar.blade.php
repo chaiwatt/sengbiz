@@ -78,13 +78,6 @@
                     @foreach ($provinces as $province)
                     <option value="{{$province->id}}">{{$province->name}}</option>
                     @endforeach
-
-                    <option value="4">1,000,001 - 3,000,000</option>
-                    <option value="4">3,000,001 - 5,000,000</option>
-                    <option value="4">5,000,001 - 7,000,000</option>
-                    <option value="4">7,000,001 - 10,000,000</option>
-                    <option value="4">10,000,001 - 15,000,000</option>
-                    <option value="4">มากกว่า 15,000,000</option>
                 </select>
                 <!-- /.End Select2 -->
             </div>
