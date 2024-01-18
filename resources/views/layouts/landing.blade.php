@@ -102,8 +102,8 @@
                 <div class="col-md-2 col-lg-2 col-xl-3 d-none d-lg-block">
                     <!-- Start Search Select -->
                     <div class="search-select has-icon position-relative">
-                        <select class="select2 form-select" aria-label="===พื้นที่===">
-                            <option selected>===พื้นที่===</option>
+                        <select class="select2 form-select" aria-label="==จังหวัด==">
+                            <option selected>==จังหวัด==</option>
                             @foreach ($provinces as $province)
                             <option value="{{$province->id}}">{{$province->name}}</option>
                             @endforeach
