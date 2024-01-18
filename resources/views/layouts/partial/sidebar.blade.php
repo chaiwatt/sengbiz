@@ -25,13 +25,13 @@
                     </div>
                     <div class="form-check mb-2">
                         <input class="form-check-input" type="checkbox" value="5" name="categories[]">
-                        <label class="form-check-label" for="skillsOne">อสังหาริมทรัพย์<span
+                        <label class="form-check-label">อสังหาริมทรัพย์<span
                                 class="count fs-13 ms-1 text-muted">({{$allPosts->where('main_category_id',5)->count()}})</span></label>
                     </div>
                     <!-- Start Form Check -->
                     <div class="form-check mb-2">
                         <input class="form-check-input" type="checkbox" value="1" name="categories[]">
-                        <label class="form-check-label" for="skillsTwo">ขายกิจการ<span
+                        <label class="form-check-label">ขายกิจการ<span
                                 class="count fs-13 ms-1 text-muted">({{$allPosts->where('main_category_id',1)->count()}})</span></label>
                     </div>
                     <!-- End Form Check -->
@@ -42,21 +42,21 @@
                     <!-- Start Form Check -->
                     <div class="form-check mb-2">
                         <input class="form-check-input" type="checkbox" value="4" name="categories[]">
-                        <label class="form-check-label" for="skillsThree">แฟรนไชส์<span
+                        <label class="form-check-label">แฟรนไชส์<span
                                 class="count fs-13 ms-1 text-muted">({{$allPosts->where('main_category_id',4)->count()}})</span></label>
                     </div>
                     <!-- End Form Check -->
                     <!-- Start Form Check -->
                     <div class="form-check mb-2">
                         <input class="form-check-input" type="checkbox" value="3" name="categories[]">
-                        <label class="form-check-label" for="skillsFour">รับฝากขาย<span
+                        <label class="form-check-label">รับฝากขาย<span
                                 class="count fs-13 ms-1 text-muted">({{$allPosts->where('main_category_id',3)->count()}})</span></label>
                     </div>
                     <!-- End Form Check -->
                     <!-- Start Form Check -->
                     <div class="form-check mb-2">
                         <input class="form-check-input" type="checkbox" value="2" name="categories[]">
-                        <label class="form-check-label" for="skillsFive">พื้นที่ให้เช่า<span
+                        <label class="form-check-label">พื้นที่ให้เช่า<span
                                 class="count fs-13 ms-1 text-muted">({{$allPosts->where('main_category_id',2)->count()}})</span></label>
                     </div>
                     <!-- End Form Check -->
