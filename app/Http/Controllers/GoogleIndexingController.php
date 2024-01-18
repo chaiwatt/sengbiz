@@ -14,21 +14,14 @@ class GoogleIndexingController extends Controller
 {
     public function index()
     {
-        dd('ok');
+        
         $client = new Google_Client();
 
 
 $filePath = public_path('assets/json/service_account_1.json');
 $fileContent = file_get_contents($filePath);
 
-if ($fileContent !== false) {
-    // แสดงข้อมูลที่อยู่ในไฟล์
-    echo $fileContent;
-} else {
-    // ไฟล์ไม่มีข้อมูล
-    echo "ไฟล์ไม่มีข้อมูล";
-}
-
+dd('ok1');
 
         $client->setAuthConfig(public_path('assets/json/service_account_1.json'));
         $client->addScope('https://www.googleapis.com/auth/indexing');
