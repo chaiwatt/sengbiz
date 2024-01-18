@@ -43,7 +43,7 @@
                     </li>
                     @endif
                     @if ($post->postNearPlace !== null)
-                    <li class="list-inline-item">Full time</li>
+                    <li class="list-inline-item">{{$post->postNearPlace->name}}</li>
                     @endif
                 </ul>
             </div>
@@ -190,7 +190,8 @@
                                         <i class="fa-solid fa-eye"></i>
                                         <!-- end /. ratings -->
                                         <!-- start rating counter text -->
-                                        <span class="fw-medium text-primary">จำนวนดู - ครั้ง</span>
+                                        <span class="fw-medium text-primary">{{ isset($post->postView->view) ?
+                                            $post->postView->view : '-' }}</span>
                                         <!-- end /. rating counter text -->
                                     </div>
                                     <!-- start card title -->
