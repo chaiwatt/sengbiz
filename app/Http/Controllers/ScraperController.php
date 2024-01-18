@@ -58,17 +58,4 @@ class ScraperController extends Controller
         return $trimmedResult;
     }
 
-    public function updatePostView()
-    {
-        $posts = Post::all();
-        foreach ($posts as $post)
-        {
-            $postView = PostView::where('post_id', $post->id)->first();
-            $postView === null
-                ? PostView::create(['post_id' => $post->id,'view' => rand(50, 650)])
-                : $postView->update(['view' => rand(50, 650)]);
-
-        }
-    }
-
 }
