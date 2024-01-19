@@ -81,7 +81,7 @@
     <div class="bg-white sticky-top header">
         <!-- start navbar -->
 
-        {{-- @include('layouts.partial.nav',['mainCategories' => $mainCategories]) --}}
+        @include('layouts.partial.nav',['mainCategories' => $mainCategories])
         <!-- end /. navbar -->
         <!-- start header search bar  -->
         <form action="{{route('search')}}" method="GET">
