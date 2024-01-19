@@ -175,11 +175,11 @@
 
 
 
-        @include('layouts.partial.footer')
+
 
     </div>
 
-
+    @include('layouts.partial.footer')
     <script src="assets/plugins/jQuery/jquery.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/plugins/aos/aos.min.js"></script>
