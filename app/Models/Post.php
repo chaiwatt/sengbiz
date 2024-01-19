@@ -50,9 +50,9 @@ class Post extends Model
     {
         return $this->hasMany(PostContactPhone::class, 'post_id');
     }
-    public function postNearPlaces()
+    public function postNearPlace()
     {
-        return $this->hasMany(PostNearPlace::class, 'post_id');
+        return $this->hasOne(PostNearPlace::class, 'post_id');
     }
     public function user()
     {
