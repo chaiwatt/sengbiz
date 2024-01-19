@@ -35,7 +35,8 @@ class IndexingPost implements ShouldQueue
     {
          $client = new Google_Client();
         
-        $client->setAuthConfig(public_path('assets/json/service_account.json'));
+        // $client->setAuthConfig(public_path('assets/json/service_account_key_1.json'));
+        $client->setAuthConfig(public_path('assets/json/service_account_key_' . rand(1, 5) . '.json'));
         $client->addScope('https://www.googleapis.com/auth/indexing');
 
         // Get a Guzzle HTTP Client
