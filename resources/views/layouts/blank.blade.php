@@ -78,7 +78,7 @@
 <body>
 
     <!-- start header -->
-    <div class="bg-white sticky-top header">
+    <div class="bg-white sticky-top header" style="min-height: 100vh;">
         <!-- start navbar -->
 
         @include('layouts.partial.nav',['mainCategories' => $mainCategories])
@@ -174,11 +174,11 @@
         @yield('content')
 
 
-
+        @include('layouts.partial.footer')
 
 
     </div>
-    @include('layouts.partial.footer')
+
 
 
     <script src="assets/plugins/jQuery/jquery.min.js"></script>
