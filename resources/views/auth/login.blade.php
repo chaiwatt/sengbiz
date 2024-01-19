@@ -42,7 +42,7 @@
                     <div class="form-group mb-4">
                         <label class="required">อีเมล</label>
                         <input type="email" class="form-control is-invalid">
-                        <div class="invalid-feedback text-start">Enter your valid email</div>
+                        {{-- <div class="invalid-feedback text-start">Enter your valid email</div> --}}
                     </div>
                     <!-- /.End Form Group -->
                     <!-- Start Form Group -->
@@ -53,17 +53,14 @@
                     </div>
                     <!-- /.End Form Group -->
                     <!-- Start Checkbox -->
-                    <div class="form-check mb-4 text-start">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">จำฉันไว้</label>
-                    </div>
+
                     <!-- /.End Checkbox -->
                     <!-- Start Button -->
                     <button type="submit" class="btn btn-primary btn-lg w-100">เข้าสู่ระบบ</button>
                     <!-- End Button -->
                 </form>
                 <!-- Start Bottom Text -->
-                <div class="bottom-text text-center mt-4"> ยังไม่มีบัญชี? <a href="sign-up.html"
+                <div class="bottom-text text-center mt-4"> ยังไม่มีบัญชี? <a href="{{route('register')}}"
                         class="fw-medium text-decoration-underline">สมัครใช้งาน</a>
                     <br> ฉันลืม <a href="forgot-password.html" class="fw-medium text-decoration-underline">รหัสผ่าน</a>
                 </div>
@@ -71,12 +68,12 @@
             </div>
         </div>
         <div class="col-xl-7 d-none d-xl-block">
-            <div class="background-image bg-light d-flex flex-column h-100 justify-content-center p-5 rounded-4"
-                data-image-src="assets/images/lines.svg">
-                <div class="py-5 text-center">
+            <div class="background-image bg-light d-flex flex-column h-100 justify-content-center rounded-4"
+                data-image-src="assets/images/lines.svg" style="position: relative">
+                <div class=" text-center">
 
-                    <img src="assets/images/authentication/log-in.webp" alt="" class="img-fluid"
-                        style="max-width: 600px">
+                    <img src="assets/images/authentication/log-in.webp" alt="" class="img-fluid" style="position: absolute;max-width: 600px;bottom: 0;left: 50%;
+  transform: translateX(-50%);">
                 </div>
             </div>
         </div>
