@@ -131,7 +131,7 @@
 
                 @if (@intVal($asidePost->price) !== 0)
                 <div @if (intVal($asidePost->is_ads) === 1)
-                    style = "margin-top:45px"
+                    style = "margin-top:40px"
                     @endif class="bg-blur card-badge d-inline-block position-absolute start-0 text-white z-2" >
                     {{number_format($asidePost->price)}}
                 </div>
