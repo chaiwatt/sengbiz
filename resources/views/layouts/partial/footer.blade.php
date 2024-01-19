@@ -16,11 +16,8 @@
                     <a href="{{url('/')}}" class="col-sm-auto footer-logo mb-2 mb-sm-0" aria-label="logo">
                         <img src="assets/images/logo-white.webp" alt="logo" decoding="async">
                     </a>
-                    <!-- end /. footer logo -->
-                    <!-- start text -->
                     <div class="col-sm-auto copy">© 2023 - {{ now()->format('Y') }} เซ้งกิจการ | SengBiz - All Rights
                         Reserved</div>
-                    <!-- end /. text -->
                 </div>
             </div>
         </div>
