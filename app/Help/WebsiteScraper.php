@@ -236,7 +236,7 @@ class WebsiteScraper
             // ลบ """ ทั้งหมด
             $content = str_replace('"""', '', $content);
             $htmlContent = preg_replace('/<br\s*\/?>\s*<br\s*\/?>/i', '<br>', $content);
-            $htmlContent = preg_replace('/WAN\d{3}/', '', $htmlContent);
+            // $htmlContent = preg_replace('/WAN\d{3}/', '', $htmlContent);
         
             $htmlContent = preg_replace(array_keys($removePatterns), array_values($removePatterns), $htmlContent);
             $htmlContent = $this->removePropertyCode($htmlContent,"รหัสทรัพย์");
@@ -254,7 +254,11 @@ class WebsiteScraper
         $postTitle =$this->getString($orgTitle,$result,50);
         // $postTitle = preg_replace('/WAN\d{3}/', '', $postTitle);
         $postTitle = preg_replace(array_keys($removePatterns), array_values($removePatterns), $postTitle);
-        $slug = trim(str_replace(' ', '-', $postTitle), '-');
+        $slug = trim(str_replace('   ', '-', $postTitle), '-');
+        $slug = trim(str_replace('  ', '-', $slug), '-');
+        $slug = trim(str_replace(' ', '-', $slug), '-');
+        $slug = str_replace(',', '', $slug);
+        
         // $slug = Str::slug($postTitle, '-', 150);
         // $slug = preg_replace('/--/', '-', $slug);
         // $slug = preg_replace('/---/', '-', $slug);
