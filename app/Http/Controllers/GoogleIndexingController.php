@@ -9,11 +9,13 @@ use Google\Http\Batch;
 use Google\Service\Indexing;
 use Illuminate\Http\Request;
 use Google\Service\Indexing\UrlNotification;
+use Famdirksen\LaravelGoogleIndexing\LaravelGoogleIndexing;
 
 class GoogleIndexingController extends Controller
 {
     public function index()
     {
+     
         $client = new Google_Client();
         
         $client->setAuthConfig(public_path('assets/json/service_account_1.json'));
@@ -24,7 +26,7 @@ class GoogleIndexingController extends Controller
         $endpoint = 'https://indexing.googleapis.com/v3/urlNotifications:publish';
 
         $content = [
-            'url' => 'https://sengbiz.com/ให้เช่าอาคาร-5-ชั้น-พื้นที่ใช้สอย-2200-ตรม.-บนพื้นที่',
+            'url' => 'https://sengbiz.com/ให้เช่าอาคารพาณิชย์-5-ชั้น-ขนาด-400-ตรม.-ทำเลดีใกล้',
             'type' => 'URL_UPDATED'
         ];
 
