@@ -15,34 +15,38 @@ class GoogleIndexingController extends Controller
 {
     public function index()
     {
-     
-        $client = new Google_Client();
+       $posts = Post::whereNull('indexing_code')->get();
+       foreach($posts as $post)
+       {
+        echo 'https://sengbiz.com/' .($post->slug). '<br>';
+       }
+        // $client = new Google_Client();
         
-        $client->setAuthConfig(public_path('assets/json/service_account.json'));
-        $client->addScope('https://www.googleapis.com/auth/indexing');
+        // $client->setAuthConfig(public_path('assets/json/service_account.json'));
+        // $client->addScope('https://www.googleapis.com/auth/indexing');
 
-        // Get a Guzzle HTTP Client
-        $httpClient = $client->authorize();
-        $endpoint = 'https://indexing.googleapis.com/v3/urlNotifications:publish';
+        // // Get a Guzzle HTTP Client
+        // $httpClient = $client->authorize();
+        // $endpoint = 'https://indexing.googleapis.com/v3/urlNotifications:publish';
 
-        $urls = [
-            'https://sengbiz.com/บ้านแฝด-หมู่บ้าน-ทรัพย์ธานี-5-คลอง-8',
-            'https://sengbiz.com/เดอะ-นีช-ไอดี-พระราม2-เฟส-1ที่ตั้ง-ถ.พระราม',
-        ];
-        $content = [
-            'url' => 'https://sengbiz.com/บ้านแฝด-หมู่บ้าน-ทรัพย์ธานี-5-คลอง-8',
-            // 'url' => $urls,
-            'type' => 'URL_UPDATED'
-        ];
+        // $urls = [
+        //     'https://sengbiz.com/บ้านแฝด-หมู่บ้าน-ทรัพย์ธานี-5-คลอง-8',
+        //     'https://sengbiz.com/เดอะ-นีช-ไอดี-พระราม2-เฟส-1ที่ตั้ง-ถ.พระราม',
+        // ];
+        // $content = [
+        //     'url' => 'https://sengbiz.com/บ้านแฝด-หมู่บ้าน-ทรัพย์ธานี-5-คลอง-8',
+        //     // 'url' => $urls,
+        //     'type' => 'URL_UPDATED'
+        // ];
 
-        $response = $httpClient->request('POST', $endpoint, [
-                            'json' => $content,
-                        ]);
+        // $response = $httpClient->request('POST', $endpoint, [
+        //                     'json' => $content,
+        //                 ]);
 
-        $status_code = $response->getStatusCode();
-        dd($status_code);
+        // $status_code = $response->getStatusCode();
+        // dd($status_code);
 
-        return response()->json(['status_code' => $status_code]);
+        // return response()->json(['status_code' => $status_code]);
 
     }
 
