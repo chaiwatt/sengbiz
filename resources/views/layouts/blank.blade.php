@@ -72,7 +72,7 @@
     <link href="assets/plugins/select2/select2.min.css" rel="stylesheet">
     <link href="assets/plugins/select2-bootstrap-5/select2-bootstrap-5-theme.min.css" rel="stylesheet">
     <!-- Custom style for this template -->
-    <link href="assets/css/style.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
 </head>
 
 <body>
