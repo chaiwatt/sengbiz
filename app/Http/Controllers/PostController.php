@@ -77,6 +77,7 @@ class PostController extends Controller
         $subCategoryInput = request()->input('subCategory', null);
         $subMinorCategoryInput = request()->input('subMinorCategory', null);
         $queryInput = request()->input('queryInput', null);
+        $nearPlace = request()->input('nearPlace', null);
 
         $provinceId = optional(Province::where('name', $provinceInput)->first())->id;
         $amphurId = optional(Amphur::where('name', $amphurInput)->first())->id;
@@ -84,11 +85,11 @@ class PostController extends Controller
         $subCategoryId = optional(SubCategory::where('name', urldecode($subCategoryInput))->first())->id;
         $subMinorCategoryId = optional(SubMinorCategory::where('name', urldecode($subMinorCategoryInput))->first())->id;
        
-        $posts = Post::where(function ($query) use ($queryInput, $mainCategoryId, $subCategoryId, $subMinorCategoryId, $provinceId, $amphurId, $categories, $mainCategoryIds, $priceId, $minPrice, $maxPrice) {
+        $posts = Post::where(function ($query) use ($queryInput, $mainCategoryId, $subCategoryId, $subMinorCategoryId, $provinceId, $amphurId, $categories, $mainCategoryIds, $priceId, $minPrice, $maxPrice,$nearPlace) {
             $query->when($queryInput, function ($query, $input) {
                 return $query->where('title', 'like', '%' . $input . '%')
                     ->where('description', 'like', '%' . $input . '%');
-            })
+                })
                 ->when($mainCategoryId, function ($query, $categoryId) {
                     return $query->where('main_category_id', $categoryId);
                 })
@@ -112,6 +113,11 @@ class PostController extends Controller
                             ->when($amphurId, function ($query, $amphur) {
                                 return $query->where('amphur_id', $amphur);
                             });
+                    });
+                })
+                ->when($nearPlace, function ($query) use ($nearPlace) {
+                    return $query->whereHas('post_near_place', function ($query) use ($nearPlace) {
+                        return $query->where('name', $nearPlace);
                     });
                 });
             })

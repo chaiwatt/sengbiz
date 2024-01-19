@@ -279,7 +279,8 @@
                                         @endif
 
                                         @if ($post->postNearPlace !== null)
-                                        <a href="#" class="d-flex gap-2 align-items-center fs-13 fw-semibold"
+                                        <a href="{{ route('search', ['nearPlace' => $post->postNearPlace->name]) }}"
+                                            class="d-flex gap-2 align-items-center fs-13 fw-semibold"
                                             aria-label="{{$post->postNearPlace->name}}">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                 fill="#9b9b9b" class="bi bi-train-lightrail-front" viewBox="0 0 16 16">
