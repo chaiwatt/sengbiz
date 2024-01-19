@@ -116,7 +116,7 @@ class PostController extends Controller
                     });
                 })
                 ->when($nearPlace, function ($query) use ($nearPlace) {
-                    return $query->whereHas('post_near_place', function ($query) use ($nearPlace) {
+                    return $query->whereHas('postNearPlace', function ($query) use ($nearPlace) {
                         return $query->where('name', $nearPlace);
                     });
                 });
