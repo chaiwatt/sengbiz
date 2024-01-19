@@ -174,11 +174,11 @@
         @yield('content')
 
 
-        @include('layouts.partial.footer')
+
 
 
     </div>
-
+    @include('layouts.partial.footer')
 
 
     <script src="assets/plugins/jQuery/jquery.min.js"></script>
