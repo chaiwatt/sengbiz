@@ -18,13 +18,13 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        // $this->call(PriceRangesTableSeeder::class);
-        // $this->call(ProvincesTableSeeder::class);
-        // $this->call(AmphursTableSeeder::class);
-        // $this->call(MainCategoriesTableSeeder::class);
-        // $this->call(SubCategoriesTableSeeder::class);
-        // $this->call(SubMinorCategoriesTableSeeder::class);
-        // $this->call(PriceRangesTableSeeder::class);
+        $this->call(PriceRangesTableSeeder::class);
+        $this->call(ProvincesTableSeeder::class);
+        $this->call(AmphursTableSeeder::class);
+        $this->call(MainCategoriesTableSeeder::class);
+        $this->call(SubCategoriesTableSeeder::class);
+        $this->call(SubMinorCategoriesTableSeeder::class);
+        $this->call(PriceRangesTableSeeder::class);
         $this->call(UsersTableSeeder::class);
     
     }
