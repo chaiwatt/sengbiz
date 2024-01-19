@@ -1,7 +1,7 @@
 @extends('layouts.blank')
 
 @section('content')
-<div class="p-3 p-sm-5" style="margin-bottom: 25px">
+<div class="p-3 p-sm-5">
     <div class="row g-2 g-xl-5 justify-content-between">
         <div class="col-xl-5 d-flex justify-content-center">
             <div class=" overflow-hidden position-relative text-center" style="width: 80%">
