@@ -238,13 +238,15 @@ class WebsiteScraper
             $htmlContent = preg_replace('/WAN\d{3}/', '', $htmlContent);
         
             $htmlContent = preg_replace(array_keys($removePatterns), array_values($removePatterns), $htmlContent);
+            $htmlContent = $this->removePropertyCode($htmlContent,"รหัสทรัพย์");
         } 
 
         //dd($result = preg_replace('/\p{L}/u', '', $stringContent));
         $result = preg_replace('/[^\p{L}\p{M}0-9\s.,-]/u', '', $stringContent);
 
         $result = preg_replace('/\s{2,}/', ' ', $result);
-        $result2 = preg_replace('/\s/', '-', $result);
+        // $result2 = preg_replace('/\s/', '-', $result);
+        $result = $this->removePropertyCode($result,"รหัสทรัพย์");
 
         //$strFilename =$this->getString($orgTitle,$result,30);
         
@@ -265,6 +267,9 @@ class WebsiteScraper
         
         $postDesctiption =trim($this->getString($orgTitle,$result,110));
         $postDesctiption = preg_replace(array_keys($removePatterns), array_values($removePatterns), $postDesctiption);
+        $postDesctiption = $this->removePropertyCode($postDesctiption,"รหัสทรัพย์");
+
+
         $orgTitle = preg_replace(array_keys($removePatterns), array_values($removePatterns), $orgTitle);
         $orgSlug = preg_replace(array_keys($removePatterns), array_values($removePatterns), $orgSlug);
         //$postDesctiption =$orgTitle . ' ' . trim($this->getString($orgTitle,$result,80));
@@ -429,11 +434,34 @@ class WebsiteScraper
                 }
                 PidScrape::where('pid',$orgPostId)->delete();
                 Scraped::create(['pid' => $orgPostId]);
-                dd($orgUser, $orgPostId ,$orgTitle,$price,$categories,$locations,$links,$nears,$coordinates,$result,$result2,$postTitle,$postDesctiption,$phoneNumbers,$stringContent,$htmlContent);
+                dd($orgUser, $orgPostId ,$orgTitle,$price,$categories,$locations,$links,$nears,$coordinates,$result,$postTitle,$postDesctiption,$phoneNumbers,$stringContent,$htmlContent);
             }
         }    
     }
 
+    public function removePropertyCode($text,$keyWord)
+    {
+        $start = mb_strpos($text, $keyWord);
+        
+        if ($start === false) {
+            return $text;
+        }
+
+        $next_digit = $start + mb_strlen($keyWord);
+
+        while (!is_numeric(mb_substr($text, $next_digit, 1, 'utf-8'))) {
+            $next_digit++;
+        }
+
+        while (is_numeric(mb_substr($text, $next_digit, 1, 'utf-8'))) {
+            $next_digit++;
+        }
+
+        $textToRemove = mb_substr($text, $start, $next_digit-$start, 'utf-8');
+        $text = str_replace($textToRemove, '', $text);
+
+        return $text;
+    }
     function getString($defaultTitle,$string,$len)
     {
         $wordCount = mb_strlen($string, 'UTF-8');
