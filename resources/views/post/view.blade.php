@@ -130,7 +130,12 @@
 
                 <hr class="my-5">
                 <!-- start pricing  section -->
-
+                <span></span>
+                <h2 class="fw-semibold mt-4 mb-3" style="font-size: 24px"><span class="font-caveat text-primary">
+                        ประกาศล่าสุด </span><a
+                        href="{{ route('search', ['mainCategory' => $post->mainCategory->name]) }}"
+                        aria-label="{{$post->mainCategory->name}}">{{$post->mainCategory->name}}</a>
+                </h2>
                 @foreach ($posts as $post)
                 <div class="card border-0 shadow-sm overflow-hidden rounded-4 mb-4 card-hover">
                     {{-- <a href="{{route('view',['slug' => $post->slug])}}" class="stretched-link"

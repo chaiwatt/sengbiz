@@ -27,6 +27,11 @@ class AppServiceProvider extends ServiceProvider
             $provinces = Province::all();
             $mainCategories = MainCategory::all();
             $asidePosts = Post::orderByDesc('updated_at')->paginate(21);
+
+            $asidePosts = Post::orderByDesc('is_ads')
+                ->latest('updated_at')
+                ->paginate(21);
+
             $allPosts = Post::all();
             $priceRanges = PriceRange::all();
             $view->with([
