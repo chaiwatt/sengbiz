@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use App\Models\User;
 use App\Models\PostInfo;
 use App\Models\PostView;
 use App\Models\PostImage;
@@ -16,6 +17,7 @@ class Post extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'user_id',
         'main_category_id', 
         'sub_category_id',
         'sub_minor_category_id',
@@ -52,7 +54,10 @@ class Post extends Model
     {
         return $this->hasMany(PostNearPlace::class, 'post_id');
     }
-
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
     public function mainCategory()
     {
         return $this->belongsTo(MainCategory::class, 'main_category_id');

@@ -39,7 +39,6 @@ class IndexingPost implements ShouldQueue
         $client->setAuthConfig(public_path('assets/json/service_account_key_' . rand(1, 9) . '.json'));
         $client->addScope('https://www.googleapis.com/auth/indexing');
 
-        // Get a Guzzle HTTP Client
         $httpClient = $client->authorize();
         $endpoint = 'https://indexing.googleapis.com/v3/urlNotifications:publish';
 
@@ -57,6 +56,5 @@ class IndexingPost implements ShouldQueue
         Post::find($postId)->update([
             'indexing_code' => $statusCode 
         ]);
-        // dd($status_code);
     }
 }
