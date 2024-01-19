@@ -113,7 +113,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="listings-map-grid-1.html">เข้าสู่ระบบ</a>
+                    <a class="nav-link" href="{{route('login')}}">เข้าสู่ระบบ</a>
                 </li>
 
             </ul>

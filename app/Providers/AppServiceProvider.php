@@ -52,6 +52,15 @@ class AppServiceProvider extends ServiceProvider
             ]);
         });
 
+         View::composer('layouts.blank', function ($view) {
+            $provinces = Province::all();
+            $mainCategories = MainCategory::all();
+            $view->with([
+                'provinces' => $provinces,
+                'mainCategories' => $mainCategories,
+            ]);
+        });
+
         View::composer('layouts.view', function ($view) {
             $mainCategories = MainCategory::all();
             $view->with([
