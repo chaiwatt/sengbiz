@@ -110,22 +110,8 @@
                     @endif
                 </a>
 
-                @if (@$asidePost->postInfo->province->name !== null)
+                @if (intVal($asidePost->is_ads) === 1)
                 <div class="bg-blur card-badge d-inline-block position-absolute start-0 text-white z-2">
-                    <a href="{{ route('search', ['province' => $asidePost->postInfo->province->name]) }}"
-                        aria-label="{{$asidePost->postInfo->province->name}}">{{$asidePost->postInfo->province->name}}</a>
-                </div>
-                @endif
-
-                @if (@intVal($asidePost->price) !== 0)
-                <div class="bg-blur card-badge d-inline-block position-absolute start-0 text-white z-2">
-                    {{number_format($asidePost->price)}}
-                </div>
-                @endif
-
-                @if (@intVal($asidePost->price) !== 0 && intVal($asidePost->is_ads) === 1)
-                <div class="bg-blur card-badge d-inline-block position-absolute start-0 text-white z-2"
-                    style="margin-top:35px">
                     <div class="d-flex align-items-center text-primary rating-stars">
                         <i class="fa-star-icon" style="font-size: 10px;padding:0px"></i>
                         <i class="fa-star-icon" style="font-size: 10px;padding:0px"></i>
@@ -135,6 +121,23 @@
                     </div>
                 </div>
                 @endif
+
+                @if (@$asidePost->postInfo->province->name !== null)
+                <div class="bg-blur card-badge d-inline-block position-absolute start-0 text-white z-2">
+                    <a href="{{ route('search', ['province' => $asidePost->postInfo->province->name]) }}"
+                        aria-label="{{$asidePost->postInfo->province->name}}">{{$asidePost->postInfo->province->name}}</a>
+                </div>
+                @endif
+
+                @if (@intVal($asidePost->price) !== 0)
+                <div @if (intVal($asidePost->is_ads) === 1)
+                    style = "margin-top:35px"
+                    @endif class="bg-blur card-badge d-inline-block position-absolute start-0 text-white z-2" >
+                    {{number_format($asidePost->price)}}
+                </div>
+                @endif
+
+
 
                 <!-- end /. card image wrap -->
                 <div class="bottom-0 d-flex flex-column p-4 position-absolute position-relative text-white w-80 z-1">
