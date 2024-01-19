@@ -4,9 +4,9 @@
             <div class="col-lg-auto">
                 <!-- start footer nav -->
                 <ul class="list-unstyled list-separator mb-2 footer-nav">
-                    <li class="list-inline-item"><a href="{{route('/')}}">นโยบายความเป็นส่วนตัว</a></li>
+                    <li class="list-inline-item"><a href="{{url('/')}}">นโยบายความเป็นส่วนตัว</a></li>
                     <li class="list-inline-item"><a href="{{route('sitemap')}}">แผนผังเว็บไซต์</a></li>
-                    <li class="list-inline-item"><a href="{{route('/')}}">คุ้กกี้</a></li>
+                    <li class="list-inline-item"><a href="{{url('/')}}">คุ้กกี้</a></li>
                 </ul>
                 <!-- end /. footer nav -->
             </div>
