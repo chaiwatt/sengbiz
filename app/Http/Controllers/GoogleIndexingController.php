@@ -14,23 +14,6 @@ class GoogleIndexingController extends Controller
 {
     public function index()
     {
-        $posts = Post::where('title', 'like', '%รหัสทรัพย์%')->get();
-        // dd($posts);
-        foreach($posts as $post)
-        {
-            $editTitle = $this->removePropertyCode($post->title,"รหัสทรัพย์");
-            $editSlug = $this->removePropertyCode($post->slug,"รหัสทรัพย์");
-            $editDescription = $this->removePropertyCode($post->description,"รหัสทรัพย์");
-            $editBody = $this->removePropertyCode($post->body,"รหัสทรัพย์");
-            $post->update([
-                'title' => $editTitle,
-                'slug' => $editSlug,
-                'description' => $editDescription,
-                'body' => $editBody
-            ]);
-        }
-        
-        return;
         $client = new Google_Client();
         
         $client->setAuthConfig(public_path('assets/json/service_account_1.json'));
@@ -53,6 +36,26 @@ class GoogleIndexingController extends Controller
 
         return response()->json(['status_code' => $status_code]);
 
+    }
+
+    public function removeProperty()
+    {
+        $posts = Post::where('title', 'like', '%รหัสทรัพย์%')->get();
+        foreach($posts as $post)
+        {
+            $editTitle = $this->removePropertyCode($post->title,"รหัสทรัพย์");
+            $editSlug = $this->removePropertyCode($post->slug,"รหัสทรัพย์");
+            $editDescription = $this->removePropertyCode($post->description,"รหัสทรัพย์");
+            $editBody = $this->removePropertyCode($post->body,"รหัสทรัพย์");
+            $post->update([
+                'title' => $editTitle,
+                'slug' => $editSlug,
+                'description' => $editDescription,
+                'body' => $editBody
+            ]);
+        }
+        
+        return;
     }
 
     public function removePropertyCode($text,$keyWord)
