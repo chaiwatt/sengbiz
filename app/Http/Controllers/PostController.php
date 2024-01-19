@@ -23,9 +23,15 @@ class PostController extends Controller
     }
     public function view($slug)
     {
-        $posts = Post::paginate(4);
+        
         $post = Post::where('slug',$slug)->first();
+
         if($post !== null){
+            $posts = Post::where('main_category_id',$post->main_category_id)
+            ->where('id','<>',$post->id)
+            ->orderByDesc('updated_at')
+            ->paginate(4);
+
             $postView = PostView::where('post_id', $post->id)->first();
             $postView === null
                 ? PostView::create(['post_id' => $post->id,'view' => 1])
