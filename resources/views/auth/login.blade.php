@@ -9,6 +9,9 @@
 
                 <!-- /.End Header Text -->
                 <!-- Start Social Button Wrapper -->
+
+                <h2 class="display-6 fw-semibold mb-3">ลงทะเบียน <span class="font-caveat text-primary">ประกาศฟรี</span>
+                </h2>
                 <div class="d-grid gap-3 mb-3">
                     <!-- Start Social login Button -->
 
