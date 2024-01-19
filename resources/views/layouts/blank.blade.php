@@ -75,10 +75,10 @@
     <link href="assets/css/style.min.css" rel="stylesheet">
 </head>
 
-<body>
+<body style="min-height: 100vh;">
 
     <!-- start header -->
-    <div class="bg-white sticky-top header" style="min-height: 100vh;">
+    <div class="bg-white sticky-top header">
         <!-- start navbar -->
 
         @include('layouts.partial.nav',['mainCategories' => $mainCategories])
