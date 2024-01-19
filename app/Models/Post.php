@@ -27,7 +27,8 @@ class Post extends Model
         'description',
         'body',
         'need_broker',
-        'is_ads'
+        'is_ads',
+        'indexing_code'
     ]; // ตัวอย่าง
 
     public function postView()

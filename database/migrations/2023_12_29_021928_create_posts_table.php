@@ -25,6 +25,7 @@ return new class extends Migration
             $table->longText('body');
             $table->char('need_broker',1)->default(0);
             $table->char('is_ads',1)->default(0);
+            $table->char('indexing_code',255)->nullable();
             $table->timestamps();
         });
     }

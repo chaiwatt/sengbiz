@@ -41,6 +41,12 @@ return [
             'retry_after' => 90,
             'after_commit' => false,
         ],
+        'indexing' => [
+            'driver' => 'database',
+            'table' => 'jobs',
+            'queue' => 'indexing', 
+            'retry_after' => 90,
+        ],
 
         'beanstalkd' => [
             'driver' => 'beanstalkd',

@@ -25,8 +25,13 @@ class GoogleIndexingController extends Controller
         $httpClient = $client->authorize();
         $endpoint = 'https://indexing.googleapis.com/v3/urlNotifications:publish';
 
+        $urls = [
+            'https://sengbiz.com/บ้านแฝด-หมู่บ้าน-ทรัพย์ธานี-5-คลอง-8',
+            'https://sengbiz.com/เดอะ-นีช-ไอดี-พระราม2-เฟส-1ที่ตั้ง-ถ.พระราม',
+        ];
         $content = [
-            'url' => 'https://sengbiz.com/ให้เช่าอาคารพาณิชย์-5-ชั้น-ขนาด-400-ตรม.-ทำเลดีใกล้',
+            'url' => 'https://sengbiz.com/บ้านแฝด-หมู่บ้าน-ทรัพย์ธานี-5-คลอง-8',
+            // 'url' => $urls,
             'type' => 'URL_UPDATED'
         ];
 
@@ -35,6 +40,7 @@ class GoogleIndexingController extends Controller
                         ]);
 
         $status_code = $response->getStatusCode();
+        dd($status_code);
 
         return response()->json(['status_code' => $status_code]);
 

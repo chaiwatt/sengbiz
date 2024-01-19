@@ -2,6 +2,7 @@
 
 namespace App\Help;
 
+use App\Jobs\IndexingPost;
 use Goutte\Client;
 use App\Models\Post;
 use App\Models\Amphur;
@@ -434,7 +435,10 @@ class WebsiteScraper
                 }
                 PidScrape::where('pid',$orgPostId)->delete();
                 Scraped::create(['pid' => $orgPostId]);
-                dd($orgUser, $orgPostId ,$orgTitle,$price,$categories,$locations,$links,$nears,$coordinates,$result,$postTitle,$postDesctiption,$phoneNumbers,$stringContent,$htmlContent);
+
+                IndexingPost::dispatch($post->id,$post->slug)->onQueue('indexing');
+
+                // dd($orgUser, $orgPostId ,$orgTitle,$price,$categories,$locations,$links,$nears,$coordinates,$result,$postTitle,$postDesctiption,$phoneNumbers,$stringContent,$htmlContent);
             }
         }    
     }
