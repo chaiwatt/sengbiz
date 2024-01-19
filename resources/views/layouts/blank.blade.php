@@ -75,7 +75,7 @@
     <link href="assets/css/style.min.css" rel="stylesheet">
 </head>
 
-<body style="min-height: 1500px;">
+<body>
 
     <!-- start header -->
     <div class="bg-white sticky-top header">
