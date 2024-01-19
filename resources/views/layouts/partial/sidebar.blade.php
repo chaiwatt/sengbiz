@@ -123,6 +123,19 @@
                 </div>
                 @endif
 
+                @if (@intVal($asidePost->price) !== 0 && intVal($asidePost->is_ads) === 1)
+                <div class="bg-blur card-badge d-inline-block position-absolute start-0 text-white z-2"
+                    style="margin-top:35px">
+                    <div class="d-flex align-items-center text-primary rating-stars">
+                        <i class="fa-star-icon" style="font-size: 10px;padding:0px"></i>
+                        <i class="fa-star-icon" style="font-size: 10px;padding:0px"></i>
+                        <i class="fa-star-icon" style="font-size: 10px;padding:0px"></i>
+                        <i class="fa-star-icon" style="font-size: 10px;padding:0px"></i>
+                        <i class="fa-star-icon" style="font-size: 10px;padding:0px"></i>
+                    </div>
+                </div>
+                @endif
+
                 <!-- end /. card image wrap -->
                 <div class="bottom-0 d-flex flex-column p-4 position-absolute position-relative text-white w-80 z-1">
                     <a href="{{route('view',['slug' => $asidePost->slug])}}" aria-label="{{$asidePost->title}}">
