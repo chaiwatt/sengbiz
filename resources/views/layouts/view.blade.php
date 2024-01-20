@@ -83,14 +83,9 @@
     <div class="bg-white sticky-top header">
         <!-- start navbar -->
         @include('layouts.partial.nav',['mainCategories' => $mainCategories])
-
-
-        @yield('content')
-
-
-
-
     </div>
+
+    @yield('content')
     @include('layouts.partial.footer')
 
     <script src="assets/plugins/jQuery/jquery.min.js"></script>
