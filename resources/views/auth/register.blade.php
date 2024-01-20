@@ -78,7 +78,7 @@
                 data-image-src="assets/images/lines.svg" style="position: relative">
                 <div class=" text-center">
 
-                    <img src="assets/images/authentication/signup.webp" alt="" class="img-fluid" style="position: absolute;max-width: 750px;bottom: 0;left: 50%;
+                    <img src="assets/images/authentication/signup.webp" alt="" class="img-fluid" style="position: absolute;max-width: 800px;bottom: 0;left: 50%;
   transform: translateX(-50%);">
                 </div>
             </div>
