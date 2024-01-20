@@ -63,10 +63,11 @@
     <!-- Required meta tags -->
 
     <link href="assets/plugins/aos/aos.min.css" rel="stylesheet">
-    {{--
-    <link href="assets/plugins/bootstrap/css/bootstrap.lite.min.css" rel="stylesheet"> --}}
 
-    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/plugins/bootstrap/css/bootstrap.lite.min.css" rel="stylesheet">
+
+    {{--
+    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"> --}}
 
 
     <link href="assets/plugins/fontawesome/css/all.min.css" rel="stylesheet">
