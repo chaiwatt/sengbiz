@@ -25,17 +25,6 @@
                         {{-- <div class="invalid-feedback text-start">Enter your valid email</div> --}}
                     </div>
                     <div class="form-group mb-4">
-                        <label class="required">อีเมล</label>
-                        <input type="email" class="form-control">
-                        {{-- <div class="invalid-feedback text-start">Enter your valid email</div> --}}
-                    </div>
-                    <!-- Start Form Group -->
-                    <div class="form-group mb-4">
-                        <label class="required">โทรศัพท์</label>
-                        <input id="phone" type="text" class="form-control password" autocomplete="off">
-
-                    </div>
-                    <div class="form-group mb-4">
                         <label class="required">ผู้ประกาศ</label>
                         {{-- <input id="phone" type="text" class="form-control password" autocomplete="off"> --}}
                         <select class="form-select" name="owner">
@@ -44,7 +33,19 @@
                             <option value="3">Agent</option>
                         </select>
                     </div>
+                    <!-- Start Form Group -->
+                    <div class="form-group mb-4">
+                        <label class="required">โทรศัพท์</label>
+                        <input id="phone" type="text" class="form-control password" autocomplete="off">
+
+                    </div>
+
                     <!-- /.End Form Group -->
+                    <div class="form-group mb-4">
+                        <label class="required">อีเมล</label>
+                        <input type="email" class="form-control">
+                        {{-- <div class="invalid-feedback text-start">Enter your valid email</div> --}}
+                    </div>
                     <!-- Start Form Group -->
                     <div class="form-group mb-4">
                         <label class="required">รหัสผ่าน</label>
