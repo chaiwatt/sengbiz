@@ -325,8 +325,7 @@
 
                                         </div>
                                         @if ($post->mainCategory->name !== null)
-                                        <a href="{{ route('search', ['mainCategory' => $post->mainCategory->name]) }}"
-                                            class="d-flex gap-2 align-items-center fs-13 fw-semibold"
+                                        <span class="d-flex gap-2 align-items-center fs-13 fw-semibold"
                                             aria-label="{{$post->mainCategory->name}}">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                 fill="#9b9b9b" class="bi bi-tags" viewBox="0 0 16 16">
@@ -335,8 +334,14 @@
                                                 <path
                                                     d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1m0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3M1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1z" />
                                             </svg>
-                                            <span>{{$post->mainCategory->name}}</span>
-                                        </a>
+                                            <span>
+                                                @if (@$post->subCategory->name !== null)
+                                                <a href="{{ route('search', ['subCategory' => $post->subCategory->name]) }}"
+                                                    aria-label="{{$post->subCategory->name}}">{{$post->subCategory->name}}</a>,
+                                                @endif
+                                                <a href="{{ route('search', ['mainCategory' => $post->mainCategory->name]) }}"
+                                                    aria-label="{{$post->mainCategory->name}}">{{$post->mainCategory->name}}</a></span>
+                                        </span>
                                         @endif
 
                                         @if ($post->postNearPlace !== null)
