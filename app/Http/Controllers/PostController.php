@@ -18,10 +18,9 @@ class PostController extends Controller
     {
         $provinces = Province::all();
         $mainCategories = MainCategory::all();
-        $asidePosts = Post::orderByDesc('updated_at')->paginate(15);
         $asidePosts = Post::orderByDesc('is_ads')
                 ->latest('updated_at')
-                ->paginate(16);
+                ->paginate(15);
 
         $allPosts = Post::all();
         $priceRanges = PriceRange::all();
@@ -141,10 +140,9 @@ class PostController extends Controller
 
     $provinces = Province::all();
     $mainCategories = MainCategory::all();
-    $asidePosts = Post::orderByDesc('updated_at')->paginate(15);
     $asidePosts = Post::orderByDesc('is_ads')
                 ->latest('updated_at')
-                ->paginate(16);
+                ->paginate(15);
 
     $allPosts = Post::all();
     $priceRanges = PriceRange::all();
