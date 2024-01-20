@@ -50,11 +50,16 @@
                         <input type="email" class="form-control is-invalid">
                         {{-- <div class="invalid-feedback text-start">Enter your valid email</div> --}}
                     </div>
-                    <!-- /.End Form Group -->
-                    <!-- Start Form Group -->
                     <div class="form-group mb-4">
                         <label class="required">รหัสผ่าน</label>
                         <input id="password" type="password" class="form-control password" autocomplete="off">
+                        <i data-bs-toggle="#password" class="fa-regular fa-eye-slash toggle-password"></i>
+                    </div>
+                    <!-- /.End Form Group -->
+
+                    <div class="form-group mb-4">
+                        <label class="required">เบอร์โทรศัพท์</label>
+                        <input id="phone" type="password" class="form-control password" autocomplete="off">
                         <i data-bs-toggle="#password" class="fa-regular fa-eye-slash toggle-password"></i>
                     </div>
                     <!-- /.End Form Group -->

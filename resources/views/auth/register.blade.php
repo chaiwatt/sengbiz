@@ -29,6 +29,21 @@
                         <input type="email" class="form-control">
                         {{-- <div class="invalid-feedback text-start">Enter your valid email</div> --}}
                     </div>
+                    <!-- Start Form Group -->
+                    <div class="form-group mb-4">
+                        <label class="required">โทรศัพท์</label>
+                        <input id="phone" type="text" class="form-control password" autocomplete="off">
+
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="required">ผู้ประกาศ</label>
+                        {{-- <input id="phone" type="text" class="form-control password" autocomplete="off"> --}}
+                        <select class="form-select" name="owner">
+                            <option value="1">เจ้าของ</option>
+                            <option value="2">Broker</option>
+                            <option value="3">Agent</option>
+                        </select>
+                    </div>
                     <!-- /.End Form Group -->
                     <!-- Start Form Group -->
                     <div class="form-group mb-4">
