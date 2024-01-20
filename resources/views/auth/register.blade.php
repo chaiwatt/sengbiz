@@ -51,12 +51,17 @@
                         <input id="password" type="password" class="form-control password" autocomplete="off">
                         <i data-bs-toggle="#password" class="fa-regular fa-eye-slash toggle-password"></i>
                     </div>
+                    <div class="form-group mb-4">
+                        <label class="required">ยืนรหัสผ่าน</label>
+                        <input id="password" type="password" class="form-control password" autocomplete="off">
+                        <i data-bs-toggle="#password" class="fa-regular fa-eye-slash toggle-password"></i>
+                    </div>
                     <!-- /.End Form Group -->
                     <!-- Start Checkbox -->
 
                     <!-- /.End Checkbox -->
                     <!-- Start Button -->
-                    <button type="submit" class="btn btn-primary btn-lg w-100">เข้าสู่ระบบ</button>
+                    <button type="submit" class="btn btn-primary btn-lg w-100">สมัครใช้งาน</button>
                     <!-- End Button -->
                 </form>
                 <!-- Start Bottom Text -->
