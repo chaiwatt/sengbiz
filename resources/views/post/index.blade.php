@@ -240,21 +240,24 @@
 
                                         <!-- end /. ratings -->
                                         <!-- start rating counter text -->
-                                        <span class="fw-medium text-primary">จำนวนดู {{ isset($post->postView->view)
+                                        <span class="fw-medium text-primary">จำนวนดู {{
+                                            isset($post->postView->view)
                                             ?
                                             $post->postView->view : '-' }} ครั้ง</span>
-                                        @if ($post->contactMessages->count() != 0)
-                                        <span class="text-primary"><i class="fa-regular fa-gem text-primary"
-                                                style="margin-left: 20px"></i><span
-                                                style="margin-left: 5px">{{$post->contactMessages->count()}}
-                                                คำขอ</span> </span>
-                                        @endif
+
                                         @if ($post->postBookMarks->count() != 0)
                                         <span class="text-primary"><i class="fa-solid fa-heart text-primary"
                                                 style="margin-left: 20px"></i><span
                                                 style="margin-left: 5px">{{$post->postBookMarks->count()}}
                                                 บุคมาร์ค</span> </span>
                                         @endif
+                                        @if ($post->contactMessages->count() != 0)
+                                        <span class="text-primary"><i class="fa-regular fa-gem text-primary"
+                                                style="margin-left: 20px"></i><span
+                                                style="margin-left: 5px">{{$post->contactMessages->count()}}
+                                                คำขอ</span> </span>
+                                        @endif
+
 
                                         <!-- end /. rating counter text -->
 

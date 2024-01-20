@@ -37,8 +37,8 @@ class PostController extends Controller
     }
     public function view($slug)
     {
-        
-        $post = Post::where('slug',$slug)->first();
+        // dd(Post::where('slug',$slug)->get()->first());
+        $post = Post::where('slug',$slug)->get()->first();
 
         if($post !== null){
             $posts = Post::where('main_category_id',$post->main_category_id)
