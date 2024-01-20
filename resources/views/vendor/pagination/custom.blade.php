@@ -66,7 +66,7 @@
                     @elseif (($page == $paginator->currentPage() - 3 || $page == $paginator->currentPage() + 3) && $page
                     !== 1 &&
                     $page !== $totalPages)
-                    <span class="page-numbers" style="display: none;">...</span>
+                    <span class="page-numbers" style="all: unset !important;">...</span>
                     @endif
                     @endforeach
                     @endif
