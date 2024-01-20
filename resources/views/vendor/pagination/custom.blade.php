@@ -47,7 +47,7 @@
             @endforeach --}}
 
             {{-- Pagination Elements --}}
-            {{-- Pagination Elements --}}
+
             @foreach ($elements as $element)
             @if (is_array($element))
             @php
