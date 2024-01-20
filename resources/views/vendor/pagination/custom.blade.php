@@ -57,7 +57,7 @@
                 @else
                 <a class="page-numbers" href="{{ $url }}">{{ $page }}</a>
                 @endif
-                @elseif ($page == $paginator->currentPage() - 3 || $page == $paginator->currentPage() + 2)
+                @elseif ($page == $paginator->currentPage() - 3 || $page == $paginator->currentPage() + 3)
                 <span class="page-numbers">...</span>
                 @endif
                 @endforeach
