@@ -22,28 +22,7 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-
-        View::composer('layouts.partial.sidebar', function ($view) {
-            $provinces = Province::all();
-            $mainCategories = MainCategory::all();
-            $asidePosts = Post::orderByDesc('updated_at')->paginate(16);
-
-            $asidePosts = Post::orderByDesc('is_ads')
-                ->latest('updated_at')
-                ->paginate(16);
-
-            $allPosts = Post::all();
-            $priceRanges = PriceRange::all();
-            $view->with([
-                'asidePosts' => $asidePosts,
-                'allPosts' => $allPosts,
-                'provinces' => $provinces,
-                'mainCategories' => $mainCategories,
-                'priceRanges' => $priceRanges
-            ]);
-        });
-
-         View::composer('layouts.landing', function ($view) {
+         View::composer('layouts.main', function ($view) {
             $provinces = Province::all();
             $mainCategories = MainCategory::all();
             $view->with([
@@ -52,16 +31,7 @@ class AppServiceProvider extends ServiceProvider
             ]);
         });
 
-         View::composer('layouts.blank', function ($view) {
-            $provinces = Province::all();
-            $mainCategories = MainCategory::all();
-            $view->with([
-                'provinces' => $provinces,
-                'mainCategories' => $mainCategories,
-            ]);
-        });
-
-        View::composer('layouts.view', function ($view) {
+        View::composer('layouts.detail', function ($view) {
             $mainCategories = MainCategory::all();
             $view->with([
                 'mainCategories' => $mainCategories,

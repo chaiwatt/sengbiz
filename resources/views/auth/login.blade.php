@@ -1,4 +1,4 @@
-@extends('layouts.blank')
+@extends('layouts.main')
 
 @section('content')
 <div class="p-3 p-sm-5">
