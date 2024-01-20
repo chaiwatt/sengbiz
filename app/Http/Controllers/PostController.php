@@ -16,7 +16,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::orderByDesc('updated_at')->paginate(20);
+        $posts = Post::orderByDesc('updated_at')->paginate(15);
         return view('post.index',[
             'posts' => $posts
         ]);
@@ -122,7 +122,7 @@ class PostController extends Controller
                 });
             })
             ->orderByDesc('updated_at')
-            ->paginate(20);
+            ->paginate(15);
 
     return view('post.index',[
             'posts' => $posts

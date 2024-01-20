@@ -26,11 +26,11 @@ class AppServiceProvider extends ServiceProvider
         View::composer('layouts.partial.sidebar', function ($view) {
             $provinces = Province::all();
             $mainCategories = MainCategory::all();
-            $asidePosts = Post::orderByDesc('updated_at')->paginate(21);
+            $asidePosts = Post::orderByDesc('updated_at')->paginate(16);
 
             $asidePosts = Post::orderByDesc('is_ads')
                 ->latest('updated_at')
-                ->paginate(21);
+                ->paginate(16);
 
             $allPosts = Post::all();
             $priceRanges = PriceRange::all();

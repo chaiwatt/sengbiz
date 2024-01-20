@@ -310,7 +310,7 @@ class WebsiteScraper
                 $image = $manager->read($filename);
                 $image->place(public_path("assets/images/logo.png"));
                 if ($index === 1) {
-                    $image->scale(width: 800);
+                    $image->scale(width: 700);
                 } else {
                     $image->scale(width: 500);
                 }
