@@ -22,9 +22,7 @@
 
     {{-- Pagination Elements --}}
 
-
-    {{-- Pagination Elements --}}
-    {{-- @foreach ($elements as $element)
+    @foreach ($elements as $element)
     @if (is_array($element))
     @php
     $totalPages = $paginator->lastPage();
@@ -39,61 +37,37 @@
             @else
             <a class="page-numbers" href="{{ $url }}">{{ $page }}</a>
             @endif
-            @elseif ($page == $paginator->currentPage() - 3 || $page == $paginator->currentPage() + 3)
-            <span class="page-numbers">...</span>
+            @elseif (($page == $paginator->currentPage() - 3 || $page == $paginator->currentPage() + 3) && $page
+            !== 1 &&
+            $page !== $totalPages)
+            <span class="page-numbers" style="all: unset !important;">...</span>
             @endif
             @endforeach
             @endif
-            @endforeach --}}
-
-            {{-- Pagination Elements --}}
-
-            @foreach ($elements as $element)
-            @if (is_array($element))
-            @php
-            $totalPages = $paginator->lastPage();
-            @endphp
-
-            @foreach ($element as $page => $url)
-            @if ($page <= 1 || $page===$totalPages || ($page>= $paginator->currentPage() - 2 && $page <= $paginator->
-                    currentPage() +
-                    2))
-                    @if ($page == $paginator->currentPage())
-                    <span class="page-numbers current">{{ $page }}</span>
-                    @else
-                    <a class="page-numbers" href="{{ $url }}">{{ $page }}</a>
-                    @endif
-                    @elseif (($page == $paginator->currentPage() - 3 || $page == $paginator->currentPage() + 3) && $page
-                    !== 1 &&
-                    $page !== $totalPages)
-                    <span class="page-numbers" style="all: unset !important;">...</span>
-                    @endif
-                    @endforeach
-                    @endif
-                    @endforeach
+            @endforeach
 
 
-                    {{-- Next Page Link --}}
-                    @if ($paginator->hasMorePages())
+            {{-- Next Page Link --}}
+            @if ($paginator->hasMorePages())
 
-                    <a class="next page-numbers" href="{{ $paginator->nextPageUrl() }}">
-                        ถัดไป
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                            class="bi bi-arrow-right-short" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
-                        </svg>
-                    </a>
-                    @else
+            <a class="next page-numbers" href="{{ $paginator->nextPageUrl() }}">
+                ถัดไป
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                </svg>
+            </a>
+            @else
 
-                    <a class="next page-numbers" href="#">
-                        ถัดไป
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                            class="bi bi-arrow-right-short" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
-                        </svg>
-                    </a>
-                    @endif
+            <a class="next page-numbers" href="#">
+                ถัดไป
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                </svg>
+            </a>
+            @endif
 </div>
 @endif
