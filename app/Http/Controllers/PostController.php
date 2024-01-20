@@ -14,40 +14,6 @@ use App\Models\SubMinorCategory;
 
 class PostController extends Controller
 {
-
-
-
-
-
-//  $provinces = Province::all();
-//             $mainCategories = MainCategory::all();
-//             $asidePosts = Post::orderByDesc('updated_at')->paginate(16);
-
-//             $asidePosts = Post::orderByDesc('is_ads')
-//                 ->latest('updated_at')
-//                 ->paginate(16);
-
-//             $allPosts = Post::all();
-//             $priceRanges = PriceRange::all();
-//             $view->with([
-//                 'asidePosts' => $asidePosts,
-//                 'allPosts' => $allPosts,
-//                 'provinces' => $provinces,
-//                 'mainCategories' => $mainCategories,
-//                 'priceRanges' => $priceRanges
-//             ]);
-
-
-
-
-
-
-
-
-
-
-
-
     public function index()
     {
         $provinces = Province::all();

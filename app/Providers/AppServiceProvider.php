@@ -22,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+
          View::composer('layouts.main', function ($view) {
             $provinces = Province::all();
             $mainCategories = MainCategory::all();
@@ -31,7 +32,7 @@ class AppServiceProvider extends ServiceProvider
             ]);
         });
 
-        View::composer('layouts.detail', function ($view) {
+        View::composer('layouts.view', function ($view) {
             $mainCategories = MainCategory::all();
             $view->with([
                 'mainCategories' => $mainCategories,
