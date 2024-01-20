@@ -17,7 +17,7 @@
                 </h2>
 
                 <!-- /.End Divider -->
-                <form class="register-form my-5">
+                <form class="register-form my-5 mt-5">
                     <!-- Start Form Group -->
                     <div class="form-group mb-4">
                         <label class="required">ชื่อ</label>

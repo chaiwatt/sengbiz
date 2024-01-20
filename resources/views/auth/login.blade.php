@@ -39,9 +39,8 @@
 
                 <!-- /.End Text -->
                 <!-- Start Divider -->
-                <div class="align-items-center d-flex my-5">
-                    <hr class="flex-grow-1 m-0"> <span class="fs-16 fw-bold px-3 text-dark">หรือ</span>
-                    <hr class="flex-grow-1 m-0">
+                <div class="align-items-center my-5 mt-5 mb-5">
+                    <span class="fs-16 fw-bold px-3 text-dark">หรือ เข้าสู่ระบบด้วยอีเมล</span>
                 </div>
                 <!-- /.End Divider -->
                 <form class="register-form">
