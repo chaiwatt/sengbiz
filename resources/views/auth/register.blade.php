@@ -24,7 +24,7 @@
                     <!-- Start Form Group -->
                     <div class="form-group mb-4">
                         <label class="required">ชื่อ</label>
-                        <input type="text" class="form-control">
+                        <input type="text" name="name" class="form-control">
 
                         @error('name')
                         <div class="invalid-feedback text-start text-danger">กรอกชื่อให้ถูกต้อง</div>
