@@ -314,8 +314,13 @@
             <div class="col-lg-4 ps-xxl-5 sidebar">
                 <div class="border mb-4 p-4 rounded-4">
                     <h2 class="fw-semibold mb-4" style="font-size: 24px">สนใจ<span class="font-caveat text-primary">
-                            ติดต่อผู้ประกาศ</span>
+                            ติดต่อผู้ประกาศ @if ($post->contactMessages->count() != 0)
+
+                            <span class="badge rounded-pill bg-secondary text-white ">
+                                {{$post->contactMessages->count()}}</span>
+                            @endif</span>
                     </h2>
+                    {{-- --}}
                     <form class="row g-4">
                         <div class="col-sm-12">
                             <!-- start form group -->
@@ -352,7 +357,7 @@
                             <!-- end /. form group -->
                         </div>
                         <div class="col-sm-12">
-                            <button type="submit" class="btn btn-primary w-100">ส่งข้อมูล</button>
+                            <button type="submit" class="btn btn-primary w-100">ส่ง</button>
                             {{-- <div class="small text-center mt-2">Powered by OpenTable</div> --}}
                         </div>
                     </form>

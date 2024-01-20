@@ -237,18 +237,32 @@
                                         class="align-items-center d-flex flex-wrap gap-1 text-primary  card-start mb-2">
                                         <!-- start ratings -->
                                         <i class="fa-solid fa-eye"></i>
+
                                         <!-- end /. ratings -->
                                         <!-- start rating counter text -->
                                         <span class="fw-medium text-primary">จำนวนดู {{ isset($post->postView->view)
                                             ?
                                             $post->postView->view : '-' }} ครั้ง</span>
+                                        @if ($post->contactMessages->count() != 0)
+                                        <span class="text-primary"><i class="fa-regular fa-gem text-primary"
+                                                style="margin-left: 20px"></i><span
+                                                style="margin-left: 5px">{{$post->contactMessages->count()}}
+                                                คำขอ</span> </span>
+                                        @endif
+                                        @if ($post->postBookMarks->count() != 0)
+                                        <span class="text-primary"><i class="fa-solid fa-heart text-primary"
+                                                style="margin-left: 20px"></i><span
+                                                style="margin-left: 5px">{{$post->postBookMarks->count()}}
+                                                บุคมาร์ค</span> </span>
+                                        @endif
+
                                         <!-- end /. rating counter text -->
 
                                         <div class="d-flex end-0 gap-2 me-3 mt-3 position-absolute top-0 z-1">
                                             <a href="#"
                                                 class="btn-icon shadow-sm d-flex align-items-center justify-content-center text-primary bg-white rounded-circle"
                                                 data-bs-toggle="tooltip" data-bs-placement="top"
-                                                data-bs-title="Bookmark" aria-label="{{$post->title}}">
+                                                data-bs-title="บุคมาร์ค" aria-label="{{$post->title}}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
                                                     <path

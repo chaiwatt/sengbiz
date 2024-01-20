@@ -8,7 +8,9 @@ use App\Models\PostInfo;
 use App\Models\PostView;
 use App\Models\PostImage;
 use App\Models\MainCategory;
+use App\Models\PostBookMark;
 use App\Models\PostNearPlace;
+use App\Models\ContactMessage;
 use App\Models\PostContactPhone;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -45,7 +47,14 @@ class Post extends Model
     {
         return $this->hasMany(PostImage::class, 'post_id');
     }
-    
+    public function contactMessages()
+    {
+        return $this->hasMany(ContactMessage::class, 'post_id');
+    }
+    public function postBookMarks()
+    {
+        return $this->hasMany(PostBookMark::class, 'post_id');
+    }
     public function postContactPhones()
     {
         return $this->hasMany(PostContactPhone::class, 'post_id');
