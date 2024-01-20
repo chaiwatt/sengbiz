@@ -47,6 +47,7 @@
             @endforeach --}}
 
             {{-- Pagination Elements --}}
+            {{-- Pagination Elements --}}
             @foreach ($elements as $element)
             @if (is_array($element))
             @php
@@ -62,12 +63,16 @@
                     @else
                     <a class="page-numbers" href="{{ $url }}">{{ $page }}</a>
                     @endif
-                    @elseif ($page == $paginator->currentPage() - 3 || $page == $paginator->currentPage() + 3)
+                    @elseif (($page == $paginator->currentPage() - 3 || $page == $paginator->currentPage() + 3) && $page
+                    !== 1 &&
+                    $page !== $totalPages)
                     <span class="page-numbers">...</span>
                     @endif
                     @endforeach
                     @endif
                     @endforeach
+
+
                     {{-- Next Page Link --}}
                     @if ($paginator->hasMorePages())
 
