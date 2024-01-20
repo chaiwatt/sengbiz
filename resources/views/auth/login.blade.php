@@ -43,17 +43,27 @@
                     <span class="fs-16 fw-bold px-3 text-dark">หรือ เข้าสู่ระบบด้วยอีเมล</span>
                 </div>
                 <!-- /.End Divider -->
-                <form class="register-form">
+                <form class="register-form" method="POST" action="{{route('login')}}">
+                    @csrf
                     <!-- Start Form Group -->
                     <div class="form-group mb-4">
                         <label class="required">อีเมล</label>
-                        <input type="email" class="form-control is-invalid">
-                        {{-- <div class="invalid-feedback text-start">Enter your valid email</div> --}}
+                        <input type="email" class="form-control @error('email')
+                        is-invalid
+                        @enderror
+                        
+                        ">
+                        @error('email')
+                        <div class="invalid-feedback text-start text-danger">กรอกอีเมลให้ถูกต้อง</div>
+                        @enderror
                     </div>
                     <div class="form-group mb-4">
                         <label class="required">รหัสผ่าน</label>
                         <input id="password" type="password" class="form-control password" autocomplete="off">
                         <i data-bs-toggle="#password" class="fa-regular fa-eye-slash toggle-password"></i>
+                        @error('phone')
+                        <div class="invalid-feedback text-start text-danger">กรอกรหัสผ่านให้ถูกต้อง</div>
+                        @enderror
                     </div>
                     <!-- /.End Form Group -->
 

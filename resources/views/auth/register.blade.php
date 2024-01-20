@@ -24,8 +24,11 @@
                     <!-- Start Form Group -->
                     <div class="form-group mb-4">
                         <label class="required">ชื่อ</label>
-                        <input type="text" name="name" class="form-control">
-
+                        <input type="text" name="name" class="form-control 
+                        @error('name')
+                        is-invalid
+                        @enderror
+                        ">
                         @error('name')
                         <div class="invalid-feedback text-start text-danger">กรอกชื่อให้ถูกต้อง</div>
                         @enderror
@@ -43,7 +46,11 @@
                     <!-- Start Form Group -->
                     <div class="form-group mb-4">
                         <label class="required">โทรศัพท์</label>
-                        <input name="phone" type="text" class="form-control password" autocomplete="off">
+                        <input name="phone" type="text" class="form-control phone
+                        @error('phone')
+                        is-invalid
+                        @enderror
+                        " autocomplete="off">
                         @error('phone')
                         <div class="invalid-feedback text-start text-danger">กรอกเบอร์โทรศัพท์ให้ถูกต้อง</div>
                         @enderror
@@ -53,7 +60,12 @@
                     <!-- /.End Form Group -->
                     <div class="form-group mb-4">
                         <label class="required">อีเมล</label>
-                        <input type="email" name="email" class="form-control">
+                        <input type="email" name="email" class="form-control 
+                        @error('email')
+                        is-invalid
+                        @enderror
+                        
+                        ">
                         @error('email')
                         <div class="invalid-feedback text-start text-danger">กรอกอีเมลให้ถูกต้อง</div>
                         @enderror
