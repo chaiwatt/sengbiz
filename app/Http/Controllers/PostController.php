@@ -102,6 +102,7 @@ class PostController extends Controller
 
     public function view($slug)
     {
+
         $post = Post::where('slug',$slug)->get()->first();
         
         

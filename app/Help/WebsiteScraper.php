@@ -506,7 +506,7 @@ class WebsiteScraper
         }
         
         foreach ($links as $link) {
-            $textToReplace = $link['text'];
+            $textToReplace = trim($link['text']);
             $replacement = "<a href='{$link['link']}'>$textToReplace</a>";
             $content = preg_replace('/' . preg_quote($textToReplace, '/') . '/', $replacement, $content, 1);
         }
