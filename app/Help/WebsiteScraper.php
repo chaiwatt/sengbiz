@@ -376,7 +376,7 @@ class WebsiteScraper
 
             if ($subCategoryId !== null && $provinceId !== null && $price != ''){
 
- 
+                $htmlContent = $this->generateLink($htmlContent,$provinceId,$amphurId,$subCategoryId);
 
                 $post = Post::create([
                     'main_category_id' => $mainCategoryId,
@@ -449,6 +449,69 @@ class WebsiteScraper
                 // dd($orgUser, $orgPostId ,$orgTitle,$price,$categories,$locations,$links,$nears,$coordinates,$result,$postTitle,$postDesctiption,$phoneNumbers,$stringContent,$htmlContent);
             }
         }    
+    }
+   public function cleanText($text)
+    {
+         $removePatterns = [
+            '/ธุรกิจ/' => '',
+            '/พื้นที่/' => '',
+        ];
+        return preg_replace(array_keys($removePatterns), array_values($removePatterns), $text);
+    }
+    public function generateLink($content,$provinceId,$amphurId,$subCategoryId)
+    {
+        $links = [];
+        $provincePostInfo = PostInfo::whereBetween('created_at', [Carbon::now()->subDays(90), Carbon::now()])
+            ->where('province_id',$provinceId)
+            ->inRandomOrder()
+            ->first();
+        if($provincePostInfo !== null){
+            $links[] = [
+                "text" => Province::find($provinceId)->name,
+                "link" => url('/'). '/'. $provincePostInfo->post->slug
+            ];
+        }  
+
+        if($amphurId !== null)
+        {
+            $amphurPostInfo = PostInfo::whereBetween('created_at', [Carbon::now()->subDays(90), Carbon::now()])
+                ->where('amphur_id',$amphurId)
+                ->inRandomOrder()
+                ->first();
+            if($amphurPostInfo !== null){
+                $links[] = [
+                    "text" => Amphur::find($amphurId)->name,
+                    "link" => url('/'). '/'. $amphurPostInfo->post->slug
+                ];
+            }  
+        }
+         
+        $subCategory = SubCategory::find($subCategoryId);
+
+        if($subCategory !== null){
+            $subCategoryName = $this->cleanText($subCategory->name);
+            $words = explode('/', $subCategoryName);
+            foreach($words as $word)
+            {
+                $post = Post::whereBetween('created_at', [Carbon::now()->subDays(90), Carbon::now()])
+                ->where('sub_category_id', $subCategoryId)
+                ->inRandomOrder()
+                ->first();
+                
+                $links[] = [
+                    "text" => $word,
+                    "link" => url('/'). '/'. $post->slug
+                ];
+            }
+        }
+        
+        foreach ($links as $link) {
+            $textToReplace = $link['text'];
+            $replacement = "<a href='{$link['link']}'>$textToReplace</a>";
+            $content = preg_replace('/' . preg_quote($textToReplace, '/') . '/', $replacement, $content, 1);
+        }
+
+        return $content;
     }
 
     public function removePropertyCode($text,$keyWord)

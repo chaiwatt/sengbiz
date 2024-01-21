@@ -47,7 +47,7 @@ class PostController extends Controller
         return preg_replace(array_keys($removePatterns), array_values($removePatterns), $text);
     }
 
-    public function generateLink($post,$provinceId,$amphurId,$subCategoryId)
+    public function generateLink($content,$provinceId,$amphurId,$subCategoryId)
     {
         $links = [];
         $provincePostInfo = PostInfo::whereBetween('created_at', [Carbon::now()->subDays(90), Carbon::now()])
@@ -91,25 +91,19 @@ class PostController extends Controller
             }
         }
         
-
-        
-            // ตรวจสอบ $content
-        $content = $post->body;
         foreach ($links as $link) {
             $textToReplace = $link['text'];
             $replacement = "<a href='{$link['link']}'>$textToReplace</a>";
-            // ใหม่
             $content = preg_replace('/' . preg_quote($textToReplace, '/') . '/', $replacement, $content, 1);
-
         }
 
-        dd($content);
+        return $content;
     }
 
     public function view($slug)
     {
         $post = Post::where('slug',$slug)->get()->first();
-        $this->generateLink($post,$post->postInfo->province_id,$post->postInfo->amphur_id,$post->sub_category_id);
+        
         
         if($post !== null){
             $posts = Post::where('main_category_id',$post->main_category_id)
