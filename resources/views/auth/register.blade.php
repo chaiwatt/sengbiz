@@ -28,7 +28,7 @@
                         @error('name')
                         is-invalid
                         @enderror
-                        ">
+                        " value="{{old('name')}}">
                         @error('name')
                         <div class="invalid-feedback text-start text-danger">กรอกชื่อให้ถูกต้อง</div>
                         @enderror
@@ -50,7 +50,7 @@
                         @error('phone')
                         is-invalid
                         @enderror
-                        " autocomplete="off">
+                        " value="{{old('phone')}}">
                         @error('phone')
                         <div class="invalid-feedback text-start text-danger">กรอกเบอร์โทรศัพท์ให้ถูกต้อง</div>
                         @enderror
@@ -65,7 +65,7 @@
                         is-invalid
                         @enderror
                         
-                        ">
+                        " value="{{old('email')}}">
                         @error('email')
                         <div class="invalid-feedback text-start text-danger">กรอกอีเมลให้ถูกต้อง</div>
                         @enderror
