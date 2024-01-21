@@ -37,7 +37,7 @@ class FacebookPost implements ShouldQueue
         $client = new Client();
 
         $link = 'https://sengbiz.com/'.$post->slug;
-        $url = "https://graph.facebook.com/".$facebookPageId."/feed?message=".$post->title."&link=".$link."&access_token=".$accessToken;
+        $url = "https://graph.facebook.com/".$facebookPageId."/feed?message=".$post->description."&link=".$link."&access_token=".$accessToken;
         $response = $client->request('POST',$url);
 
         return json_decode($response->getBody(), true);
