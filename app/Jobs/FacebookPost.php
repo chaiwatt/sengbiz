@@ -16,7 +16,7 @@ class FacebookPost implements ShouldQueue
 
     protected $postId;
 
-    public function __construct($postId,$slug)
+    public function __construct($postId)
     {
         $this->postId = $postId;
     }
