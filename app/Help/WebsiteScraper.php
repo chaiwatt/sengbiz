@@ -461,31 +461,7 @@ class WebsiteScraper
     public function generateLink($content,$provinceId,$amphurId,$subCategoryId)
     {
         $links = [];
-        $provincePostInfo = PostInfo::whereBetween('created_at', [Carbon::now()->subDays(90), Carbon::now()])
-            ->where('province_id',$provinceId)
-            ->inRandomOrder()
-            ->first();
-        if($provincePostInfo !== null){
-            $links[] = [
-                "text" => Province::find($provinceId)->name,
-                "link" => 'https://sengbiz.com/'. $provincePostInfo->post->slug
-            ];
-        }  
-
-        if($amphurId !== null)
-        {
-            $amphurPostInfo = PostInfo::whereBetween('created_at', [Carbon::now()->subDays(90), Carbon::now()])
-                ->where('amphur_id',$amphurId)
-                ->inRandomOrder()
-                ->first();
-            if($amphurPostInfo !== null){
-                $links[] = [
-                    "text" => Amphur::find($amphurId)->name,
-                    "link" => 'https://sengbiz.com/'. $amphurPostInfo->post->slug
-                ];
-            }  
-        }
-         
+                 
         $subCategory = SubCategory::find($subCategoryId);
 
         if($subCategory !== null){
@@ -503,6 +479,43 @@ class WebsiteScraper
                     "link" => 'https://sengbiz.com/'. $post->slug
                 ];
             }
+        }
+
+        // $provincePostInfo = PostInfo::whereBetween('created_at', [Carbon::now()->subDays(90), Carbon::now()])
+        //     ->where('province_id',$provinceId)
+        //     ->inRandomOrder()
+        //     ->first();
+        $provincePostInfo = PostInfo::whereBetween('created_at', [Carbon::now()->subDays(90), Carbon::now()])
+            ->where('province_id', $provinceId)
+            ->whereHas('post', function ($query) use ($subCategoryId) {
+                $query->where('sub_category_id', $subCategoryId);
+            })
+            ->inRandomOrder()
+            ->first();
+
+
+        if($provincePostInfo !== null){
+            $links[] = [
+                "text" => Province::find($provinceId)->name,
+                "link" => 'https://sengbiz.com/'. $provincePostInfo->post->slug
+            ];
+        }  
+
+        if($amphurId !== null)
+        {
+            $amphurPostInfo = PostInfo::whereBetween('created_at', [Carbon::now()->subDays(90), Carbon::now()])
+                ->where('amphur_id',$amphurId)
+                ->whereHas('post', function ($query) use ($subCategoryId) {
+                    $query->where('sub_category_id', $subCategoryId);
+                })
+                ->inRandomOrder()
+                ->first();
+            if($amphurPostInfo !== null){
+                $links[] = [
+                    "text" => Amphur::find($amphurId)->name,
+                    "link" => 'https://sengbiz.com/'. $amphurPostInfo->post->slug
+                ];
+            }  
         }
         
         foreach ($links as $link) {
