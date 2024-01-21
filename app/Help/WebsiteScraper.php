@@ -468,7 +468,7 @@ class WebsiteScraper
         if($provincePostInfo !== null){
             $links[] = [
                 "text" => Province::find($provinceId)->name,
-                "link" => url('/'). '/'. $provincePostInfo->post->slug
+                "link" => 'https://sengbiz.com/'. $provincePostInfo->post->slug
             ];
         }  
 
@@ -481,7 +481,7 @@ class WebsiteScraper
             if($amphurPostInfo !== null){
                 $links[] = [
                     "text" => Amphur::find($amphurId)->name,
-                    "link" => url('/'). '/'. $amphurPostInfo->post->slug
+                    "link" => 'https://sengbiz.com/'. $amphurPostInfo->post->slug
                 ];
             }  
         }
@@ -500,7 +500,7 @@ class WebsiteScraper
                 
                 $links[] = [
                     "text" => $word,
-                    "link" => url('/'). '/'. $post->slug
+                    "link" => 'https://sengbiz.com/'. $post->slug
                 ];
             }
         }
