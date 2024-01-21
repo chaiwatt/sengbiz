@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GoogleIndexingController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -8,6 +9,7 @@ use App\Http\Controllers\ScraperController;
 use App\Http\Controllers\ImageIntervensionController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SiteMapController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +46,10 @@ Auth::routes();
 
 // Route::get('', [PostController::class, 'index'])->name('index');
 // Route::get('/{slug}', [PostController::class, 'view'])->name('view');
+
+Route::group(['prefix' => 'dashboard'], function () {
+    Route::get('/home', [DashboardController::class, 'index'])->name('home');
+});
 
 Route::get('indexing', [GoogleIndexingController::class, 'index'])->name('indexing');
 Route::get('search', [PostController::class, 'search'])->name('search');

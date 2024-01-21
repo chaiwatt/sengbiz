@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->char('is_admin',1)->default('0');
             $table->char('owner_id',1)->default('1');
-            $table->char('phone',10)->nullable();
+            $table->char('phone',15)->nullable();
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

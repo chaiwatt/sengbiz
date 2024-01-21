@@ -102,9 +102,7 @@ class PostController extends Controller
 
     public function view($slug)
     {
-
         $post = Post::where('slug',$slug)->get()->first();
-        
         
         if($post !== null){
             $posts = Post::where('main_category_id',$post->main_category_id)
@@ -116,6 +114,8 @@ class PostController extends Controller
             $postView === null
                 ? PostView::create(['post_id' => $post->id,'view' => 1])
                 : $postView->update(['view' => $postView->view + 1]);
+        }else{
+            return response()->view('error.404', [], 404);
         }
 
         return view('post.detail',[
