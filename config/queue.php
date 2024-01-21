@@ -47,7 +47,12 @@ return [
             'queue' => 'indexing', 
             'retry_after' => 90,
         ],
-
+        'indexing' => [
+            'driver' => 'database',
+            'table' => 'jobs',
+            'queue' => 'facebookpost', 
+            'retry_after' => 90,
+        ],
         'beanstalkd' => [
             'driver' => 'beanstalkd',
             'host' => 'localhost',

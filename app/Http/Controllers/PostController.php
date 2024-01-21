@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Post;
 use App\Models\Amphur;
+use GuzzleHttp\Client;
 use App\Models\PostInfo;
 use App\Models\PostView;
 use App\Models\Province;
@@ -16,6 +17,7 @@ use App\Models\SubMinorCategory;
 
 class PostController extends Controller
 {
+
     public function index()
     {
         $provinces = Province::all();
@@ -103,6 +105,11 @@ class PostController extends Controller
     public function view($slug)
     {
         $post = Post::where('slug',$slug)->get()->first();
+        $pageId = 231648233358043;
+        $message = $post->title;
+        $link = 'https://sengbiz.com/'.$post->slug;
+        $this->postToFacebook($post);
+        return;
         
         if($post !== null){
             $posts = Post::where('main_category_id',$post->main_category_id)
@@ -222,4 +229,17 @@ class PostController extends Controller
             'priceRanges' => $priceRanges
         ]);
     }
+
+    public function postToFacebook($post)
+    {
+        $accessToken = env('FACEBOOK_PAGE_ACCESS_TOKEN');
+        $client = new Client();
+
+        $link = 'https://sengbiz.com/'.$post->slug;
+        $url = "https://graph.facebook.com/231648233358043/feed?message=".$post->title."&link=".$link."&access_token=".$accessToken;
+        $response = $client->request('POST',$url);
+
+        return json_decode($response->getBody(), true);
+    }
+
 }
