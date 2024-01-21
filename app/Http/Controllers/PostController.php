@@ -105,11 +105,6 @@ class PostController extends Controller
     public function view($slug)
     {
         $post = Post::where('slug',$slug)->get()->first();
-        $pageId = 231648233358043;
-        $message = $post->title;
-        $link = 'https://sengbiz.com/'.$post->slug;
-        $this->postToFacebook($post);
-        return;
         
         if($post !== null){
             $posts = Post::where('main_category_id',$post->main_category_id)
