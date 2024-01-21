@@ -98,7 +98,9 @@ class PostController extends Controller
         foreach ($links as $link) {
             $textToReplace = $link['text'];
             $replacement = "<a href='{$link['link']}'>$textToReplace</a>";
-            $content = str_replace($textToReplace, $replacement, $content, 1);
+            // ใหม่
+            $content = preg_replace('/' . preg_quote($textToReplace, '/') . '/', $replacement, $content, 1);
+
         }
 
         dd($content);
