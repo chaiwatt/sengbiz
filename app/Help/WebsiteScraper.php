@@ -2,22 +2,23 @@
 
 namespace App\Help;
 
-use App\Jobs\IndexingPost;
+use Carbon\Carbon;
 use Goutte\Client;
 use App\Models\Post;
 use App\Models\Amphur;
 use App\Models\Scraped;
 use App\Models\PostInfo;
+use App\Models\PostView;
 use App\Models\Province;
 use App\Models\PidScrape;
 use App\Models\PostImage;
+use App\Jobs\IndexingPost;
 use App\Models\SubCategory;
 use Illuminate\Support\Str;
 use App\Models\MainCategory;
 use Illuminate\Http\Request;
 use App\Models\PostNearPlace;
 use App\Models\PostContactPhone;
-use App\Models\PostView;
 use App\Models\SubMinorCategory;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
@@ -374,6 +375,9 @@ class WebsiteScraper
             
 
             if ($subCategoryId !== null && $provinceId !== null && $price != ''){
+
+ 
+
                 $post = Post::create([
                     'main_category_id' => $mainCategoryId,
                     'sub_category_id' => $subCategoryId,

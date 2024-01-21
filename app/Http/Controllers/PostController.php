@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Post;
 use App\Models\Amphur;
+use App\Models\PostInfo;
 use App\Models\PostView;
 use App\Models\Province;
 use App\Models\PriceRange;
@@ -35,11 +37,67 @@ class PostController extends Controller
             'priceRanges' => $priceRanges
         ]);
     }
+
+    public function cleanText($text)
+    {
+         $removePatterns = [
+            '/ธุรกิจ/' => '',
+            '/พื้นที่/' => '',
+        ];
+        return preg_replace(array_keys($removePatterns), array_values($removePatterns), $text);
+    }
+
+    public function generateLink($provinceId,$amphurId,$subCategoryId)
+    {
+        $links = [];
+        $provincePostInfo = PostInfo::whereBetween('created_at', [Carbon::now()->subDays(90), Carbon::now()])
+            ->where('province_id',$provinceId)
+            ->inRandomOrder()
+            ->first();
+        if($provincePostInfo !== null){
+            $links[] = [
+                "text" => Province::find($provinceId)->name,
+                "link" => url('/'). '/'. $provincePostInfo->post->slug
+            ];
+        }    
+
+        $amphurPostInfo = PostInfo::whereBetween('created_at', [Carbon::now()->subDays(90), Carbon::now()])
+            ->where('amphur_id',$amphurId)
+            ->inRandomOrder()
+            ->first();
+        if($amphurPostInfo !== null){
+            $links[] = [
+                "text" => Amphur::find($amphurId)->name,
+                "link" => url('/'). '/'. $amphurPostInfo->post->slug
+            ];
+        }   
+
+        $subCategory = SubCategory::find($subCategoryId);
+
+        if($subCategory !== null){
+            $subCategoryName = $this->cleanText($subCategory->name);
+            $words = explode('/', $subCategoryName);
+            foreach($words as $word)
+            {
+                $post = Post::whereBetween('created_at', [Carbon::now()->subDays(90), Carbon::now()])
+                ->where('sub_category_id', $subCategoryId)
+                ->inRandomOrder()
+                ->first();
+                
+                $links[] = [
+                    "text" => $word,
+                    "link" => url('/'). '/'. $amphurPostInfo->post->slug
+                ];
+            }
+        }
+        dd($links);
+    }
+
     public function view($slug)
     {
-        // dd(Post::where('slug',$slug)->get()->first());
         $post = Post::where('slug',$slug)->get()->first();
-
+        $this->generateLink($post->postInfo->province_id,$post->postInfo->amphur_id,$post->sub_category_id);
+        
         if($post !== null){
             $posts = Post::where('main_category_id',$post->main_category_id)
             ->where('id','<>',$post->id)
