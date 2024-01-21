@@ -74,7 +74,7 @@
                     <div class="form-group mb-4">
                         <label class="required">รหัสผ่าน</label>
                         <input name="password" type="password" class="form-control password" autocomplete="off">
-                        <i data-bs-toggle="#password" class="fa-regular fa-eye-slash toggle-password"></i>
+                        {{-- <i data-bs-toggle="#password" class="fa-regular fa-eye-slash toggle-password"></i> --}}
                         @error('phone')
                         <div class="invalid-feedback text-start text-danger">กรอกรหัสผ่านให้ถูกต้อง</div>
                         @enderror
@@ -83,7 +83,7 @@
                         <label class="required">ยืนรหัสผ่าน</label>
                         <input name="password_confirmation" type="password" class="form-control password"
                             autocomplete="off">
-                        <i data-bs-toggle="#password" class="fa-regular fa-eye-slash toggle-password"></i>
+                        {{-- <i data-bs-toggle="#password" class="fa-regular fa-eye-slash toggle-password"></i> --}}
                     </div>
                     <!-- /.End Form Group -->
                     <!-- Start Checkbox -->
