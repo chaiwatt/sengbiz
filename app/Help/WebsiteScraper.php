@@ -475,11 +475,15 @@ class WebsiteScraper
                 ->where('sub_category_id', $subCategoryId)
                 ->inRandomOrder()
                 ->first();
+
+                if($post !== null){
+                    $links[] = [
+                        "text" => $word,
+                        "link" => 'https://sengbiz.com/'. $post->slug
+                    ];
+                }
                 
-                $links[] = [
-                    "text" => $word,
-                    "link" => 'https://sengbiz.com/'. $post->slug
-                ];
+                
             }
         }
 
