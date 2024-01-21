@@ -11,7 +11,6 @@
                 <h1 class="h2 page-header-title fw-semibold">{{$post->title}}</h1>
                 <ul class="list-inline list-separator d-flex align-items-center mb-2">
 
-
                     @if (@$post->mainCategory->name !== null)
 
                     <li class="list-inline-item">

@@ -125,6 +125,11 @@ class WebsiteScraper
             } 
         } 
 
+        if ($crawler->filter('h1.panel-title.topic-title')->count() == 0) {
+            PidScrape::where('pid',$orgPostId)->delete();
+            return;
+        }
+
         // ใช้ selector CSS เพื่อค้นหา element <h1>
         $orgTitle = preg_replace('/[\x{200B}-\x{200D}\x{FEFF}]/u', '', $crawler->filter('h1.panel-title.topic-title')->text());
         $orgSlug = trim(str_replace(' ', '-', $orgTitle), '-');
