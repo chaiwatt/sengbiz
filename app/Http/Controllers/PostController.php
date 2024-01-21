@@ -85,11 +85,13 @@ class PostController extends Controller
                 ->where('sub_category_id', $subCategoryId)
                 ->inRandomOrder()
                 ->first();
+                if($post !== null){
+                    $links[] = [
+                        "text" => $word,
+                        "link" => url('/'). '/'. $post->slug
+                    ];
+                }
                 
-                $links[] = [
-                    "text" => $word,
-                    "link" => url('/'). '/'. $post->slug
-                ];
             }
         }
         
