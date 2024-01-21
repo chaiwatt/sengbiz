@@ -86,7 +86,7 @@ class PostController extends Controller
                 
                 $links[] = [
                     "text" => $word,
-                    "link" => url('/'). '/'. $amphurPostInfo->post->slug
+                    "link" => url('/'). '/'. $post->slug
                 ];
             }
         }
