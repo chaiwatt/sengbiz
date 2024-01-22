@@ -57,6 +57,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+        dd($validation);
         return $validation;
     }
 
@@ -68,7 +69,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        dd($data['password']);
+        
         return User::create([
             'name' => $data['name'],
             'owner_id' => $data['owner'],
