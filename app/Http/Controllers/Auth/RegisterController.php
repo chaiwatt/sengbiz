@@ -78,13 +78,4 @@ class RegisterController extends Controller
         ]);
     }
 
-    // public function register(Request $request)
-    // {
-    //     //  dd($request->all());
-    //     // บันทึกผู้ใช้ใหม่
-    //     $user = User::create($request->all());
-
-    //     // เปลี่ยน redirect ไปที่หน้า dashboard
-    //     return redirect()->route('login');
-    // }
 }
