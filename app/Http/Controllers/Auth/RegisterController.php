@@ -81,6 +81,7 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
+         dd($request->all());
         // บันทึกผู้ใช้ใหม่
         $user = User::create($request->all());
 
