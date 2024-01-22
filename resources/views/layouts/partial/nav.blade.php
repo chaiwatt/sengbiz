@@ -113,9 +113,19 @@
                     </ul>
                 </li>
                 <li class="nav-item">
+                    @if (!Auth::check())
                     <a class="nav-link" href="{{route('login')}}">เข้าสู่ระบบ</a>
+                    @else
+                    <a class="nav-link" href="{{route('home')}}">แดชบอร์ด</a>
+                    {{--
+                <li><a class="nav-link" href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">ออกจากระบบ</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form> --}}
                 </li>
-
+                @endif
+                </li>
             </ul>
             <div class="d-sm-none">
                 <!-- start button -->

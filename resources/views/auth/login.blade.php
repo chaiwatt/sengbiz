@@ -47,7 +47,7 @@
                     <!-- Start Form Group -->
                     <div class="form-group mb-4">
                         <label class="required">อีเมล</label>
-                        <input type="email" class="form-control @error('email')
+                        <input type="email" name="email" class="form-control @error('email')
                         is-invalid
                         @enderror
                         
@@ -58,19 +58,15 @@
                     </div>
                     <div class="form-group mb-4">
                         <label class="required">รหัสผ่าน</label>
-                        <input id="password" type="password" class="form-control password" autocomplete="off">
-                        <i data-bs-toggle="#password" class="fa-regular fa-eye-slash toggle-password"></i>
-                        @error('phone')
+                        <input name="password" type="password" class="form-control password" autocomplete="off">
+                        {{-- <i data-bs-toggle="#password" class="fa-regular fa-eye-slash toggle-password"></i> --}}
+                        @error('password')
                         <div class="invalid-feedback text-start text-danger">กรอกรหัสผ่านให้ถูกต้อง</div>
                         @enderror
                     </div>
                     <!-- /.End Form Group -->
 
-                    <div class="form-group mb-4">
-                        <label class="required">เบอร์โทรศัพท์</label>
-                        <input id="phone" type="password" class="form-control password" autocomplete="off">
-                        <i data-bs-toggle="#password" class="fa-regular fa-eye-slash toggle-password"></i>
-                    </div>
+
                     <!-- /.End Form Group -->
                     <!-- Start Checkbox -->
 

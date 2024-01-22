@@ -451,7 +451,6 @@ class WebsiteScraper
                 Scraped::create(['pid' => $orgPostId]);
 
                 IndexingPost::dispatch($post->id,$post->slug)->onQueue('indexing');
-                
                 FacebookPost::dispatch($post->id)->onQueue('facebookpost');
 
                 // dd($orgUser, $orgPostId ,$orgTitle,$price,$categories,$locations,$links,$nears,$coordinates,$result,$postTitle,$postDesctiption,$phoneNumbers,$stringContent,$htmlContent);
