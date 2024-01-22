@@ -59,23 +59,24 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <!-- Required meta tags -->
 
-    <link href="assets/plugins/aos/aos.min.css" rel="stylesheet">
 
-
-    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="{{asset('assets/plugins/aos/aos.min.css')}}" rel="stylesheet">
     {{--
     <link href="assets/plugins/bootstrap/css/bootstrap.lite.min.css" rel="stylesheet"> --}}
-    <link href="assets/plugins/fontawesome/css/all.min.css" rel="stylesheet">
-    <link href="assets/plugins/OwlCarousel2/css/owl.carousel.min.css" rel="stylesheet">
-    <link href="assets/plugins/OwlCarousel2/css/owl.theme.default.min.css" rel="stylesheet">
-    <link href="assets/plugins/jquery-fancyfileuploader/fancy-file-uploader/fancy_fileupload.css" rel="stylesheet">
-    <link href="assets/plugins/ion.rangeSlider/ion.rangeSlider.min.css" rel="stylesheet">
-    <link href="assets/plugins/magnific-popup/magnific-popup.css" rel="stylesheet">
-    <link href="assets/plugins/select2/select2.min.css" rel="stylesheet">
-    <link href="assets/plugins/select2-bootstrap-5/select2-bootstrap-5-theme.min.css" rel="stylesheet">
+
+    <link href="{{asset('assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/plugins/fontawesome/css/all.min.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/plugins/OwlCarousel2/css/owl.carousel.min.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/plugins/OwlCarousel2/css/owl.theme.default.min.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/plugins/jquery-fancyfileuploader/fancy-file-uploader/fancy_fileupload.css')}}"
+        rel="stylesheet">
+    <link href="{{asset('assets/plugins/ion.rangeSlider/ion.rangeSlider.min.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/plugins/magnific-popup/magnific-popup.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/plugins/select2/select2.min.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/plugins/select2-bootstrap-5/select2-bootstrap-5-theme.min.css')}}" rel="stylesheet">
     <!-- Custom style for this template -->
-    <link href="assets/css/style.min.css" rel="stylesheet">
+    <link href="{{asset('')}}assets/css/style.min.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -89,25 +90,28 @@
     @yield('content')
     @include('layouts.partial.footer')
 
-    <script src="assets/plugins/jQuery/jquery.min.js"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/plugins/aos/aos.min.js"></script>
-    <script src="assets/plugins/macy/macy.js"></script>
-    <script src="assets/plugins/simple-parallax/simpleParallax.min.js"></script>
-    <script src="assets/plugins/OwlCarousel2/owl.carousel.min.js"></script>
-    <script src="assets/plugins/theia-sticky-sidebar/ResizeSensor.min.js"></script>
-    <script src="assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.min.js"></script>
-    <script src="assets/plugins/waypoints/jquery.waypoints.min.js"></script>
-    <script src="assets/plugins/counter-up/jquery.counterup.min.js"></script>
-    <script src="assets/plugins/jquery-fancyfileuploader/fancy-file-uploader/jquery.ui.widget.js"></script>
-    <script src="assets/plugins/jquery-fancyfileuploader/fancy-file-uploader/jquery.fileupload.js"></script>
-    <script src="assets/plugins/jquery-fancyfileuploader/fancy-file-uploader/jquery.iframe-transport.js"></script>
-    <script src="assets/plugins/jquery-fancyfileuploader/fancy-file-uploader/jquery.fancy-fileupload.js"></script>
-    <script src="assets/plugins/ion.rangeSlider/ion.rangeSlider.min.js"></script>
-    <script src="assets/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
-    <script src="assets/plugins/select2/select2.min.js"></script>
+    <script src="{{asset('assets/plugins/jQuery/jquery.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/aos/aos.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/macy/macy.js')}}"></script>
+    <script src="{{asset('assets/plugins/simple-parallax/simpleParallax.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/OwlCarousel2/owl.carousel.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/theia-sticky-sidebar/ResizeSensor.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/waypoints/jquery.waypoints.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/counter-up/jquery.counterup.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-fancyfileuploader/fancy-file-uploader/jquery.ui.widget.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-fancyfileuploader/fancy-file-uploader/jquery.fileupload.js')}}">
+    </script>
+    <script src="{{asset('assets/plugins/jquery-fancyfileuploader/fancy-file-uploader/jquery.iframe-transport.js')}}">
+    </script>
+    <script src="{{asset('assets/plugins/jquery-fancyfileuploader/fancy-file-uploader/jquery.fancy-fileupload.js')}}">
+    </script>
+    <script src="{{asset('assets/plugins/ion.rangeSlider/ion.rangeSlider.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/magnific-popup/jquery.magnific-popup.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
     <!-- Custom script for this template -->
-    <script src="assets/js/script.min.js"></script>
+    <script src="{{asset('assets/js/script.min.js')}}"></script>
 
     @stack('scripts')
 </body>

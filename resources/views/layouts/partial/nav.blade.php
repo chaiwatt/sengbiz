@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white">
     <div class="container">
         <a class="navbar-brand" href="{{url('/')}}" aria-label="navbar-brand">
-            <img src="assets/images/logo.webp" alt="logo" decoding="async">
+            <img src="{{asset('assets/images/logo.webp')}}" alt="logo" decoding="async">
         </a>
         <div class="d-flex order-lg-2">
             <!-- start button -->
@@ -15,7 +15,7 @@
             </a>
 
             <a href="add-listing.html" class="btn btn-primary d-none d-sm-flex fw-medium gap-2 hstack rounded-5"
-                aria-label="ลงประกาศ">
+                aria-label="ประกาศฟรี">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                     class="bi bi-plus-circle" viewBox="0 0 16 16">
                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
@@ -23,7 +23,7 @@
                         d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                 </svg>
                 <div class="vr d-none d-sm-inline-block"></div>
-                <span class="d-none d-sm-inline-block">ลงประกาศ</span>
+                <span class="d-none d-sm-inline-block">ประกาศฟรี</span>
             </a>
             <!-- end /. button -->
             <!-- start navbar toggle button -->
