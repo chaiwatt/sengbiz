@@ -24,26 +24,32 @@
                 </div>
                 <div class="align-items-center d-flex justify-content-between mb-3">
                     <div class="align-items-center d-flex fw-medium gap-1 fs-16">
-                        <i class="fa-circle fa-solid fs-10"></i>
-                        <a href="#"><span>ประกาศของฉัน</span></a>
+                        <i class="fa-solid fa-list" style="margin-right: 5px"></i>
+                        <a href="{{route('home')}}"><span>ประกาศของฉัน</span></a>
                     </div>
                 </div>
                 <div class="align-items-center d-flex justify-content-between mb-3">
                     <div class="align-items-center d-flex fw-medium gap-1 fs-16">
-                        <i class="fa-circle fa-solid fs-10"></i>
-                        <a href="#"><span>บุคมาร์คของฉัน</span></a>
+                        <i class="fa-solid fa-plus" style="margin-right: 5px"></i>
+                        <a href="{{route('dashboard.create')}}"><span>เพิ่มประกาศ</span></a>
                     </div>
                 </div>
                 <div class="align-items-center d-flex justify-content-between mb-3">
                     <div class="align-items-center d-flex fw-medium gap-1 fs-16">
-                        <i class="fa-circle fa-solid fs-10"></i>
-                        <a href="#"><span>เพิ่มประกาศ</span></a>
+                        <i class="fa-solid fa-user" style="margin-right: 5px"></i>
+                        <a href="{{route('dashboard.profile')}}"><span>ข้อมูลของฉัน</span></a>
                     </div>
                 </div>
                 <div class="align-items-center d-flex justify-content-between mb-3">
                     <div class="align-items-center d-flex fw-medium gap-1 fs-16">
-                        <i class="fa-circle fa-solid fs-10"></i>
-                        <a href="#"><span>ข้อมูลของฉัน</span></a>
+                        {{-- <i class="fa-circle fa-solid fs-10"></i> --}}
+                        <i class="fa-solid fa-right-from-bracket" style="margin-right: 5px"></i>
+                        <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><span>ออกจากระบบ</span></a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+
                     </div>
                 </div>
 

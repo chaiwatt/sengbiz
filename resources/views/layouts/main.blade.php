@@ -78,6 +78,8 @@
     <link href="{{asset('assets/plugins/select2-bootstrap-5/select2-bootstrap-5-theme.min.css')}}" rel="stylesheet">
     <!-- Custom style for this template -->
     <link href="{{asset('')}}assets/css/style.min.css" rel="stylesheet">
+
+    @stack('styles')
 </head>
 
 <body>
@@ -115,6 +117,8 @@
     <script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
     <!-- Custom script for this template -->
     <script src="{{asset('assets/js/script.min.js')}}"></script>
+
+    @stack('scripts')
 </body>
 
 

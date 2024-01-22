@@ -23,6 +23,9 @@ class Post extends Model
         'main_category_id', 
         'sub_category_id',
         'sub_minor_category_id',
+        'post_package_id',
+        'package_start',
+        'package_end',
         'title',
         'org_title',
         'slug',
@@ -31,6 +34,7 @@ class Post extends Model
         'description',
         'body',
         'need_broker',
+        'percent',
         'is_ads',
         'indexing_code'
     ]; // ตัวอย่าง
@@ -75,7 +79,10 @@ class Post extends Model
     {
         return $this->belongsTo(SubCategory::class, 'sub_category_id');
     }
-
+    public function postPackage()
+    {
+        return $this->belongsTo(PostPackage::class, 'post_package_id');
+    }
     
     public function getPostNearPlaceAttribute()
     {

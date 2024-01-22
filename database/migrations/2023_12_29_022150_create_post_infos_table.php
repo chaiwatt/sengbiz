@@ -19,6 +19,12 @@ return new class extends Migration
             $table->string('org_user')->nullable();
             $table->string('lat')->nullable();
             $table->string('lng')->nullable();
+            $table->char('phone1',15)->nullable();
+            $table->char('phone2',15)->nullable();
+            $table->char('line_account',100)->nullable();
+            $table->string('youtube')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('website')->nullable();
             $table->unsignedBigInteger('province_id');
             $table->unsignedBigInteger('amphur_id')->nullable();
             $table->timestamps();

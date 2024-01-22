@@ -17,10 +17,17 @@ class PostInfo extends Model
         'org_user', 
         'lat', 
         'lng', 
+        'phone1', 
+        'phone2', 
+        'line_account', 
+        'youtube', 
+        'facebook', 
+        'website', 
         'province_id',
         'amphur_id'
     ]; // ตัวอย่าง
     
+
     public function post()
     {
         return $this->belongsTo(Post::class, 'post_id');
