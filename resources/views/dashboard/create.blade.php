@@ -19,7 +19,7 @@
                                 <!-- start form group -->
                                 <div class="">
                                     <label class="required fw-medium mb-2">หัวข้อประกาศ</label>
-                                    <input type="text" class="form-control" required="">
+                                    <input type="text" class="form-control" name="title">
                                 </div>
                                 <!-- end /. form group -->
                             </div>
@@ -68,16 +68,16 @@
                             <div class="col-sm-12">
                                 <!-- start form group -->
                                 <div class="">
-                                    <label class="required fw-medium mb-2">ละติจูด</label>
-                                    <input type="text" class="form-control" required="">
+                                    <label class="fw-medium mb-2">ละติจูด</label>
+                                    <input type="text" class="form-control" name="lat">
                                 </div>
                                 <!-- end /. form group -->
                             </div>
                             <div class="col-sm-12">
                                 <!-- start form group -->
                                 <div class="">
-                                    <label class="required fw-medium mb-2">ลองติจูด</label>
-                                    <input type="text" class="form-control" required="">
+                                    <label class="fw-medium mb-2">ลองติจูด</label>
+                                    <input type="text" class="form-control" name="lng">
                                 </div>
                                 <!-- end /. form group -->
                             </div>
@@ -93,37 +93,37 @@
                             <div class="col-sm-12">
                                 <div class="">
                                     <label class="required fw-medium mb-2">เบอร์โทรศัพท์1</label>
-                                    <input type="text" class="form-control" required="">
+                                    <input type="text" class="form-control" name="phone1">
                                 </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="">
-                                    <label class="required fw-medium mb-2">เบอร์โทรศัพท์2</label>
-                                    <input type="text" class="form-control" required="">
+                                    <label class="fw-medium mb-2">เบอร์โทรศัพท์2</label>
+                                    <input type="text" class="form-control" name="phone2">
                                 </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="">
-                                    <label class="required fw-medium mb-2">Youtube (Watch)</label>
-                                    <input type="text" class="form-control" required="">
+                                    <label class="fw-medium mb-2">Youtube (Watch)</label>
+                                    <input type="text" class="form-control" name="youtube">
                                 </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="">
-                                    <label class="required fw-medium mb-2">Line Id</label>
-                                    <input type="text" class="form-control" required="">
+                                    <label class="fw-medium mb-2">Line Id</label>
+                                    <input type="text" class="form-control" name="line_account">
                                 </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="">
-                                    <label class="required fw-medium mb-2">Facebook</label>
-                                    <input type="text" class="form-control" required="">
+                                    <label class="fw-medium mb-2">Facebook</label>
+                                    <input type="text" class="form-control" name="facebook">
                                 </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="">
-                                    <label class="required fw-medium mb-2">เว็บไซต์</label>
-                                    <input type="text" class="form-control" required="">
+                                    <label class="fw-medium mb-2">เว็บไซต์</label>
+                                    <input type="text" class="form-control" name="website">
                                 </div>
                             </div>
 
@@ -139,18 +139,18 @@
                         <div class="row g-4">
                             <div class="col-sm-12">
                                 <div class="">
-                                    <label class="required fw-medium mb-2">ต้องการนายหน้า</label>
-                                    <select class="form-select">
-                                        <option selected="">ไม่ต้องการ</option>
-                                        <option value="1">ต้องการ</option>
+                                    <label class="fw-medium mb-2">ต้องการนายหน้า</label>
+                                    <select class="form-select" id="need_broker" name="need_broker">
+                                        <option selected="1">ไม่ต้องการ</option>
+                                        <option value="2">ต้องการ</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-sm-12">
+                            <div class="col-sm-12" id="percent_input_container" style="display:none">
                                 <!-- start form group -->
                                 <div class="">
                                     <label class="required fw-medium mb-2">เปอร์เซนต์</label>
-                                    <input type="text" class="form-control" required="">
+                                    <input type="text" class="form-control" name="percent" value="3.0">
                                 </div>
                                 <!-- end /. form group -->
                             </div>
@@ -168,7 +168,7 @@
                                 <div class="">
                                     <label class="required fw-medium mb-2">รายละเอียด</label>
                                     <textarea class="form-control" rows="10"
-                                        placeholder="ให้พิมพ์อย่างน้อย 1,500 คำเพื่อเป็นประโยชน์ของท่าน ในการแสดงผลการค้นหาของ Google และไม่ต้องระบุข้อมูลติดกรอกไปแล้ว (ข้อมูลติดต่อ / Social Media)"></textarea>
+                                        placeholder="ให้พิมพ์อย่างน้อย 1,000 คำเพื่อเป็นประโยชน์ของท่าน ในการแสดงผลการค้นหาของ Google และไม่ต้องระบุข้อมูลติดต่อ ที่กรอกไปแล้ว (ข้อมูลติดต่อ / Social Media)"></textarea>
                                 </div>
 
                                 <div class="mt-3">
@@ -202,6 +202,16 @@
             url: '{{ url('/') }}',
             token: $('meta[name="csrf-token"]').attr('content')
         };
+
+    $('#need_broker').on('change', function() {
+        var selectedValue = $(this).val();
+        if (selectedValue === '2') {
+            $('#percent_input_container').show(); // แสดง <div>
+        } else {
+            $('#percent_input_container').hide(); // ซ่อน <div>
+        }
+    });
+
 </script>
 @endpush
 @endsection
