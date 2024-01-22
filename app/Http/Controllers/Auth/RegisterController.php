@@ -85,6 +85,6 @@ class RegisterController extends Controller
         $user = User::create($request->all());
 
         // เปลี่ยน redirect ไปที่หน้า dashboard
-        return redirect()->route('home');
+        return redirect()->route('login');
     }
 }
