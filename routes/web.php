@@ -51,6 +51,8 @@ Auth::routes();
 Route::group(['prefix' => 'dashboard'], function () {
     Route::get('home', [DashboardController::class, 'index'])->name('home');
     Route::get('create', [DashboardController::class, 'create'])->name('dashboard.create');
+    Route::post('upload', [DashboardController::class, 'upload'])->name('dashboard.upload');
+    Route::post('store', [DashboardController::class, 'store'])->name('dashboard.store');
     Route::get('profile', [DashboardController::class, 'profile'])->name('dashboard.profile');
     Route::group(['prefix' => 'api'], function () {
         Route::post('sub-category', [DashboardApiController::class, 'subCategory'])->name('dashboard.api.sub-category');

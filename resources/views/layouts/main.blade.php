@@ -70,8 +70,9 @@
     <link href="{{asset('assets/plugins/fontawesome/css/all.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/plugins/OwlCarousel2/css/owl.carousel.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/plugins/OwlCarousel2/css/owl.theme.default.min.css')}}" rel="stylesheet">
+    {{--
     <link href="{{asset('assets/plugins/jquery-fancyfileuploader/fancy-file-uploader/fancy_fileupload.css')}}"
-        rel="stylesheet">
+        rel="stylesheet"> --}}
     <link href="{{asset('assets/plugins/ion.rangeSlider/ion.rangeSlider.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/plugins/magnific-popup/magnific-popup.css')}}" rel="stylesheet">
     <link href="{{asset('assets/plugins/select2/select2.min.css')}}" rel="stylesheet">
@@ -105,13 +106,14 @@
     <script src="{{asset('assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.min.js')}}"></script>
     <script src="{{asset('assets/plugins/waypoints/jquery.waypoints.min.js')}}"></script>
     <script src="{{asset('assets/plugins/counter-up/jquery.counterup.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/jquery-fancyfileuploader/fancy-file-uploader/jquery.ui.widget.js')}}"></script>
+    {{-- <script src="{{asset('assets/plugins/jquery-fancyfileuploader/fancy-file-uploader/jquery.ui.widget.js')}}">
+    </script>
     <script src="{{asset('assets/plugins/jquery-fancyfileuploader/fancy-file-uploader/jquery.fileupload.js')}}">
     </script>
     <script src="{{asset('assets/plugins/jquery-fancyfileuploader/fancy-file-uploader/jquery.iframe-transport.js')}}">
     </script>
     <script src="{{asset('assets/plugins/jquery-fancyfileuploader/fancy-file-uploader/jquery.fancy-fileupload.js')}}">
-    </script>
+    </script> --}}
     <script src="{{asset('assets/plugins/ion.rangeSlider/ion.rangeSlider.min.js')}}"></script>
     <script src="{{asset('assets/plugins/magnific-popup/jquery.magnific-popup.min.js')}}"></script>
     <script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
