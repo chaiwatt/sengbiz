@@ -45,7 +45,7 @@ class DashboardController extends Controller
 
         $response = Http::get($link);
         $content = $response->body();
-        dd($content);
+        // dd($content);
         $fname = "images/" . $image->getClientOriginalName();
         $filename = public_path($fname);
         file_put_contents($filename, $content);
