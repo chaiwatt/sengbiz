@@ -63,7 +63,7 @@
                 </div>
                 <div class="card mb-4">
                     <div class="card-header position-relative">
-                        <h6 class="fs-17 fw-semi-bold mb-0">Google Map</h6>
+                        <h6 class="fs-17 fw-semi-bold mb-0">สถานที่ตั้ง</h6>
                     </div>
                     <div class="card-body">
                         <div class="row g-4">
