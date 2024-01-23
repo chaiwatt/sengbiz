@@ -83,7 +83,7 @@
                             <div class="col-sm-12">
                                 <!-- start form group -->
                                 <div class="">
-                                    <label class="fw-medium mb-2">ละติจูด</label>
+                                    <label class="required fw-medium mb-2">ละติจูด</label>
                                     <input type="text" class="form-control" name="lat">
                                 </div>
                                 <!-- end /. form group -->
@@ -91,7 +91,7 @@
                             <div class="col-sm-12">
                                 <!-- start form group -->
                                 <div class="">
-                                    <label class="fw-medium mb-2">ลองติจูด</label>
+                                    <label class="required fw-medium mb-2">ลองติจูด</label>
                                     <input type="text" class="form-control" name="lng">
                                 </div>
                                 <!-- end /. form group -->

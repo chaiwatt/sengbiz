@@ -68,7 +68,6 @@ class DashboardController extends Controller
 
             // ลบไฟล์ที่อัพโหลดและไฟล์ที่ดาวน์โหลดมา ยกเว้นไฟล์ .webp
             unlink($filename); // ลบไฟล์ที่อัพโหลด
-            // unlink(public_path("images/$originalName")); // ลบไฟล์ที่ดาวน์โหลดมา
 
             return response()->json(['success' => $webpFilename]); // ส่งคืนชื่อไฟล์ .webp
         } catch (\Exception $e) {
