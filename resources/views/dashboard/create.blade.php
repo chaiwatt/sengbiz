@@ -96,15 +96,6 @@
                                 </div>
                                 <!-- end /. form group -->
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card mb-4">
-                    <div class="card-header position-relative">
-                        <h6 class="fs-17 fw-semi-bold mb-0">สถานที่ใกล้เคียง</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="row g-4">
                             <div class="col-sm-12">
                                 <div class="">
                                     {{-- <label class="fw-medium mb-2">สถานที่ใกล้เคียง</label> --}}
