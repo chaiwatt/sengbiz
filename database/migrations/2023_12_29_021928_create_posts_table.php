@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('package_start')->nullable();
             $table->date('package_end')->nullable();
             $table->unsignedBigInteger('sub_minor_category_id')->nullable();
-            $table->string('title');
+            $table->longText('title');
             $table->string('slug');
             $table->string('org_slug');
             $table->string('org_title');

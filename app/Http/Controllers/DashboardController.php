@@ -8,6 +8,7 @@ use App\Models\PostPackage;
 use App\Models\MainCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 
@@ -38,24 +39,26 @@ class DashboardController extends Controller
      {
         $image = $request->file('file');
         $originalName = $image->getClientOriginalName();
-        // dd($originalName);
-        // $image->move(public_path('images'),$originalName);
         $rawFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
-        // dd($rawFilename);
+        $image->move(public_path('images'),$originalName);
+        $link = url('/images/'.$originalName );
 
-        $fname = "images/".$image->getClientOriginalName();
+        $response = Http::get($link);
+        $content = $response->body();
+        dd($content);
+        $fname = "images/" . $image->getClientOriginalName();
         $filename = public_path($fname);
+        file_put_contents($filename, $content);
         $manager = new ImageManager(new Driver());
         $image = $manager->read($filename);
         $image->place(public_path("assets/images/logo.png"));
-                
-        // $image->scale(width: 500);
-
+       
+        $image->scale(width: 900);
+       
         $fname = "images/{$rawFilename}.webp";
         $output = public_path($fname);
         $image->toWebp()->save($output);
-        
-
+        unlink($filename);
         return response()->json(['success'=>$originalName]);
     }
     public function store(Request $request)
