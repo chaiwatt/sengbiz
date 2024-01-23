@@ -101,6 +101,48 @@
                 </div>
                 <div class="card mb-4">
                     <div class="card-header position-relative">
+                        <h6 class="fs-17 fw-semi-bold mb-0">สถานที่ใกล้เคียง</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-4">
+                            <div class="col-sm-12">
+                                <div class="">
+                                    <label class="required fw-medium mb-2">สถานทั่วไป</label>
+                                    <select class="form-select" name="province" id="province">
+                                        <option value="{{null}}">==เลือกสถานทั่วไป==</option>
+                                        @foreach ($nearPlaces->where('code','other') as $nearPlace)
+                                        <option value="{{$nearPlace->name}}">{{$nearPlace->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="">
+                                    <label class="required fw-medium mb-2">BTS ใกล้เคียง</label>
+                                    <select class="form-select" name="province" id="province">
+                                        <option value="{{null}}">==เลือกBTS ใกล้เคียง==</option>
+                                        @foreach ($nearPlaces->where('code','bts') as $nearPlace)
+                                        <option value="{{$nearPlace->name}}">{{$nearPlace->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="">
+                                    <label class="required fw-medium mb-2">MRT ใกล้เคียง</label>
+                                    <select class="form-select" name="province" id="province">
+                                        <option value="{{null}}">==เลือก MRT ใกล้เคียง==</option>
+                                        @foreach ($nearPlaces->where('code','mrt') as $nearPlace)
+                                        <option value="{{$nearPlace->name}}">{{$nearPlace->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-4">
+                    <div class="card-header position-relative">
                         <h6 class="fs-17 fw-semi-bold mb-0">ข้อมูลติดต่อ / โซเชียลมีเดีย</h6>
                     </div>
                     <div class="card-body">

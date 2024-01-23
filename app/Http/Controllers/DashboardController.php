@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\Province;
 use App\Models\PostPackage;
 use App\Models\MainCategory;
+use App\Models\NearPlace;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -28,10 +29,12 @@ class DashboardController extends Controller
         $provinces = Province::all();
         $postPackages = PostPackage::all();
         $mainCategories = MainCategory::all();
+        $nearPlaces = NearPlace::all();
         return view('dashboard.create',[
             'postPackages' =>$postPackages,
             'provinces' => $provinces,
-            'mainCategories' => $mainCategories
+            'mainCategories' => $mainCategories,
+            'nearPlaces' => $nearPlaces
         ]); 
     }
 
