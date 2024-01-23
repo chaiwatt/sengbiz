@@ -101,7 +101,7 @@
                 </div>
                 <div class="card mb-4">
                     <div class="card-header position-relative">
-                        <h6 class="fs-17 fw-semi-bold mb-0">สถานที่ใกล้เคียง (ถ้ามี)</h6>
+                        <h6 class="fs-17 fw-semi-bold mb-0">สถานที่ใกล้เคียง (เลือกเพียง 1 รายการ)</h6>
                     </div>
                     <div class="card-body">
                         <div class="row g-4">

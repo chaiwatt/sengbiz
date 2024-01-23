@@ -15,7 +15,6 @@ class NearPlacesTableSeeder extends Seeder
     {
         DB::table('near_places')->insert([
             ['name'=>'AirportLink','code'=>'other'],
-            ['name'=>'BTSMRT','code'=>'other'],
             ['name'=>'ตลาด','code'=>'other'],
             ['name'=>'มหาวิทยาลัย','code'=>'other'],
             ['name'=>'โรงพยาบาล','code'=>'other'],
