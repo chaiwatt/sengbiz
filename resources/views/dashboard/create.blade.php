@@ -195,19 +195,18 @@
                                 <div class="mt-3">
 
                                     <div class="col-md-12">
-
+                                        <label class="required fw-medium mb-2">รูปภาพ (ให้อัพโหลดอย่างน้อย 3 รูป ขนาด
+                                            900x550 พิกเซล)</label>
                                         <form action="{{route('dashboard.upload')}}" method="post"
-                                            enctype="multipart/form-data" id="image-upload" class="dropzone">
+                                            enctype="multipart/form-data" id="image-upload" class="dropzone"
+                                            style="border: 2px dashed #F84525">
                                             @csrf
                                         </form>
+                                        <div class="form-text">แนะนำไฟล์ขนาด 900 x 550 px (png, jpg, jpeg)
+                                            เพื่อการแสดงผลที่สวบงาม เหมาะสม</div>
                                     </div>
 
-                                    {{-- <label class="required fw-medium mb-2">รูปภาพ (ให้อัพโหลดอย่างน้อย 3 รูป ขนาด
-                                        900x550 พิกเซล)</label>
-                                    <input class="fileUp fileup-sm" type="file" name="files"
-                                        accept=".jpg, .png, image/jpeg, image/png" multiple>
-                                    <div class="form-text">แนะนำไฟล์ขนาด 900 x 550 px (png, jpg, jpeg)
-                                        เพื่อการแสดงผลที่สวยงาม เหมาะสม</div> --}}
+
                                 </div>
                                 <!-- end /. form group -->
                             </div>
@@ -287,16 +286,17 @@
       });
 
     var dropzone = new Dropzone('#image-upload', {
-    thumbnailWidth: 200,
-    maxFilesize: 1,
-    acceptedFiles: ".jpeg,.jpg,.png,.gif",
-    init: function() {
-        this.on("success", function(file, response) {
-            console.log(response);
+        thumbnailWidth: 200,
+        maxFilesize: 1,
+        dictDefaultMessage: '<span class="text-secondary">ลากและวางไฟล์รูปที่นี่</span>',
+        acceptedFiles: ".jpeg,.jpg,.png,.gif",
+        init: function() {
+            this.on("success", function(file, response) {
+                console.log(response);
 
-        });
-    }
-});
+            });
+        }
+    });
 
     });
     $('#need_broker').on('change', function() {
