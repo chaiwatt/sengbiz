@@ -37,7 +37,7 @@ class DashboardController extends Controller
 
     public function upload(Request $request)
     {
-        try {
+        // try {
             $image = $request->file('file');
             $originalName = $image->getClientOriginalName();
             $rawFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
@@ -71,9 +71,9 @@ class DashboardController extends Controller
             unlink(public_path("images/$originalName")); // ลบไฟล์ที่ดาวน์โหลดมา
 
             return response()->json(['success' => $webpFilename]); // ส่งคืนชื่อไฟล์ .webp
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()]);
-        }
+        // } catch (\Exception $e) {
+        //     return response()->json(['error' => $e->getMessage()]);
+        // }
     }
 
     public function store(Request $request)
