@@ -98,7 +98,7 @@
                             </div>
                             <div class="col-sm-12">
                                 <div class="">
-                                    {{-- <label class="fw-medium mb-2">สถานที่ใกล้เคียง</label> --}}
+                                    <label class="fw-medium mb-2">สถานที่ใกล้เคียง</label>
                                     <select class="form-select" name="province" id="province">
                                         <option value="{{null}}">==เลือกสถานที่ใกล้เคียง==</option>
                                         @foreach ($nearPlaces as $nearPlace)
