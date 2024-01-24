@@ -381,8 +381,8 @@
                             <!-- start form group -->
                             <div class="form-group">
                                 <label class="required fw-medium mb-2">ข้อความ</label>
-                                <textarea class="form-control" rows="7" aria-label="ข้อความฝากถึงผู้ประกาศ"
-                                    placeholder="ข้อความฝากถึงผู้ประกาศ"></textarea>
+                                <textarea class="form-control" rows="7" aria-label="ข้อความถึงผู้ประกาศ"
+                                    placeholder="ข้อความถึงผู้ประกาศ"></textarea>
                             </div>
                             <!-- end /. form group -->
                         </div>
