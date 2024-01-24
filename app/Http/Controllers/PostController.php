@@ -227,16 +227,29 @@ class PostController extends Controller
         ]);
     }
 
-    public function postToFacebook($post)
+    public function testPostToFacebook()
     {
         $accessToken = env('FACEBOOK_PAGE_ACCESS_TOKEN');
         $client = new Client();
 
-        $link = 'https://sengbiz.com/'.$post->slug;
-        $url = "https://graph.facebook.com/231648233358043/feed?message=".$post->title."&link=".$link."&access_token=".$accessToken;
+        $link = 'https://sengbiz.com/';
+        $message = 'test';
+        $url = "https://graph.facebook.com/231648233358043/feed?message=".$message."&link=".$link."&access_token=".$accessToken;
         $response = $client->request('POST',$url);
 
         return json_decode($response->getBody(), true);
     }
+
+    // public function postToFacebook($post)
+    // {
+    //     $accessToken = env('FACEBOOK_PAGE_ACCESS_TOKEN');
+    //     $client = new Client();
+
+    //     $link = 'https://sengbiz.com/'.$post->slug;
+    //     $url = "https://graph.facebook.com/231648233358043/feed?message=".$post->title."&link=".$link."&access_token=".$accessToken;
+    //     $response = $client->request('POST',$url);
+
+    //     return json_decode($response->getBody(), true);
+    // }
 
 }

@@ -60,11 +60,14 @@ Route::group(['prefix' => 'dashboard'], function () {
         Route::post('amphur', [DashboardApiController::class, 'amphur'])->name('dashboard.api.amphur');
     });
 });
-
+Route::get('test-post-to-facebook', [PostController::class, 'testPostToFacebook'])->name('test-post-to-facebook');
 Route::get('indexing', [GoogleIndexingController::class, 'index'])->name('indexing');
 Route::get('search', [PostController::class, 'search'])->name('search');
 Route::get('/{slug}', [PostController::class, 'view'])->name('view');
 Route::get('', [PostController::class, 'index'])->name('index');
+
+
+
 
 
 
