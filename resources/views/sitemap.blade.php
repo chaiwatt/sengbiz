@@ -8,7 +8,7 @@
     @foreach ($posts as $post)
     <url>
         <loc>{{url('/')}}/{{$post->slug}}</loc>
-        <lastmod>{{$post->created_at->tz('Asia/Bangkok')->toAtomString()}}</lastmod>
+        <lastmod>{{$post->updated_at->tz('Asia/Bangkok')->toAtomString()}}</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
     </url>
