@@ -248,8 +248,6 @@
   
         
     $(document).ready(function() {
-
-
       $(window).scroll(function() {
         // ตรวจสอบว่า div ที่มี ID เท่ากับ "targetDiv" อยู่ในมุมมองหรือไม่
         var targetDivTop = $("#targetDiv").offset().top;

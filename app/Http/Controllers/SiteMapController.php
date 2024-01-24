@@ -11,10 +11,15 @@ class SiteMapController extends Controller
 {
     public function index(): Response
     {
-        $posts = Post::latest()->get();
+        // $posts = Post::latest()->get();
 
-        return response()->view('sitemap',[
-            'posts' =>$posts
-        ])->header('Content-Type','text/xml');
+        // return response()->view('sitemap',[
+        //     'posts' =>$posts
+        // ])->header('Content-Type','text/xml');
+        $posts = Post::latest()->orderByDesc('updated_at')->get();
+
+        return response()->view('sitemap', [
+            'posts' => $posts
+        ])->header('Content-Type', 'text/xml');
     }
 }
