@@ -290,7 +290,7 @@
             console.log(combinedKeywords)
             if(combinedKeywords !== "")
             {
-                $("#keywords").text("(ให้เพิ่ม keyword " + combinedKeywords + " ลงในประกาศเพื่อเพิ่มประสิทธิภาพการค้นหา)");
+                $("#keywords").text("ให้เพิ่ม keyword (" + combinedKeywords + ") ลงในประกาศเพื่อเพิ่มประสิทธิภาพการค้นหา");
             }
             
         }
