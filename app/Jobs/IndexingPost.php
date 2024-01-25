@@ -36,7 +36,11 @@ class IndexingPost implements ShouldQueue
          $client = new Google_Client();
         
         // $client->setAuthConfig(public_path('assets/json/service_account_key_1.json'));
-        $client->setAuthConfig(public_path('assets/json/service_account_key.json'));
+        // $client->setAuthConfig(public_path('assets/json/service_account_key.json'));
+
+        $randomNumber = mt_rand(1, 5);
+        $client->setAuthConfig(public_path("assets/json/service_account_key{$randomNumber}.json"));
+
         $client->addScope('https://www.googleapis.com/auth/indexing');
 
         $httpClient = $client->authorize();
