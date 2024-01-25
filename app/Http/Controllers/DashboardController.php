@@ -46,6 +46,31 @@ class DashboardController extends Controller
             $rawFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
 
             // ย้ายไฟล์ที่อัพโหลดไปยังโฟลเดอร์ images
+            $image->move(public_path('/images/'), $originalName);
+
+            $sPath = public_path('/images/'.$originalName);
+            $manager = new ImageManager(Driver::class);
+            $image = $manager->read($sPath);
+ 
+            $image->cover(150, 150);
+            $webpFilename = $rawFilename.'.webp';
+            $image->toWebp()->save(public_path('/images/'.$webpFilename));
+            unlink($sPath);
+
+            return response()->json(['success' => $webpFilename]); 
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()]);
+        }
+    }
+
+    public function upload_(Request $request)
+    {
+        try {
+            $image = $request->file('file');
+            $originalName = $image->getClientOriginalName();
+            $rawFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+
+            // ย้ายไฟล์ที่อัพโหลดไปยังโฟลเดอร์ images
             $image->move(public_path('images'), $originalName);
 
             // ดาวน์โหลดไฟล์จาก URL
