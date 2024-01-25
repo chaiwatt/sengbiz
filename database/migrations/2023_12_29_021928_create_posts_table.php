@@ -21,10 +21,10 @@ return new class extends Migration
             $table->date('package_end')->nullable();
             $table->unsignedBigInteger('sub_minor_category_id')->nullable();
             $table->longText('title');
+            $table->double('price',20,2)->default(0);
             $table->string('slug');
-            $table->string('org_slug');
-            $table->string('org_title');
-            $table->double('price',20,0)->default(0);
+            $table->string('org_slug')->nullable();
+            $table->string('org_title')->nullable();
             $table->string('description');
             $table->longText('body');
             $table->char('need_broker',1)->default(1);

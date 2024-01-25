@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\PostInfo;
 use App\Models\Province;
-use App\Models\PostPackage;
-use App\Models\MainCategory;
 use App\Models\NearPlace;
+use App\Models\PostImage;
+use App\Models\PostPackage;
+use Illuminate\Support\Str;
+use App\Models\MainCategory;
 use Illuminate\Http\Request;
+use App\Models\PostNearPlace;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Intervention\Image\ImageManager;
@@ -18,6 +22,7 @@ class DashboardController extends Controller
     public function index()
     {
         $user = Auth::user();
+    
         $posts = Post::where('user_id',$user->id)->get();
         
         return view('dashboard.index',[
@@ -52,12 +57,12 @@ class DashboardController extends Controller
             $manager = new ImageManager(Driver::class);
             $image = $manager->read($sPath);
  
-            $image->cover(150, 150);
+            $image->cover(900, 550);
             $webpFilename = $rawFilename.'.webp';
             $image->toWebp()->save(public_path('/images/'.$webpFilename));
             unlink($sPath);
 
-            return response()->json(['success' => $webpFilename]); 
+            return response()->json(['image' => $webpFilename]); 
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()]);
         }
@@ -87,7 +92,7 @@ class DashboardController extends Controller
             $manager = new ImageManager(new Driver());
             $image = $manager->read($filename);
             $image->place(public_path("assets/images/logo.png"));
-            $image->scale(width: 900);
+            // $image->scale(width: 900);
 
             // แปลงไฟล์เป็น WebP และบันทึก
             $webpFilename = "images/{$rawFilename}.webp";
@@ -97,7 +102,7 @@ class DashboardController extends Controller
             // ลบไฟล์ที่อัพโหลดและไฟล์ที่ดาวน์โหลดมา ยกเว้นไฟล์ .webp
             unlink($filename); // ลบไฟล์ที่อัพโหลด
 
-            return response()->json(['success' => $webpFilename]); // ส่งคืนชื่อไฟล์ .webp
+            return response()->json(['image' => $webpFilename]); // ส่งคืนชื่อไฟล์ .webp
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()]);
         }
@@ -105,7 +110,130 @@ class DashboardController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->filename);
+        $user = Auth::user();
+        $title = $request->data['title'];
+        $price = $request->data['price'];
+        $mainCategory = $request->data['mainCategory'];
+        $subCategory = $request->data['subCategory'];
+        $subMinorCategory = $request->data['subMinorCategory'];
+        $province = $request->data['province'];
+        $amphur = $request->data['amphur'];
+        $lat = $request->data['lat'];
+        $lng = $request->data['lng'];
+        $nearPlace = $request->data['nearPlace'];
+        $phone1 = $request->data['phone1'];
+        $phone2 = $request->data['phone2'];
+        $youtube = $request->data['youtube'];
+        $lineAccount = $request->data['lineAccount'];
+        $facebook = $request->data['facebook'];
+        $website = $request->data['website'];
+        $needBroker = $request->data['needBroker'];
+        $percent = $request->data['percent'];
+        $plainContent = $request->data['plainContent'];
+        $content = $request->data['content'];
+        $uploadedImages = $request->data['uploadedImages'];
+
+        // dd($title,$mainCategory,$subCategory,$subMinorCategory,$province,$amphur,$lat,$lng,$nearPlace,$phone1,$phone2,$youtube,$lineAccount,$facebook,$website,$needBroker,$percent,$content,$uploadedImages);
+
+        $postDesctiption = $this->removePropertyCode($plainContent,"รหัสทรัพย์");
+        $postDesctiption =trim(mb_substr($postDesctiption, 0, 100, 'UTF-8'));
+
+        $slug = trim(str_replace('   ', '-', $title), '-');
+        $slug = trim(str_replace('  ', '-', $slug), '-');
+        $slug = trim(str_replace(' ', '-', $slug), '-');
+        $slug = str_replace(',', '', $slug);
+
+
+        $post = Post::create([
+            'user_id' => $user->id,
+            'main_category_id' => $mainCategory,
+            'sub_category_id' => $subCategory,
+            'sub_minor_category_id' => $subMinorCategory,
+            'title' => $title,
+            'slug' => $slug,
+            'price' => $price,
+            'description' => $postDesctiption,
+            'body' => $content,
+            'need_broker' => $needBroker,
+            'percent' => $percent
+        ]);
+
+        foreach ($uploadedImages as $uploadedImage)
+        {
+            PostImage::create([
+                'post_id' => $post->id,
+                'path' => 'images/'.$uploadedImage,
+                'alt' => $title
+            ]);
+        }
+
+        PostInfo::create([
+            'post_id' => $post->id,
+            'lat' => $lat,
+            'lng' => $lng,
+            'phone1' => $phone1,
+            'phone2' => $phone2,
+            'line_account' => $lineAccount,
+            'youtube' => $youtube,
+            'facebook' => $facebook,
+            'website' => $website,
+            'province_id' => $province,
+            'amphur_id' => $amphur,
+        ]);
+        
+        PostNearPlace::create([
+            'post_id' => $post->id,
+            'name' => $nearPlace
+        ]);
+
+       return response()->json(['success' => $post]);
+
+    }
+
+    function getString($defaultTitle,$string,$len)
+    {
+        $wordCount = mb_strlen($string, 'UTF-8');
+        $trimmedResult = $string;
+        if ($wordCount > $len) {
+            $trimmedResult = mb_substr($string, 0, $len, 'UTF-8');
+            $nextSpacePosition = mb_strpos($string, ' ', $len, 'UTF-8');
+            if ($nextSpacePosition !== false) {
+                $trimmedResult = mb_substr($string, 0, $nextSpacePosition, 'UTF-8');
+            }
+            $arr = ['www', 'http', '.com'];
+  
+            foreach ($arr as $substring) {
+                if (stripos($trimmedResult, $substring) !== false) {
+                    $trimmedResult = $defaultTitle;
+                    break;
+                } 
+            }
+        }
+        return $trimmedResult;
+    }
+
+    public function removePropertyCode($text,$keyWord)
+    {
+        $start = mb_strpos($text, $keyWord);
+        
+        if ($start === false) {
+            return $text;
+        }
+
+        $next_digit = $start + mb_strlen($keyWord);
+
+        while (!is_numeric(mb_substr($text, $next_digit, 1, 'utf-8'))) {
+            $next_digit++;
+        }
+
+        while (is_numeric(mb_substr($text, $next_digit, 1, 'utf-8'))) {
+            $next_digit++;
+        }
+
+        $textToRemove = mb_substr($text, $start, $next_digit-$start, 'utf-8');
+        $text = str_replace($textToRemove, '', $text);
+
+        return $text;
     }
 
     public function profile()
@@ -115,4 +243,6 @@ class DashboardController extends Controller
             'user' =>$user
         ]); 
     }
+
+  
 }

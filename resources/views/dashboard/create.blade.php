@@ -1,7 +1,11 @@
 @extends('layouts.main')
 @push('styles')
+<link rel="stylesheet" href="{{ asset('assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
 <script src="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone-min.js"></script>
 <link href="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone.css" rel="stylesheet" type="text/css" />
+@push('styles')
+<link rel="stylesheet" href="{{ asset('assets/plugins/summernote/summernote-bs4.min.css') }}">
+@endpush
 @endpush
 
 @section('content')
@@ -34,7 +38,15 @@
                                 <!-- start form group -->
                                 <div class="">
                                     <label class="required fw-medium mb-2">หัวข้อประกาศ</label>
-                                    <input type="text" class="form-control" name="title">
+                                    <input type="text" class="form-control" id="title" name="title">
+                                </div>
+                                <!-- end /. form group -->
+                            </div>
+                            <div class="col-sm-12">
+                                <!-- start form group -->
+                                <div class="">
+                                    <label class="required fw-medium mb-2">ราคา (ใส่ 0 ถ้าไม่กำหนด)</label>
+                                    <input type="text" class="form-control" id="price" name="price">
                                 </div>
                                 <!-- end /. form group -->
                             </div>
@@ -42,7 +54,7 @@
                                 <div class="">
                                     <label class="required fw-medium mb-2">หมวดหมู่หลัก</label>
                                     <select class="form-select" name="mainCategory" id="mainCategory">
-                                        <option value="{{null}}">==เลือกหมวดหมู่หลัก==</option>
+                                        <option value="">==เลือกหมวดหมู่หลัก==</option>
                                         @foreach ($mainCategories as $mainCategory)
                                         <option value="{{$mainCategory->id}}">{{$mainCategory->name}}</option>
                                         @endforeach
@@ -71,7 +83,7 @@
                                 <div class="">
                                     <label class="required fw-medium mb-2">จังหวัด</label>
                                     <select class="form-select" name="province" id="province">
-                                        <option value="{{null}}">==เลือกจังหวัด==</option>
+                                        <option value="">==เลือกจังหวัด==</option>
                                         @foreach ($provinces as $province)
                                         <option value="{{$province->id}}">{{$province->name}}</option>
                                         @endforeach
@@ -84,7 +96,7 @@
                                 <!-- start form group -->
                                 <div class="">
                                     <label class="required fw-medium mb-2">ละติจูด</label>
-                                    <input type="text" class="form-control" name="lat">
+                                    <input type="text" class="form-control" name="lat" id="lat">
                                 </div>
                                 <!-- end /. form group -->
                             </div>
@@ -92,14 +104,14 @@
                                 <!-- start form group -->
                                 <div class="">
                                     <label class="required fw-medium mb-2">ลองติจูด</label>
-                                    <input type="text" class="form-control" name="lng">
+                                    <input type="text" class="form-control" name="lng" id="lng">
                                 </div>
                                 <!-- end /. form group -->
                             </div>
                             <div class="col-sm-12">
                                 <div class="">
                                     <label class="fw-medium mb-2">สถานที่ใกล้เคียง</label>
-                                    <select class="form-select" name="province" id="province">
+                                    <select class="form-select" name="near_place" id="near_place">
                                         <option value="{{null}}">==เลือกสถานที่ใกล้เคียง==</option>
                                         @foreach ($nearPlaces as $nearPlace)
                                         <option value="{{$nearPlace->name}}">{{$nearPlace->name}}</option>
@@ -119,37 +131,37 @@
                             <div class="col-sm-12">
                                 <div class="">
                                     <label class="required fw-medium mb-2">เบอร์โทรศัพท์1</label>
-                                    <input type="text" class="form-control" name="phone1">
+                                    <input type="text" class="form-control" name="phone1" id="phone1">
                                 </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="">
                                     <label class="fw-medium mb-2">เบอร์โทรศัพท์2</label>
-                                    <input type="text" class="form-control" name="phone2">
+                                    <input type="text" class="form-control" name="phone2" id="phone2">
                                 </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="">
                                     <label class="fw-medium mb-2">Youtube (Watch)</label>
-                                    <input type="text" class="form-control" name="youtube">
+                                    <input type="text" class="form-control" name="youtube" id="youtube">
                                 </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="">
                                     <label class="fw-medium mb-2">Line Id</label>
-                                    <input type="text" class="form-control" name="line_account">
+                                    <input type="text" class="form-control" name="line_account" id="line_account">
                                 </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="">
                                     <label class="fw-medium mb-2">Facebook</label>
-                                    <input type="text" class="form-control" name="facebook">
+                                    <input type="text" class="form-control" name="facebook" id="facebook">
                                 </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="">
                                     <label class="fw-medium mb-2">เว็บไซต์</label>
-                                    <input type="text" class="form-control" name="website">
+                                    <input type="text" class="form-control" name="website" id="website">
                                 </div>
                             </div>
 
@@ -166,8 +178,8 @@
                             <div class="col-sm-12">
                                 <div class="">
                                     <label class="fw-medium mb-2">ต้องการนายหน้า</label>
-                                    <select class="form-select" id="need_broker" name="need_broker">
-                                        <option selected="1">ไม่ต้องการ</option>
+                                    <select class="form-select" id="need_broker" name="need_broker" id="need_broker">
+                                        <option value="1">ไม่ต้องการ</option>
                                         <option value="2">ต้องการ</option>
                                     </select>
                                 </div>
@@ -176,7 +188,7 @@
                                 <!-- start form group -->
                                 <div class="">
                                     <label class="required fw-medium mb-2">เปอร์เซนต์</label>
-                                    <input type="text" class="form-control" name="percent" value="3.0">
+                                    <input type="text" class="form-control" name="percent" id="percent" value="3.0">
                                 </div>
                                 <!-- end /. form group -->
                             </div>
@@ -195,7 +207,7 @@
                                     <label class="required fw-medium mb-2">รายละเอียด <span class="text-danger"
                                             id="keywords"></span>
                                     </label>
-                                    <textarea class="form-control" rows="10"
+                                    <textarea class="form-control" id="summernote" rows="10"
                                         placeholder="เขียนบทความอย่างน้อย 1,000 คำ เพื่อให้เป็นประโยชน์ต่อผู้ค้นหาใน Google และไม่จำเป็นต้องระบุข้อมูลติดต่อที่กรอกไปแล้ว (ข้อมูลติดต่อ / โซเชียลมีเดีย)"></textarea>
                                     <div class="form-text">เพื่อให้การค้นหาประกาศของท่านปรากฏในอันดับต้น ๆ ของผลการค้นหา
                                         ท่านควรเขียนประกาศให้แตกต่างจากประกาศที่ท่านเคยลงประกาศมาแล้วจากแหล่งประกาศอื่น
@@ -205,7 +217,7 @@
 
                                 <div class="mt-3">
 
-                                    <div class="col-md-12">
+                                    <div class="col-md-12" id="images_container">
                                         <label class="required fw-medium mb-2">รูปภาพ (ให้อัพโหลดอย่างน้อย 3 รูป ขนาด
                                             900x550 พิกเซล)</label>
                                         <form action="{{route('dashboard.upload')}}" method="post"
@@ -226,28 +238,39 @@
                     </div>
                 </div>
                 <div class="col-12 mt-4 pt-lg-4 pt-3 text-left">
-                    <a href="blog.html" class="btn btn-lg btn-primary">บันทึกและเผยแพร่</a>
+                    <button id="public" class="btn btn-lg btn-primary">บันทึกและเผยแพร่</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 @push('scripts')
-
+<script src="{{asset('assets/plugins/summernote/summernote-bs4.min.js')}}"></script>
+<script src="{{ asset('assets/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
 <script type="module" src="{{ asset('assets/js/helper/api.js?v=1') }}">
 </script>
 <script>
+    var uploadedImages = [];
     window.params = {
             subCategoryRoute: '{{ route('dashboard.api.sub-category') }}',        
             subMinorCategoryRoute: '{{ route('dashboard.api.sub-minor-category') }}',
             amphurRoute: '{{ route('dashboard.api.amphur') }}',
+            storeRoute: '{{ route('dashboard.store') }}',
+            deleteImageRoute: '{{ route('dashboard.api.delete-image') }}',
             url: '{{ url('/') }}',
-            token: $('meta[name="csrf-token"]').attr('content')
+            token: $('meta[name="csrf-token"]').attr('content'),
+            uploadedImages: uploadedImages
         };
 
-  
-        
     $(document).ready(function() {
+        $('#summernote').summernote({
+        height: 300,
+        toolbar: [
+        ['para', ['ul', 'ol']],
+        ],
+        disableDragAndDrop: true // ปิดการลากและวาง
+
+    });
       $(window).scroll(function() {
         // ตรวจสอบว่า div ที่มี ID เท่ากับ "targetDiv" อยู่ในมุมมองหรือไม่
         var targetDivTop = $("#targetDiv").offset().top;
@@ -298,11 +321,21 @@
         thumbnailWidth: 200,
         maxFilesize: 1,
         dictDefaultMessage: '<span class="text-secondary">ลากและวางไฟล์รูปที่นี่</span>',
+        dictFileTooBig: "ขนาดไฟล์ต้องไม่เกิน 1MB",
         acceptedFiles: ".jpeg,.jpg,.png,.gif",
+        addRemoveLinks: true,
+        dictRemoveFile: 'ลบไฟล์',
         init: function() {
             this.on("success", function(file, response) {
-                console.log(response);
+                uploadedImages.push(response.image);
 
+            });
+            this.on("removedfile", function(file) {
+                let name = file.name;
+                // console.log(name);
+                removeFileFromServer(file.name)
+            // ลบไฟล์จากเซิร์ฟเวอร์
+            // ...
             });
         }
     });
@@ -317,6 +350,37 @@
         }
     });
 
+
+function removeFileFromServer(imageFile)
+{
+    var token = window.params.token
+    var deleteImageUrl = window.params.deleteImageRoute
+    var data = {
+        'imageFile': imageFile
+    }
+    postRequest(data, deleteImageUrl, token)
+}
+
+function postRequest(dataSet, url, token) {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: url,
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': token
+            },
+            data: {
+                data: dataSet
+            },
+            success: function (data) {
+                resolve(data)
+            },
+            error: function (error) {
+                reject(error)
+            },
+        })
+    })
+}
 </script>
 @endpush
 @endsection

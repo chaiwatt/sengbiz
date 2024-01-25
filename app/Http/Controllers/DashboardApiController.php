@@ -37,4 +37,21 @@ class DashboardApiController extends Controller
             'amphurs' => $amphurs
             ])->render();
     }
+
+    public function deleteImage(Request $request)
+    {
+        $fname = "images/" . $request->data['imageFile'];
+
+        $rawname = substr($fname, 0, strrpos($fname, "."));
+
+
+        $filename = public_path($rawname.".webp");
+
+        if (file_exists($filename)) {
+            unlink($filename);
+            return response()->json(['success' => 'successfully removed']);
+        } else {
+            return response()->json(['error' => 'file not exist']);
+        }
+    }
 }

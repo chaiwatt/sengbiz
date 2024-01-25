@@ -117,18 +117,12 @@
                     <a class="nav-link" href="{{route('login')}}">เข้าสู่ระบบ</a>
                     @else
                     <a class="nav-link" href="{{route('home')}}">แดชบอร์ด</a>
-                    {{--
-                <li><a class="nav-link" href="{{ route('logout') }}"
-                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">ออกจากระบบ</a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form> --}}
+
                 </li>
                 @endif
                 </li>
             </ul>
             <div class="d-sm-none">
-                <!-- start button -->
                 <a href="#" class="btn btn-primary d-flex gap-2 hstack justify-content-center rounded-3"
                     aria-label="signin">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -140,7 +134,6 @@
                     <div class="vr d-none d-sm-inline-block"></div>
                     <span>Add Listing</span>
                 </a>
-                <!-- end /. button -->
             </div>
         </div>
     </div>

@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         
-        $this->call(NearPlacesTableSeeder::class);
+        
         $this->call(PostPackagesTableSeeder::class);
         $this->call(PriceRangesTableSeeder::class);
         $this->call(ProvincesTableSeeder::class);
@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SubMinorCategoriesTableSeeder::class);
         $this->call(PriceRangesTableSeeder::class);
         $this->call(UsersTableSeeder::class);
+        $this->call(NearPlacesTableSeeder::class);
     
     }
 }

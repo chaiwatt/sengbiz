@@ -47,17 +47,21 @@ Auth::routes();
 
 // Route::get('', [PostController::class, 'index'])->name('index');
 // Route::get('/{slug}', [PostController::class, 'view'])->name('view');
-
-Route::group(['prefix' => 'dashboard'], function () {
-    Route::get('home', [DashboardController::class, 'index'])->name('home');
-    Route::get('create', [DashboardController::class, 'create'])->name('dashboard.create');
-    Route::post('upload', [DashboardController::class, 'upload'])->name('dashboard.upload');
-    Route::post('store', [DashboardController::class, 'store'])->name('dashboard.store');
-    Route::get('profile', [DashboardController::class, 'profile'])->name('dashboard.profile');
-    Route::group(['prefix' => 'api'], function () {
-        Route::post('sub-category', [DashboardApiController::class, 'subCategory'])->name('dashboard.api.sub-category');
-        Route::post('sub-minor-category', [DashboardApiController::class, 'subMinorCategory'])->name('dashboard.api.sub-minor-category');
-        Route::post('amphur', [DashboardApiController::class, 'amphur'])->name('dashboard.api.amphur');
+Route::middleware('auth')->group(function () {
+    Route::group(['prefix' => 'dashboard'], function () {
+        Route::get('home', [DashboardController::class, 'index'])->name('home');
+        Route::get('create', [DashboardController::class, 'create'])->name('dashboard.create');
+        Route::post('upload', [DashboardController::class, 'upload'])->name('dashboard.upload');
+        Route::post('store', [DashboardController::class, 'store'])->name('dashboard.store');
+        Route::get('profile', [DashboardController::class, 'profile'])->name('dashboard.profile');
+        Route::group(['prefix' => 'api'], function () {
+            Route::post('sub-category', [DashboardApiController::class, 'subCategory'])->name('dashboard.api.sub-category');
+            Route::post('sub-minor-category', [DashboardApiController::class, 'subMinorCategory'])->name('dashboard.api.sub-minor-category');
+            Route::post('amphur', [DashboardApiController::class, 'amphur'])->name('dashboard.api.amphur');
+            Route::post('delete-image', [DashboardApiController::class, 'deleteImage'])->name('dashboard.api.delete-image');
+            Route::post('delete-post-image', [DashboardApiController::class, 'deletePostImage'])->name('dashboard.api.delete-post-image');
+            Route::post('post-images', [DashboardApiController::class, 'postImage'])->name('dashboard.api.post-images');
+        });
     });
 });
 // Route::get('test-post-to-facebook', [PostController::class, 'testPostToFacebook'])->name('test-post-to-facebook');
