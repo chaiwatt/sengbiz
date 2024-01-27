@@ -9,11 +9,15 @@ use GuzzleHttp\Client;
 use App\Models\PostInfo;
 use App\Models\PostView;
 use App\Models\Province;
+use App\Rules\ReCaptcha;
 use App\Models\PriceRange;
 use App\Models\SubCategory;
 use App\Models\MainCategory;
 use Illuminate\Http\Request;
+use App\Models\ContactMessage;
 use App\Models\SubMinorCategory;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -251,5 +255,41 @@ class PostController extends Controller
 
     //     return json_decode($response->getBody(), true);
     // }
+
+    public function contactStore(Request $request): RedirectResponse
+    {
+
+        $validator = $this->validateFormData($request);
+        
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $name = $request->name;
+        $email = $request->email;
+        $phone = $request->phone;
+        $message = $request->message;
+
+        ContactMessage::create([
+            'name' => $name,
+            'email' => $email,
+            'phone' => $phone,
+            'message' => $message,
+        ]);
+  
+        return redirect()->back()->with(['success' => 'ส่งข้อความสำเร็จ']);
+    }
+
+    function validateFormData($request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'phone' => 'required|numeric',
+            'message' => 'required',
+            'g-recaptcha-response' => ['required', new ReCaptcha]
+        ]);
+        
+        return $validator;
+    } 
 
 }

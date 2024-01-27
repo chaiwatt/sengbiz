@@ -5,14 +5,14 @@
         </a>
         <div class="d-flex order-lg-2">
             <!-- start button -->
-            <a href="#"
+            {{-- <a href="#"
                 class="d-flex align-items-center justify-content-center p-0 rounded-5 btn-user position-relative"
                 data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
                 data-bs-title="envelope-count" aria-label="0">
                 <i class="fa-solid fa-envelope"></i>
                 <span
-                    class="align-items-center bg-primary d-flex end-0 fs-11 justify-content-center nav-count position-absolute rounded-circle text-white">0</span>
-            </a>
+                    class="align-items-center bg-primary d-flex end-0 fs-11 justify-content-center nav-count position-absolute rounded-circle text-white">{{$post->contactMessages->count()}}</span>
+            </a> --}}
 
             <a href="add-listing.html" class="btn btn-primary d-none d-sm-flex fw-medium gap-2 hstack rounded-5"
                 aria-label="ประกาศฟรี">

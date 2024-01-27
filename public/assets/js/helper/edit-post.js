@@ -57,8 +57,9 @@ $(document).on('change', '#province', function (e) {
 });
 
 $(document).on('click', '#public', function (e) {
-    // var provinceId = $(this).val();
-    var storeUrl = window.params.storeRoute;
+
+    var updateUrl = window.params.updateRoute;
+    var postId = $("#post_id").val();
     var title = $("#title").val() || null;
     var price = $("#price").val() || 0;
     var mainCategory = $("#mainCategory").val() || null;
@@ -78,9 +79,10 @@ $(document).on('click', '#public', function (e) {
     var needBroker = $("#need_broker").val();
     var percent = $("#percent").val() || null;
     var htmlContent = $('#summernote').summernote('code');
-    var uploadedImages = window.params.uploadedImages
-
+    // var coutFiles = $('#count').val();
+    var uploadedImages = window.params.uploadedImages;
     var plainContent = $('<div>').html(htmlContent).text();
+
 
     if (title === null) {
         Swal.fire(
@@ -193,16 +195,18 @@ $(document).on('click', '#public', function (e) {
         return
     }
 
-    if (uploadedImages.length < 3) {
-        Swal.fire(
-            'ผิดพลาด',
-            'กรุณาอัพโหลดรูปอย่างน้อย 3 รูป',
-            'warning'
-        )
-        return
-    }
+    // if (coutFiles < 3) {
+       
+    //     Swal.fire(
+    //         'ผิดพลาด',
+    //         'กรุณาอัพโหลดรูปอย่างน้อย 3 รูป',
+    //         'warning'
+    //     )
+    //     return
+    // }
 
     var data = {
+        'postId': postId,
         'title': title,
         'price': price,
         'mainCategory': mainCategory,
@@ -226,16 +230,11 @@ $(document).on('click', '#public', function (e) {
         'uploadedImages' : uploadedImages,
     }
 
-    // console.log(data);
+    // console.log(uploadedImages);
 
-    RequestApi.postRequest(data, storeUrl, token).then(response => {
-        console.log(response)
-        // if (response !== "") {
-        //     $('#amphur_container').css('display', '');
-        //     $('#amphur_container').html(response);
-        // } else {
-        //     $('#amphur_container').css('display', 'none'); 
-        // }
+    RequestApi.postRequest(data, updateUrl, token).then(response => {
+        var url = window.params.url + '/dashboard/home' 
+        window.location.href = url; // Redirect to the generated URL
     }).catch(error => { })
 
 });

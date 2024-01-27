@@ -84,7 +84,7 @@
     <!-- start header -->
     <div class="bg-white sticky-top header">
         <!-- start navbar -->
-        @include('layouts.partial.nav',['mainCategories' => $mainCategories])
+        @include('layouts.partial.nav',['mainCategories' => $mainCategories,'post' => $post])
     </div>
 
     @yield('content')

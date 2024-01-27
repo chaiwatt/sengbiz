@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Amphur;
+use App\Models\PostImage;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use App\Models\SubMinorCategory;
@@ -53,5 +54,37 @@ class DashboardApiController extends Controller
         } else {
             return response()->json(['error' => 'file not exist']);
         }
+    }
+
+    public function deletePostImage(Request $request)
+    {
+        $imageFile = $request->data['imageFile'];
+        $postId = $request->data['postId'];
+
+
+        if (strpos($imageFile, "images/") !== false) {
+            PostImage::where('post_id',$postId)->where('path',$imageFile)->delete();
+            $filename = public_path($imageFile);
+        } else {
+            $fname = "images/" . $request->data['imageFile'];
+            $rawname = substr($fname, 0, strrpos($fname, "."));
+            $filename = public_path($rawname.".webp");
+        }
+
+        if (file_exists($filename)) {
+            unlink($filename);
+            return response()->json(['success' => 'successfully removed']);
+        } else {
+            return response()->json(['error' => 'file not exist']);
+        }
+            
+    }
+
+    public function postImage(Request $request)
+    {
+        $postId = $request->data['postId'];
+        
+        $postImages = PostImage::where('post_id',$postId)->get();
+        return response()->json(['images' => $postImages]);
     }
 }

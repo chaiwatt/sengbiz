@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
             $table->string('path')->nullable();
             $table->string('alt')->nullable();
+            $table->double('size',10,2)->default(0);
             $table->timestamps();
         });
     }

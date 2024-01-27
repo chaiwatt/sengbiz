@@ -52,7 +52,9 @@ Route::middleware('auth')->group(function () {
         Route::get('home', [DashboardController::class, 'index'])->name('home');
         Route::get('create', [DashboardController::class, 'create'])->name('dashboard.create');
         Route::post('upload', [DashboardController::class, 'upload'])->name('dashboard.upload');
+        Route::post('update', [DashboardController::class, 'update'])->name('dashboard.update');
         Route::post('store', [DashboardController::class, 'store'])->name('dashboard.store');
+        Route::get('view/{id}', [DashboardController::class, 'view'])->name('dashboard.view');
         Route::get('profile', [DashboardController::class, 'profile'])->name('dashboard.profile');
         Route::group(['prefix' => 'api'], function () {
             Route::post('sub-category', [DashboardApiController::class, 'subCategory'])->name('dashboard.api.sub-category');
@@ -69,6 +71,7 @@ Route::get('indexing', [GoogleIndexingController::class, 'index'])->name('indexi
 Route::get('search', [PostController::class, 'search'])->name('search');
 Route::get('/{slug}', [PostController::class, 'view'])->name('view');
 Route::get('', [PostController::class, 'index'])->name('index');
+Route::post('contact-store', [PostController::class, 'contactStore'])->name('contact-store');
 
 
 

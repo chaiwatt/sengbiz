@@ -8,7 +8,13 @@
     <div class="container">
         <div class="justify-content-between row align-items-center g-4">
             <div class="col-lg col-xxl-8">
-                <h1 class="h2 page-header-title fw-semibold">{{$post->title}}</h1>
+                <h1 class="h2 page-header-title fw-semibold">{{$post->title}}
+                    @if (Auth::check())
+                    {{-- <i class="fa-solid fa-fan fs-18"></i> --}}
+                    <a href="{{route('dashboard.view',['id' => $post->id])}}" class="text-info"><i
+                            class="fa-solid fa-edit fs-18"></i></a>
+                    @endif
+                </h1>
                 <ul class="list-inline list-separator d-flex align-items-center mb-2">
 
                     @if (@$post->mainCategory->name !== null)
@@ -134,8 +140,79 @@
 
                     @endif
 
-                </div>
+                    @if (@$post->postInfo->youtube !== null)
+                    <p class="mt-4">
+                        คลิกที่ยูทูป
+                    </p>
+                    <a class="popup-youtube" href="{{$post->postInfo->youtube}}">
+                        <img src="{{asset('assets/images/youtube-cover/youtube.webp')}}" alt="map" aria-label="map"
+                            style="max-width: 600px" decoding="async">
+                    </a>
 
+                    @endif
+
+
+
+                </div>
+                <hr>
+                <div class="mb-4">
+                    <h4 class="fw-semibold fs-3 mb-4">ข้อมูล <span class="font-caveat text-primary">ติดต่อ</span>
+                    </h4>
+                    <div class="row g-4">
+                        <div class="col-auto col-lg-12">
+                            <!-- Start Amenities -->
+                            <div class="d-flex align-items-center text-dark">
+                                <div class="flex-shrink-0">
+                                    <i class="fa-solid fa-phone fs-18"></i>
+                                </div>
+                                <div class="flex-grow-1 fs-16 fw-medium ms-3">{{$post->postInfo->phone1}}
+                                    @if (@$post->postInfo->phone2 !== null)
+                                    , {{$post->postInfo->phone2}}
+                                    @endif
+                                </div>
+                            </div>
+                            <!-- /. End Amenities -->
+                        </div>
+                        @if (@$post->postInfo->line_account !== null)
+                        <div class="col-auto col-lg-12">
+                            <!-- Start Amenities -->
+                            <div class="d-flex align-items-center text-dark">
+                                <div class="flex-shrink-0">
+                                    <i class="fa-solid fa-brands fa-line fs-18"></i>
+                                </div>
+                                <div class="flex-grow-1 fs-16 fw-medium ms-3">{{$post->postInfo->line_account}}</div>
+                            </div>
+                            <!-- /. End Amenities -->
+                        </div>
+                        @endif
+                        @if (@$post->postInfo->facebook !== null)
+                        <div class="col-auto col-lg-12">
+                            <!-- Start Amenities -->
+                            <div class="d-flex align-items-center text-dark">
+                                <div class="flex-shrink-0">
+                                    {{-- <i class="fa-solid fa-fan fs-18"></i> --}}
+                                    <i class="fa-solid fa-brands fa-facebook fs-18"></i>
+                                </div>
+                                <div class="flex-grow-1 fs-16 fw-medium ms-3">{{$post->postInfo->facebook}}
+                                </div>
+                            </div>
+                            <!-- /. End Amenities -->
+                        </div>
+                        @endif
+                        @if (@$post->postInfo->website !== null)
+                        <div class="col-auto col-lg-12">
+                            <!-- Start Amenities -->
+                            <div class="d-flex align-items-center text-dark">
+                                <div class="flex-shrink-0">
+                                    <i class="fa-solid fa-globe fs-18"></i>
+                                </div>
+                                <div class="flex-grow-1 fs-16 fw-medium ms-3">{{$post->postInfo->website}}</div>
+                            </div>
+                            <!-- /. End Amenities -->
+                        </div>
+                        @endif
+                    </div>
+                </div>
                 <div class="d-flex mb-4 border-bottom pb-4 " style="display: none !important">
                     {{-- <div class="d-flex mb-4 border-bottom pb-4 "> --}}
                         <div class="row mt-3 g-2 review-image zoom-gallery">
@@ -174,7 +251,6 @@
                             aria-label="stretched-link"></a>
                         --}}
                         <div class="card-body p-0">
-
                             <div class="g-0 row">
                                 <div class="bg-white col-lg-5 col-md-5 col-xl-4 position-relative">
                                     <div class="card-image-hover dark-overlay h-100 overflow-hidden position-relative">
@@ -218,7 +294,6 @@
                                             {{number_format($featurePost->price)}}
                                         </div>
                                         @endif
-
 
                                     </div>
                                 </div>
@@ -372,13 +447,18 @@
                                 @endif</span>
                         </h2>
                         {{-- --}}
-                        <form class="row g-4">
+                        <form id="contactForm" class="row g-4" method="POST" action="{{route('contact-store')}}">
+                            {{ csrf_field() }}
                             <div class="col-sm-12">
                                 <!-- start form group -->
                                 <div class="form-group">
                                     <label class="required fw-medium mb-2">ชื่อ-สกุล</label>
-                                    <input type="text" class="form-control" aria-label="ชื่อ-สกุล" placeholder=""
-                                        required="">
+                                    <input type="text" class="form-control @error('name')
+                        is-invalid
+                        @enderror" name="name" aria-label="ชื่อ-สกุล" placeholder="" required="">
+                                    @error('name')
+                                    <div class="invalid-feedback text-start text-danger">กรอกชื่อ-สกุลให้ถูกต้อง</div>
+                                    @enderror
                                 </div>
                                 <!-- end /. form group -->
                             </div>
@@ -386,7 +466,13 @@
                                 <!-- start form group -->
                                 <div class="form-group">
                                     <label class="required fw-medium mb-2">เบอร์โทรศัพท์</label>
-                                    <input type="text" class="form-control" aria-label="เบอร์โทรศัพท์" placeholder="">
+                                    <input type="text" class="form-control @error('phone')
+                        is-invalid
+                        @enderror" name="phone" aria-label="เบอร์โทรศัพท์" placeholder="">
+                                    @error('phone')
+                                    <div class="invalid-feedback text-start text-danger">กรอกเบอร์โทรศัพท์ให้ถูกต้อง
+                                    </div>
+                                    @enderror
                                 </div>
                                 <!-- end /. form group -->
                             </div>
@@ -394,7 +480,12 @@
                                 <!-- start form group -->
                                 <div class="form-group">
                                     <label class="required fw-medium mb-2">อีเมล</label>
-                                    <input type="text" class="form-control" aria-label="อีเมล" placeholder="">
+                                    <input type="text" class="form-control @error('email')
+                        is-invalid
+                        @enderror" name="email" aria-label="อีเมล" placeholder="">
+                                    @error('email')
+                                    <div class="invalid-feedback text-start text-danger">กรอกอีเมลให้ถูกต้อง</div>
+                                    @enderror
                                 </div>
                                 <!-- end /. form group -->
                             </div>
@@ -402,11 +493,19 @@
                                 <!-- start form group -->
                                 <div class="form-group">
                                     <label class="required fw-medium mb-2">ข้อความ</label>
-                                    <textarea class="form-control" rows="7" aria-label="ข้อความถึงผู้ประกาศ"
+                                    <textarea class="form-control @error('message')
+                        is-invalid
+                        @enderror" rows="7" name="message" aria-label="ข้อความถึงผู้ประกาศ"
                                         placeholder="ข้อความถึงผู้ประกาศ"></textarea>
+                                    @error('message')
+                                    <div class="invalid-feedback text-start text-danger">กรอกข้อความถึงผู้ประกาศ</div>
+                                    @enderror
                                 </div>
                                 <!-- end /. form group -->
                             </div>
+                            @if ($errors->has('g-recaptcha-response'))
+                            <span class="text-danger">ข้อมูล Captcha ไม่ถูกต้อง กรุณาส่งใหม่อีกครั้ง</span>
+                            @endif
                             <div class="col-sm-12">
                                 <button type="submit" class="btn btn-primary w-100">ส่ง</button>
                                 {{-- <div class="small text-center mt-2">Powered by OpenTable</div> --}}
@@ -435,6 +534,59 @@
                   fixedContentPos: false
                 });
               });
+
+           $('#contactForm').submit(function(event) {
+            event.preventDefault();
+
+            var name = $('input[name="name"]').val();
+            
+            if (!name.trim()) {
+                alert('กรุณากรอกชื่อสกุล');
+                return;
+            }
+
+            var email = $('input[name="email"]').val();
+            
+            if (!email.trim()) {
+                alert('กรุณากรอกอีเมล');
+                return;
+            } else if (!isValidEmail(email)) {
+                alert('กรุณากรอกอีเมลที่ถูกต้อง');
+                return;
+            }
+            
+            var phone = $('input[name="phone"]').val();
+            if (!phone.trim()) {
+                alert('กรุณากรอกเบอร์โทรศัพท์');
+                return;
+            } else if (!isValidPhoneNumber(phone)) {
+                alert('กรุณากรอกเบอร์โทรศัพท์ที่ถูกต้อง');
+            return;
+            }
+            
+            var message = $('textarea[name="message"]').val();
+            if (!message.trim()) {
+                alert('กรุณากรอกข้อความ');
+                return;
+            }
+            
+            grecaptcha.ready(function() {
+                grecaptcha.execute("{{ env('GOOGLE_RECAPTCHA_KEY') }}", {action: 'subscribe_newsletter'}).then(function(token) {
+                    $('#contactForm').prepend('<input type="hidden" name="g-recaptcha-response" value="' + token + '">');
+                    $('#contactForm').unbind('submit').submit();
+                });;
+            });
+        });
+    
+        function isValidEmail(email) {
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+            
+        function isValidPhoneNumber(phone) {
+            var phoneRegex = /^[0-9]+$/;
+            return phoneRegex.test(phone);
+        }       
     </script>
     @endpush
     @endsection

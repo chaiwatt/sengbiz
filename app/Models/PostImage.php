@@ -10,7 +10,7 @@ class PostImage extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['post_id','alt','path']; // ตัวอย่าง
+    protected $fillable = ['post_id','alt','path','size']; // ตัวอย่าง
 
     public function post()
     {

@@ -247,7 +247,7 @@
 @push('scripts')
 <script src="{{asset('assets/plugins/summernote/summernote-bs4.min.js')}}"></script>
 <script src="{{ asset('assets/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
-<script type="module" src="{{ asset('assets/js/helper/api.js?v=1') }}">
+<script type="module" src="{{ asset('assets/js/helper/create-post.js?v=1') }}">
 </script>
 <script>
     var uploadedImages = [];
@@ -268,7 +268,17 @@
         toolbar: [
         ['para', ['ul', 'ol']],
         ],
-        disableDragAndDrop: true // ปิดการลากและวาง
+        disableDragAndDrop: true, // ปิดการลากและวาง
+        callbacks: {
+        onPaste: function (e) {
+        var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('text/plain');
+        e.preventDefault();
+        document.execCommand('insertText', false, bufferText);
+        },
+        onImageUpload: function (data) {
+        data.pop();
+        }
+        }
 
     });
       $(window).scroll(function() {
@@ -320,22 +330,20 @@
     var dropzone = new Dropzone('#image-upload', {
         thumbnailWidth: 200,
         maxFilesize: 1,
+        // maxFiles: 5,
         dictDefaultMessage: '<span class="text-secondary">ลากและวางไฟล์รูปที่นี่</span>',
         dictFileTooBig: "ขนาดไฟล์ต้องไม่เกิน 1MB",
+        dictMaxFilesExceeded: "อัพโหลดได้สูงสุด 5 ไฟล์",
         acceptedFiles: ".jpeg,.jpg,.png,.gif",
         addRemoveLinks: true,
         dictRemoveFile: 'ลบไฟล์',
         init: function() {
             this.on("success", function(file, response) {
-                uploadedImages.push(response.image);
-
+                uploadedImages.push({ image: response.image, size: response.size });
             });
             this.on("removedfile", function(file) {
                 let name = file.name;
-                // console.log(name);
-                removeFileFromServer(file.name)
-            // ลบไฟล์จากเซิร์ฟเวอร์
-            // ...
+                deleteImage(file.name)
             });
         }
     });
@@ -350,15 +358,16 @@
         }
     });
 
-
-function removeFileFromServer(imageFile)
+function deleteImage(imageFile)
 {
     var token = window.params.token
     var deleteImageUrl = window.params.deleteImageRoute
     var data = {
         'imageFile': imageFile
     }
-    postRequest(data, deleteImageUrl, token)
+    postRequest(data, deleteImageUrl, token).then(response => {
+    
+    }).catch(error => { })
 }
 
 function postRequest(dataSet, url, token) {

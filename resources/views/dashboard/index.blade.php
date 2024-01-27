@@ -37,16 +37,17 @@
                                     <tbody>
                                         @foreach ($posts as $post)
                                         <tr>
-                                            <td>{{mb_substr($post->title, 0, 30, 'UTF-8')}}</td>
-                                            <td>{{$post->mainCategory->name}}</td>
-                                            <td class="text-center">
-
-
-                                                <span>{{$post->postPackage->name}}</span>
+                                            <td>
+                                                <a href="{{url('/'.$post->slug)}}">{{mb_substr($post->title, 0, 30,
+                                                    'UTF-8')}}</a>
 
                                             </td>
+                                            <td>{{$post->mainCategory->name}}</td>
+                                            <td class="text-center">
+                                                <span>{{$post->postPackage->name}}</span>
+                                            </td>
                                             <td class="text-end">
-                                                <a href="bookings.html"
+                                                <a href="{{route('dashboard.view',['id' => $post->id])}}"
                                                     class="btn btn-success fw-medium btn-sm d-inline-flex align-items-center justify-content-center gap-1 ">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                         fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">

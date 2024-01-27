@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Post;
 use App\Models\PostInfo;
 use App\Models\Province;
 use App\Models\NearPlace;
 use App\Models\PostImage;
 use App\Models\PostPackage;
+use App\Models\SubCategory;
 use Illuminate\Support\Str;
 use App\Models\MainCategory;
 use Illuminate\Http\Request;
@@ -62,7 +64,9 @@ class DashboardController extends Controller
             $image->toWebp()->save(public_path('/images/'.$webpFilename));
             unlink($sPath);
 
-            return response()->json(['image' => $webpFilename]); 
+            $fileSize = filesize(public_path('/images/'.$webpFilename));
+
+            return response()->json(['image' => $webpFilename,'size' =>  round($fileSize / (1024 * 1024), 2, PHP_ROUND_HALF_UP)]); 
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()]);
         }
@@ -95,7 +99,8 @@ class DashboardController extends Controller
             // $image->scale(width: 900);
 
             // แปลงไฟล์เป็น WebP และบันทึก
-            $webpFilename = "images/{$rawFilename}.webp";
+            $timestamp = Carbon::now()->timestamp;
+            $webpFilename = "images/{$rawFilename}_{$timestamp}.webp";
             $output = public_path($webpFilename);
             $image->toWebp()->save($output);
 
@@ -133,8 +138,6 @@ class DashboardController extends Controller
         $content = $request->data['content'];
         $uploadedImages = $request->data['uploadedImages'];
 
-        // dd($title,$mainCategory,$subCategory,$subMinorCategory,$province,$amphur,$lat,$lng,$nearPlace,$phone1,$phone2,$youtube,$lineAccount,$facebook,$website,$needBroker,$percent,$content,$uploadedImages);
-
         $postDesctiption = $this->removePropertyCode($plainContent,"รหัสทรัพย์");
         $postDesctiption =trim(mb_substr($postDesctiption, 0, 100, 'UTF-8'));
 
@@ -162,7 +165,8 @@ class DashboardController extends Controller
         {
             PostImage::create([
                 'post_id' => $post->id,
-                'path' => 'images/'.$uploadedImage,
+                'path' => 'images/'.$uploadedImage['image'],
+                'size' => $uploadedImage['size'],
                 'alt' => $title
             ]);
         }
@@ -188,6 +192,107 @@ class DashboardController extends Controller
 
        return response()->json(['success' => $post]);
 
+    }
+
+    public function update(Request $request)
+    {
+        $postId = $request->data['postId'];
+        
+        $title = $request->data['title'];
+        $price = $request->data['price'];
+        $mainCategory = $request->data['mainCategory'];
+        $subCategory = $request->data['subCategory'];
+        $subMinorCategory = $request->data['subMinorCategory'];
+        $province = $request->data['province'];
+        $amphur = $request->data['amphur'];
+        $lat = $request->data['lat'];
+        $lng = $request->data['lng'];
+        $nearPlace = $request->data['nearPlace'];
+        $phone1 = $request->data['phone1'];
+        $phone2 = $request->data['phone2'];
+        $youtube = $request->data['youtube'];
+        $lineAccount = $request->data['lineAccount'];
+        $facebook = $request->data['facebook'];
+        $website = $request->data['website'];
+        $needBroker = $request->data['needBroker'];
+        $percent = $request->data['percent'];
+        $plainContent = $request->data['plainContent'];
+        $content = $request->data['content'];
+    
+        $postDesctiption = $this->removePropertyCode($plainContent,"รหัสทรัพย์");
+        $postDesctiption =trim(mb_substr($postDesctiption, 0, 100, 'UTF-8'));
+
+        $slug = trim(str_replace('   ', '-', $title), '-');
+        $slug = trim(str_replace('  ', '-', $slug), '-');
+        $slug = trim(str_replace(' ', '-', $slug), '-');
+        $slug = str_replace(',', '', $slug);
+
+
+        Post::find($postId)->update([
+            'main_category_id' => $mainCategory,
+            'sub_category_id' => $subCategory,
+            'sub_minor_category_id' => $subMinorCategory,
+            'title' => $title,
+            'slug' => $slug,
+            'price' => $price,
+            'description' => $postDesctiption,
+            'body' => $content,
+            'need_broker' => $needBroker,
+            'percent' => $percent
+        ]);
+
+        if (isset($request->data['uploadedImages'])) {
+            $uploadedImages = $request->data['uploadedImages'];
+            if(count($uploadedImages) != 0)
+            {
+                foreach ($uploadedImages as $uploadedImage)
+                {
+                    PostImage::create([
+                        'post_id' => $postId,
+                        'path' => 'images/'.$uploadedImage['image'],
+                        'size' => $uploadedImage['size'],
+                        'alt' => $title
+                    ]);
+                }
+            }
+        }        
+   
+        PostInfo::where('post_id',$postId)->update([
+            'lat' => $lat,
+            'lng' => $lng,
+            'phone1' => $phone1,
+            'phone2' => $phone2,
+            'line_account' => $lineAccount,
+            'youtube' => $youtube,
+            'facebook' => $facebook,
+            'website' => $website,
+            'province_id' => $province,
+            'amphur_id' => $amphur,
+        ]);
+        
+        PostNearPlace::where('post_id',$postId)->update([
+            'name' => $nearPlace
+        ]);
+
+       return response()->json(['success' => 'success']);
+
+    }
+
+    public function view($id)
+    {
+        $post = Post::find($id);
+        $provinces = Province::all();
+        $postPackages = PostPackage::all();
+        $mainCategories = MainCategory::all();
+        $nearPlaces = NearPlace::all();
+        
+        return view('dashboard.view',[
+            'postPackages' =>$postPackages,
+            'provinces' => $provinces,
+            'mainCategories' => $mainCategories,
+            'nearPlaces' => $nearPlaces,
+            'post' => $post
+        ]); 
     }
 
     function getString($defaultTitle,$string,$len)
