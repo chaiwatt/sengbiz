@@ -264,13 +264,14 @@ class PostController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-
+        $postId = $request->post_id;
         $name = $request->name;
         $email = $request->email;
         $phone = $request->phone;
         $message = $request->message;
 
         ContactMessage::create([
+            'post_id' => $postId,
             'name' => $name,
             'email' => $email,
             'phone' => $phone,

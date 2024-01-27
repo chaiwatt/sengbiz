@@ -449,6 +449,7 @@
                         {{-- --}}
                         <form id="contactForm" class="row g-4" method="POST" action="{{route('contact-store')}}">
                             {{ csrf_field() }}
+                            <input type="text" name="post_id" value="{{$post->id}}" readonly>
                             <div class="col-sm-12">
                                 <!-- start form group -->
                                 <div class="form-group">
