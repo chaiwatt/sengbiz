@@ -522,6 +522,7 @@
     <script async defer crossorigin="anonymous"
         src="https://connect.facebook.net/th_TH/sdk.js#xfbml=1&version=v18.0&appId=352903180865038" nonce="ZRsEz8SJ">
     </script>
+    <script src="https://www.google.com/recaptcha/api.js?render={{ env('GOOGLE_RECAPTCHA_KEY') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
                 $('.popup-youtube, .popup-gmaps').magnificPopup({
