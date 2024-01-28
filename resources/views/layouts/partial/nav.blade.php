@@ -4,17 +4,7 @@
             <img src="{{asset('assets/images/logo.webp')}}" alt="logo" decoding="async">
         </a>
         <div class="d-flex order-lg-2">
-            <!-- start button -->
-            {{-- <a href="#"
-                class="d-flex align-items-center justify-content-center p-0 rounded-5 btn-user position-relative"
-                data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
-                data-bs-title="envelope-count" aria-label="0">
-                <i class="fa-solid fa-envelope"></i>
-                <span
-                    class="align-items-center bg-primary d-flex end-0 fs-11 justify-content-center nav-count position-absolute rounded-circle text-white">{{$post->contactMessages->count()}}</span>
-            </a> --}}
-
-            <a href="add-listing.html" class="btn btn-primary d-none d-sm-flex fw-medium gap-2 hstack rounded-5"
+            <a href="{{route('home')}}" class="btn btn-primary d-none d-sm-flex fw-medium gap-2 hstack rounded-5"
                 aria-label="ประกาศฟรี">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                     class="bi bi-plus-circle" viewBox="0 0 16 16">
@@ -118,13 +108,13 @@
                     @else
                     <a class="nav-link" href="{{route('home')}}">แดชบอร์ด</a>
 
-                </li>
-                @endif
+
+                    @endif
                 </li>
             </ul>
             <div class="d-sm-none">
-                <a href="#" class="btn btn-primary d-flex gap-2 hstack justify-content-center rounded-3"
-                    aria-label="signin">
+                <a href="{{route('home')}}" class="btn btn-primary d-flex gap-2 hstack justify-content-center rounded-3"
+                    aria-label="ประกาศฟรี">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-plus-circle" viewBox="0 0 16 16">
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
@@ -132,7 +122,7 @@
                             d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                     </svg>
                     <div class="vr d-none d-sm-inline-block"></div>
-                    <span>Add Listing</span>
+                    <span>ประกาศฟรี</span>
                 </a>
             </div>
         </div>
