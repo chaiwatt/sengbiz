@@ -10,7 +10,7 @@
                 <!-- end /. error text -->
                 <div class="">
                     <h2 class="fw-semibold mb-3 text-capitalize">ผิดพลาด</h2>
-                    <p class="fs-16">ขออภันค่ะ ไม่พบหน้าที่คุณต้องการ โปรดไปที่หน้าหลักเพื่อค้นหาประกาศที่คุณต้องการ</p>
+                    <p class="fs-16">ขออภัยค่ะ ไม่พบหน้าที่คุณต้องการ โปรดไปที่หน้าหลักเพื่อค้นหาประกาศที่คุณต้องการ</p>
                     <!-- start button -->
                     <a href="{{url('/')}}" class="btn btn-primary btn-lg mt-3">
                         <span>หน้าหลัก</span>
