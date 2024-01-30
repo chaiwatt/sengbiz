@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <title>ประกาศฟรี เซ้งกิจการ ขายกิจการ ขายอสังหาริมทรัพท์ | เซ้งกิจการ SengBiz ddd</title>
+    <title>ประกาศฟรี เซ้งกิจการ ขายกิจการ ขายอสังหาริมทรัพท์ | เซ้งกิจการ SengBiz</title>
     <meta name="description"
         content="ประกาศฟรี เซ้งกิจการ ขายกิจการ ขายอสังหาริมทรัพท์ ขายคอนโด ขายบ้านเดี่ยว ขายทาว์นโฮม ขายตึกแถว/อาคารพาณิชย์ ขายที่ดิน ขายแฟรนไชส์">
     <meta name="keywords"
