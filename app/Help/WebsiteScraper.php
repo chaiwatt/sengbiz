@@ -24,6 +24,7 @@ use App\Models\SubMinorCategory;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 use Intervention\Image\ImageManager;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Drivers\Gd\Driver;
 
@@ -384,18 +385,39 @@ class WebsiteScraper
 
                 $htmlContent = $this->generateLink($htmlContent,$provinceId,$amphurId,$subCategoryId);
 
-                $post = Post::create([
-                    'main_category_id' => $mainCategoryId,
-                    'sub_category_id' => $subCategoryId,
-                    'sub_minor_category_id' => $subMinorCategoryId,
-                    'title' => $postTitle,
-                    'org_title' => $orgTitle,
-                    'slug' => $slug ,
-                    'org_slug' => $orgSlug,
-                    'price' => $price,
-                    'description' => $postDesctiption,
-                    'body' => $htmlContent
-                ]);
+                // $post = Post::create([
+                //     'main_category_id' => $mainCategoryId,
+                //     'sub_category_id' => $subCategoryId,
+                //     'sub_minor_category_id' => $subMinorCategoryId,
+                //     'title' => $postTitle,
+                //     'org_title' => $orgTitle,
+                //     'slug' => $slug ,
+                //     'org_slug' => $orgSlug,
+                //     'price' => $price,
+                //     'description' => $postDesctiption,
+                //     'body' => $htmlContent
+                // ]);
+
+                try {
+                    $post = Post::create([
+                        'main_category_id' => $mainCategoryId,
+                        'sub_category_id' => $subCategoryId,
+                        'sub_minor_category_id' => $subMinorCategoryId,
+                        'title' => $postTitle,
+                        'org_title' => $orgTitle,
+                        'slug' => $slug,
+                        'org_slug' => $orgSlug,
+                        'price' => $price,
+                        'description' => $postDesctiption,
+                        'body' => $htmlContent
+                    ]);
+
+                    // ทำสิ่งที่คุณต้องการหลังจากบันทึกเรียบร้อย
+
+                } catch (QueryException $e) {
+                    PidScrape::where('pid',$orgPostId)->delete();
+                    return ;
+                }
 
 
                 $lat = null;
