@@ -5,9 +5,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <title>ประกาศฟรี เซ้ง/ขายกิจการ ขายอสังหาริมทรัพท์ | เซ้งกิจการ SengBiz</title>
+    <title>ประกาศฟรี เซ้งกิจการ ขายกิจการ ขายอสังหาริมทรัพท์ | เซ้งกิจการ SengBiz</title>
     <meta name="description"
-        content="ประกาศฟรี เซ้ง/ขายกิจการ ขายอสังหาริมทรัพท์ เซ้งกิจการ ขายกิจการ ขายคอนโด ขายบ้านเดี่ยว ขายทาว์นโฮม ขายตึกแถว/อาคารพาณิชย์ ขายที่ดิน ขายแฟรนไชส์">
+        content="ประกาศฟรี เซ้งกิจการ ขายกิจการ ขายอสังหาริมทรัพท์ เซ้งกิจการ ขายกิจการ ขายคอนโด ขายบ้านเดี่ยว ขายทาว์นโฮม ขายตึกแถว/อาคารพาณิชย์ ขายที่ดิน ขายแฟรนไชส์">
     <meta name="keywords"
         content="'เซ้งกิจการ,ขายกิจการ,ขายคอนโด,ขายบ้านเดี่ยว,ขายทาว์นโฮม,ขายตึกแถว/อาคารพาณิชย์,ขายที่ดิน,ขายแฟรนไชส์,ให้เช่าที่,ฝากขาย,นายหน้าอสังหาริมทรัพย์">
     <meta name="theme-color" content="#FFFFFF">
@@ -15,9 +15,9 @@
     <meta property="og:locale" content="th_TH" />
     <meta property="og:locale:alternate" content="en_US" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="ประกาศฟรี เซ้ง/ขายกิจการ ขายอสังหาริมทรัพท์ | เซ้งกิจการ SengBiz" />
+    <meta property="og:title" content="ประกาศฟรี เซ้งกิจการ ขายกิจการ ขายอสังหาริมทรัพท์ | เซ้งกิจการ SengBiz" />
     <meta property="og:description"
-        content="ประกาศฟรี เซ้ง/ขายกิจการ ขายอสังหาริมทรัพท์ เซ้งกิจการ ขายกิจการ ขายคอนโด ขายบ้านเดี่ยว ขายทาว์นโฮม ขายตึกแถว/อาคารพาณิชย์ ขายที่ดิน ขายแฟรนไชส์" />
+        content="ประกาศฟรี เซ้งกิจการ ขายกิจการ ขายอสังหาริมทรัพท์ เซ้งกิจการ ขายกิจการ ขายคอนโด ขายบ้านเดี่ยว ขายทาว์นโฮม ขายตึกแถว/อาคารพาณิชย์ ขายที่ดิน ขายแฟรนไชส์" />
     <meta property="og:url" content="{{urldecode(request()->url())}}" />
     <meta property="og:site_name" content="เซ้งบิช" />
     <meta name="twitter:card" content="summary_large_image" />
