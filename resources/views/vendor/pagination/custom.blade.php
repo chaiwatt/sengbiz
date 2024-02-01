@@ -22,7 +22,7 @@
 
     {{-- Pagination Elements --}}
 
-    @foreach ($elements as $element)
+    {{-- @foreach ($elements as $element)
     @if (is_array($element))
     @php
     $totalPages = $paginator->lastPage();
@@ -44,7 +44,7 @@
             @endif
             @endforeach
             @endif
-            @endforeach
+            @endforeach --}}
 
 
             {{-- Next Page Link --}}
