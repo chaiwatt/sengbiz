@@ -22,19 +22,45 @@ use Illuminate\Support\Facades\Validator;
 class PostController extends Controller
 {
 
+    // public function index()
+    // {
+    //     $provinces = Province::all();
+    //     $mainCategories = MainCategory::all();
+    //     $asidePosts = Post::orderByDesc('is_ads')
+    //             ->latest('updated_at')
+    //             ->paginate(15);
+
+    //     $allPosts = Post::all();
+    //     $priceRanges = PriceRange::all();
+
+    //     $posts = Post::orderByDesc('updated_at')->paginate(15);
+    //     return view('post.index',[
+    //         'posts' => $posts,
+    //         'asidePosts' => $asidePosts,
+    //         'allPosts' => $allPosts,
+    //         'provinces' => $provinces,
+    //         'mainCategories' => $mainCategories,
+    //         'priceRanges' => $priceRanges
+    //     ]);
+    // }
+
     public function index()
     {
         $provinces = Province::all();
         $mainCategories = MainCategory::all();
+        
+        // ใช้ simplePaginate แทน paginate สำหรับ $asidePosts
         $asidePosts = Post::orderByDesc('is_ads')
-                ->latest('updated_at')
-                ->paginate(15);
+            ->latest('updated_at')
+            ->simplePaginate(15);
 
         $allPosts = Post::all();
         $priceRanges = PriceRange::all();
+        
+        // ใช้ simplePaginate แทน paginate สำหรับ $posts
+        $posts = Post::orderByDesc('updated_at')->simplePaginate(15);
 
-        $posts = Post::orderByDesc('updated_at')->paginate(15);
-        return view('post.index',[
+        return view('post.index', [
             'posts' => $posts,
             'asidePosts' => $asidePosts,
             'allPosts' => $allPosts,
