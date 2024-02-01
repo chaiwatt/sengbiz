@@ -22,62 +22,27 @@ use Illuminate\Support\Facades\Validator;
 class PostController extends Controller
 {
 
-    // public function index()
-    // {
-    //     $provinces = Province::all();
-    //     $mainCategories = MainCategory::all();
-    //     $asidePosts = Post::orderByDesc('is_ads')
-    //             ->latest('updated_at')
-    //             ->paginate(15);
-
-    //     $allPosts = Post::all();
-    //     $priceRanges = PriceRange::all();
-
-    //     $posts = Post::orderByDesc('updated_at')->paginate(15);
-    //     return view('post.index',[
-    //         'posts' => $posts,
-    //         'asidePosts' => $asidePosts,
-    //         'allPosts' => $allPosts,
-    //         'provinces' => $provinces,
-    //         'mainCategories' => $mainCategories,
-    //         'priceRanges' => $priceRanges
-    //     ]);
-    // }
-
     public function index()
-{
-    $provinces = Cache::remember('provinces', 60, function () {
-        return Province::all();
-    });
+    {
+        $provinces = Province::all();
+        $mainCategories = MainCategory::all();
+        $asidePosts = Post::orderByDesc('is_ads')
+                ->latest('updated_at')
+                ->paginate(15);
 
-    $mainCategories = Cache::remember('main_categories', 60, function () {
-        return MainCategory::all();
-    });
+        $allPosts = Post::all();
+        $priceRanges = PriceRange::all();
 
-    $allPosts = Cache::remember('all_posts', 60, function () {
-        return Post::all();
-    });
-
-    $priceRanges = Cache::remember('price_ranges', 60, function () {
-        return PriceRange::all();
-    });
-
-    $asidePosts = Post::orderByDesc('is_ads')
-        ->latest('updated_at')
-        ->paginate(15);
-
-    $posts = Post::orderByDesc('updated_at')->paginate(15);
-
-    return view('post.index',[
-        'posts' => $posts,
-        'asidePosts' => $asidePosts,
-        'allPosts' => $allPosts,
-        'provinces' => $provinces,
-        'mainCategories' => $mainCategories,
-        'priceRanges' => $priceRanges
-    ]);
-}
-
+        $posts = Post::orderByDesc('updated_at')->paginate(15);
+        return view('post.index',[
+            'posts' => $posts,
+            'asidePosts' => $asidePosts,
+            'allPosts' => $allPosts,
+            'provinces' => $provinces,
+            'mainCategories' => $mainCategories,
+            'priceRanges' => $priceRanges
+        ]);
+    }
 
     public function cleanText($text)
     {
