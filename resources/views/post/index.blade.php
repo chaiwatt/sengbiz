@@ -34,13 +34,17 @@
                                 </div>
 
                                 @foreach($mainCategories as $key => $mainCategory)
+                                @if ($key > 5 )
+                                @break
+                                @endif
                                 <div class="form-check mb-2">
                                     <input class="form-check-input" type="checkbox" value="{{$key+1}}"
-                                        name="categories[]" id="categoty-5">
+                                        name="categories[]" id="categoty-{{$key+1}}">
                                     <label class="form-check-label"
                                         for="categoty-{{$key+1}}">{{$mainCategory->name}}<span
                                             class="count fs-13 ms-1 text-muted">({{$mainCategory->posts_count}})</span></label>
                                 </div>
+
                                 @endforeach
 
 
