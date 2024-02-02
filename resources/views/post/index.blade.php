@@ -32,13 +32,13 @@
                                     <h4 class="fs-5 fw-semibold mb-2">หมวดหมู่</h4>
                                     <p class="mb-0 small">เลือกหมวดหมู่ค้นหา</p>
                                 </div>
-                                @foreach($mainCategories as $key $mainCategory)
+                                @foreach($mainCategories as $key => $mainCategory)
                                 <div class="form-check mb-2">
                                     <input class="form-check-input" type="checkbox" value="{{$key+1}}"
                                         name="categories[]" id="categoty-5">
                                     <label class="form-check-label"
                                         for="categoty-{{$key+1}}">{{$mainCategory->name}}<span
-                                            class="count fs-13 ms-1 text-muted">({{$mainCategory->posts_count}}){{$mainCategories[5]->posts_count}}</span></label>
+                                            class="count fs-13 ms-1 text-muted">({{$mainCategory->posts_count}})</span></label>
                                 </div>
                                 @endforeach
                                 {{-- <div class="form-check mb-2">
