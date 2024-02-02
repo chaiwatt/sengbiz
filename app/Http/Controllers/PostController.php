@@ -55,21 +55,19 @@ class PostController extends Controller
         // ใช้ simplePaginate แทน paginate สำหรับ $asidePosts
         $asidePosts = Post::orderByDesc('is_ads')
             ->latest('updated_at')
-            // ->simplePaginate(15);
             ->take(15)
             ->get();
 
         $priceRanges = PriceRange::all();
         
         // ใช้ simplePaginate แทน paginate สำหรับ $posts
-        $posts = Post::orderByDesc('updated_at')->simplePaginate(15);
+        $posts = Post::orderByDesc('updated_at')->simplePaginate(14);
 
         return view('post.index', [
             'posts' => $posts,
             'asidePosts' => $asidePosts,
             'mainCategories' => $mainCategories,
             'provinces' => $provinces,
-            // 'mainCategories' => $mainCategories,
             'priceRanges' => $priceRanges
         ]);
     }
@@ -240,26 +238,20 @@ class PostController extends Controller
                 });
             })
             ->orderByDesc('updated_at')
-            // ->paginate(15);
-            ->simplePaginate(15);
+            ->simplePaginate(14);
 
     $provinces = Province::all();
-    // $mainCategories = MainCategory::all();
     $mainCategories = MainCategory::withCount('posts')->get();
     $asidePosts = Post::orderByDesc('is_ads')
                 ->latest('updated_at')
-                // ->paginate(15);
-                // ->simplePaginate(15);
                 ->take(15)
                 ->get();
 
-    // $allPosts = Post::all();
     $priceRanges = PriceRange::all();
 
     return view('post.index',[
             'posts' => $posts,
             'asidePosts' => $asidePosts,
-            // 'allPosts' => $allPosts,
             'provinces' => $provinces,
             'mainCategories' => $mainCategories,
             'priceRanges' => $priceRanges
