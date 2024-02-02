@@ -50,7 +50,7 @@ class PostController extends Controller
         $mainCategories = MainCategory::withCount('posts')->get();
         // dd($mainCategories);
         $provinces = Province::all();
-        $mainCategories = MainCategory::all();
+        // $mainCategories = MainCategory::all();
         
         // ใช้ simplePaginate แทน paginate สำหรับ $asidePosts
         $asidePosts = Post::orderByDesc('is_ads')
@@ -70,7 +70,7 @@ class PostController extends Controller
             'asidePosts' => $asidePosts,
             'mainCategories' => $mainCategories,
             'provinces' => $provinces,
-            'mainCategories' => $mainCategories,
+            // 'mainCategories' => $mainCategories,
             'priceRanges' => $priceRanges
         ]);
     }
