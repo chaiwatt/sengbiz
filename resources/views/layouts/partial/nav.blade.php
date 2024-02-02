@@ -31,7 +31,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav m-auto mb-2 mb-lg-0">
 
-                @foreach ($mainCategories as $mainCategory)
+                {{-- @foreach ($mainCategories as $mainCategory)
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -55,7 +55,7 @@
                         @endforeach
                     </ul>
                 </li>
-                @endforeach
+                @endforeach --}}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
