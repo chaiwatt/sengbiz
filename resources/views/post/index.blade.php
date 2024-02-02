@@ -32,48 +32,50 @@
                                     <h4 class="fs-5 fw-semibold mb-2">หมวดหมู่</h4>
                                     <p class="mb-0 small">เลือกหมวดหมู่ค้นหา</p>
                                 </div>
+                                @foreach($mainCategories as $key $mainCategory)
                                 <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="{{$key+1}}"
+                                        name="categories[]" id="categoty-5">
+                                    <label class="form-check-label"
+                                        for="categoty-{{$key+1}}">{{$mainCategory->name}}<span
+                                            class="count fs-13 ms-1 text-muted">({{$mainCategory->posts_count}}){{$mainCategories[5]->posts_count}}</span></label>
+                                </div>
+                                @endforeach
+                                {{-- <div class="form-check mb-2">
                                     <input class="form-check-input" type="checkbox" value="5" name="categories[]"
                                         id="categoty-5">
                                     <label class="form-check-label" for="categoty-5">อสังหาริมทรัพย์<span
                                             class="count fs-13 ms-1 text-muted">({{$mainCategories[5]->posts_count}}){{$mainCategories[5]->posts_count}}</span></label>
                                 </div>
-                                <!-- Start Form Check -->
+
                                 <div class="form-check mb-2">
                                     <input class="form-check-input" type="checkbox" value="1" name="categories[]"
                                         id="categoty-1">
                                     <label class="form-check-label" for="categoty-1">ขายกิจการ<span
                                             class="count fs-13 ms-1 text-muted">({{$mainCategories[1]->posts_count}})</span></label>
                                 </div>
-                                <!-- End Form Check -->
-                                <!-- Start Form Check -->
 
-                                <!-- End Form Check -->
-
-                                <!-- Start Form Check -->
                                 <div class="form-check mb-2">
                                     <input class="form-check-input" type="checkbox" value="4" name="categories[]"
                                         id="categoty-4">
                                     <label class="form-check-label" for="categoty-4">แฟรนไชส์<span
                                             class="count fs-13 ms-1 text-muted">({{$mainCategories[4]->posts_count}})</span></label>
                                 </div>
-                                <!-- End Form Check -->
-                                <!-- Start Form Check -->
+
                                 <div class="form-check mb-2">
                                     <input class="form-check-input" type="checkbox" value="3" name="categories[]"
                                         id="categoty-3">
                                     <label class="form-check-label" for="categoty-3">รับฝากขาย<span
                                             class="count fs-13 ms-1 text-muted">({{$mainCategories[3]->posts_count}})</span></label>
                                 </div>
-                                <!-- End Form Check -->
-                                <!-- Start Form Check -->
+
                                 <div class="form-check mb-2">
                                     <input class="form-check-input" type="checkbox" value="2" name="categories[]"
                                         id="categoty-2">
                                     <label class="form-check-label" for="categoty-2">พื้นที่ให้เช่า<span
                                             class="count fs-13 ms-1 text-muted">({{$mainCategories[2]->posts_count}})</span></label>
-                                </div>
-                                <!-- End Form Check -->
+                                </div> --}}
+
 
                             </div>
                             <div class="mb-4">
