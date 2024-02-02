@@ -48,7 +48,7 @@ class PostController extends Controller
     {
         // $mainCategories = MainCategory::with('posts')->get();
         $mainCategories = MainCategory::withCount('posts')->get();
-        dd($mainCategories);
+        // dd($mainCategories);
         $provinces = Province::all();
         $mainCategories = MainCategory::all();
         
@@ -59,7 +59,7 @@ class PostController extends Controller
             ->take(15)
             ->get();
 
-        $allPosts = Post::all();
+        // $allPosts = Post::all();
         $priceRanges = PriceRange::all();
         
         // ใช้ simplePaginate แทน paginate สำหรับ $posts
@@ -68,7 +68,7 @@ class PostController extends Controller
         return view('post.index', [
             'posts' => $posts,
             'asidePosts' => $asidePosts,
-            'allPosts' => $allPosts,
+            'mainCategories' => $mainCategories,
             'provinces' => $provinces,
             'mainCategories' => $mainCategories,
             'priceRanges' => $priceRanges
