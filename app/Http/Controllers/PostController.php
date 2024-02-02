@@ -46,8 +46,8 @@ class PostController extends Controller
 
     public function index()
     {
-        $mainCategories = MainCategory::with('posts')->get();
-        dd($mainCategories);
+        // $mainCategories = MainCategory::with('posts')->get();
+        // dd($mainCategories);
         $provinces = Province::all();
         $mainCategories = MainCategory::all();
         
