@@ -46,7 +46,10 @@ class PostController extends Controller
 
     public function index()
     {
-        $mainCategories = MainCategory::withCount('posts')->get();
+        $mainCategories = MainCategory::withCount('posts')
+            ->whereIn('id', [1, 2, 4,5])
+            ->get();
+
         $provinces = Province::all();
         
         // ใช้ simplePaginate แทน paginate สำหรับ $asidePosts
