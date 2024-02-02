@@ -46,11 +46,8 @@ class PostController extends Controller
 
     public function index()
     {
-        // $mainCategories = MainCategory::with('posts')->get();
         $mainCategories = MainCategory::withCount('posts')->get();
-        // dd($mainCategories);
         $provinces = Province::all();
-        // $mainCategories = MainCategory::all();
         
         // ใช้ simplePaginate แทน paginate สำหรับ $asidePosts
         $asidePosts = Post::orderByDesc('is_ads')
@@ -59,7 +56,6 @@ class PostController extends Controller
             ->take(15)
             ->get();
 
-        // $allPosts = Post::all();
         $priceRanges = PriceRange::all();
         
         // ใช้ simplePaginate แทน paginate สำหรับ $posts
@@ -245,7 +241,8 @@ class PostController extends Controller
             ->simplePaginate(15);
 
     $provinces = Province::all();
-    $mainCategories = MainCategory::all();
+    // $mainCategories = MainCategory::all();
+    $mainCategories = MainCategory::withCount('posts')->get();
     $asidePosts = Post::orderByDesc('is_ads')
                 ->latest('updated_at')
                 // ->paginate(15);
@@ -253,13 +250,13 @@ class PostController extends Controller
                 ->take(15)
                 ->get();
 
-    $allPosts = Post::all();
+    // $allPosts = Post::all();
     $priceRanges = PriceRange::all();
 
     return view('post.index',[
             'posts' => $posts,
             'asidePosts' => $asidePosts,
-            'allPosts' => $allPosts,
+            // 'allPosts' => $allPosts,
             'provinces' => $provinces,
             'mainCategories' => $mainCategories,
             'priceRanges' => $priceRanges
