@@ -19,13 +19,11 @@ class AppServiceProvider extends ServiceProvider
         //
     }
 
-
     public function boot(): void
     {
-
          View::composer('layouts.main', function ($view) {
             $provinces = Province::all();
-            $mainCategories = MainCategory::all();
+            $mainCategories = MainCategory::whereIn('id', [1, 2, 4,5])->get();
             $view->with([
                 'provinces' => $provinces,
                 'mainCategories' => $mainCategories,
@@ -34,6 +32,8 @@ class AppServiceProvider extends ServiceProvider
 
         View::composer('layouts.view', function ($view) {
             $mainCategories = MainCategory::all();
+            $mainCategories = MainCategory::whereIn('id', [1, 2, 4,5])
+            ->get();
             $view->with([
                 'mainCategories' => $mainCategories,
             ]);
