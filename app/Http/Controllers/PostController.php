@@ -52,7 +52,9 @@ class PostController extends Controller
         // ใช้ simplePaginate แทน paginate สำหรับ $asidePosts
         $asidePosts = Post::orderByDesc('is_ads')
             ->latest('updated_at')
-            ->simplePaginate(15);
+            // ->simplePaginate(15);
+            ->take(15)
+            ->get();
 
         $allPosts = Post::all();
         $priceRanges = PriceRange::all();
@@ -236,13 +238,17 @@ class PostController extends Controller
                 });
             })
             ->orderByDesc('updated_at')
-            ->paginate(15);
+            // ->paginate(15);
+            ->simplePaginate(15);
 
     $provinces = Province::all();
     $mainCategories = MainCategory::all();
     $asidePosts = Post::orderByDesc('is_ads')
                 ->latest('updated_at')
-                ->paginate(15);
+                // ->paginate(15);
+                // ->simplePaginate(15);
+                ->take(15)
+                ->get();
 
     $allPosts = Post::all();
     $priceRanges = PriceRange::all();
