@@ -36,7 +36,7 @@
                                     <input class="form-check-input" type="checkbox" value="5" name="categories[]"
                                         id="categoty-5">
                                     <label class="form-check-label" for="categoty-5">อสังหาริมทรัพย์<span
-                                            class="count fs-13 ms-1 text-muted">({{$mainCategories[5]->posts_count}})</span></label>
+                                            class="count fs-13 ms-1 text-muted">({{$mainCategories[5]->posts_count}}){{$mainCategories[5]}}</span></label>
                                 </div>
                                 <!-- Start Form Check -->
                                 <div class="form-check mb-2">
