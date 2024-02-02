@@ -41,7 +41,17 @@
                         @foreach ($mainCategory->subCategories as $subCategory)
                         <li><a class="dropdown-item"
                                 href="{{ route('search', ['subCategory' => $subCategory->name]) }}">{{$subCategory->name}}
-                                ({{$subCategory->posts->count()}})</a></li>
+                                ({{$subCategory->posts->count()}})</a>
+                            @if ($subCategory->subMinorCategories->count() != 0)
+                            <ul class="dropdown-menu">
+                                @foreach ($subCategory->subMinorCategories as $subMinorCategory)
+                                <li><a class="dropdown-item"
+                                        href="{{ route('search', ['subMinorCategory' => $subMinorCategory->name]) }}">{{$subMinorCategory->name}}
+                                        ({{$subMinorCategory->posts->count()}})</a>
+                                    @endforeach
+                            </ul>
+                            @endif
+                        </li>
                         @endforeach
                     </ul>
                 </li>
@@ -57,15 +67,6 @@
                         <li><a class="dropdown-item"
                                 href="{{ route('search', ['subCategory' => $subCategory->name]) }}">{{$subCategory->name}}
                                 ({{$subCategory->posts->count()}})</a>
-                            @if ($subCategory->subMinorCategories->count() !== 0)
-                            <ul class="dropdown-menu">
-                                @foreach ($subCategory->subMinorCategories as $subMinorCategory)
-                                <li><a class="dropdown-item"
-                                        href="{{ route('search', ['subMinorCategory' => $subMinorCategory->name]) }}">{{$subMinorCategory->name}}
-                                        ({{$subMinorCategory->posts->count()}})</a>
-                                    @endforeach
-                            </ul>
-                            @endif
 
                         </li>
                         @endforeach
