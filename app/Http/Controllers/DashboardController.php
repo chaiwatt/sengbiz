@@ -59,7 +59,7 @@ class DashboardController extends Controller
             $manager = new ImageManager(Driver::class);
             $image = $manager->read($sPath);
  
-            $image->cover(900, 550);
+            $image->cover(600, 366);
             $webpFilename = $rawFilename.'.webp';
             $image->toWebp()->save(public_path('/images/'.$webpFilename));
             unlink($sPath);
