@@ -36,7 +36,8 @@ class Post extends Model
         'need_broker',
         'percent',
         'is_ads',
-        'indexing_code'
+        'indexing_code',
+        'fb_id'
     ]; // ตัวอย่าง
 
     public function postView()

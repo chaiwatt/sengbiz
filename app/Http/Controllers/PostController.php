@@ -259,30 +259,35 @@ class PostController extends Controller
         ]);
     }
 
-    public function testPostToFacebook()
+    // public function testPostToFacebook()
+    // {
+    //     $accessToken = env('FACEBOOK_PAGE_ACCESS_TOKEN');
+    //     $client = new Client();
+
+    //     $link = 'https://sengbiz.com/';
+    //     $message = 'test';
+    //     $url = "https://graph.facebook.com/231648233358043/feed?message=".$message."&link=".$link."&access_token=".$accessToken;
+    //     $response = $client->request('POST',$url);
+
+    //     if ($response->getStatusCode() >= 200 && $response->getStatusCode() < 300) {
+    //         $responseData = json_decode($response->getBody(), true);
+    //         $idValue = $responseData['id'];
+    //         dd($idValue);
+    //     }
+    //     return json_decode($response->getBody(), true);
+    // }
+
+    public function postToFacebook()
     {
         $accessToken = env('FACEBOOK_PAGE_ACCESS_TOKEN');
         $client = new Client();
 
         $link = 'https://sengbiz.com/';
-        $message = 'test';
-        $url = "https://graph.facebook.com/231648233358043/feed?message=".$message."&link=".$link."&access_token=".$accessToken;
+        $url = "https://graph.facebook.com/231648233358043/feed?message=test&link=".$link."&access_token=".$accessToken;
         $response = $client->request('POST',$url);
 
         return json_decode($response->getBody(), true);
     }
-
-    // public function postToFacebook($post)
-    // {
-    //     $accessToken = env('FACEBOOK_PAGE_ACCESS_TOKEN');
-    //     $client = new Client();
-
-    //     $link = 'https://sengbiz.com/'.$post->slug;
-    //     $url = "https://graph.facebook.com/231648233358043/feed?message=".$post->title."&link=".$link."&access_token=".$accessToken;
-    //     $response = $client->request('POST',$url);
-
-    //     return json_decode($response->getBody(), true);
-    // }
 
     public function contactStore(Request $request): RedirectResponse
     {

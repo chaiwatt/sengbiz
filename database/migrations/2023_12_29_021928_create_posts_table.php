@@ -31,6 +31,7 @@ return new class extends Migration
             $table->double('percent',5,2)->default(3);
             $table->char('is_ads',1)->default(0);
             $table->char('indexing_code',255)->nullable();
+            $table->char('fb_id',255)->nullable();
             $table->timestamps();
         });
     }

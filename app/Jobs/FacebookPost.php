@@ -40,6 +40,28 @@ class FacebookPost implements ShouldQueue
         $url = "https://graph.facebook.com/".$facebookPageId."/feed?message=".$post->description."&link=".$link."&access_token=".$accessToken;
         $response = $client->request('POST',$url);
 
+        if ($response->getStatusCode() >= 200 && $response->getStatusCode() < 300) {
+            $responseData = json_decode($response->getBody(), true);
+            $fbId = $responseData['id'];
+            $post->update([
+                'fb_id' => $fbId
+            ]);
+        }
+
+        return json_decode($response->getBody(), true);
+    }
+
+    public function testPost()
+    {
+        $accessToken = env('FACEBOOK_PAGE_ACCESS_TOKEN');
+        $facebookPageId = env('FACEBOOK_PAGE_ID');
+        $client = new Client();
+
+        $link = 'https://sengbiz.com/';
+        $message = "test";
+        $url = "https://graph.facebook.com/".$facebookPageId."/feed?message=".$message."&link=".$link."&access_token=".$accessToken;
+        $response = $client->request('POST',$url);
+
         return json_decode($response->getBody(), true);
     }
 }
