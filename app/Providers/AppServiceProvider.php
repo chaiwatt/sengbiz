@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         View::composer('layouts.view', function ($view) {
-            $mainCategories = MainCategory::all();
+            // $mainCategories = MainCategory::all();
             $mainCategories = MainCategory::whereIn('id', [1, 2, 4,5])
             ->get();
             $view->with([

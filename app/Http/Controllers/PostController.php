@@ -241,7 +241,8 @@ class PostController extends Controller
             ->simplePaginate(14);
 
     $provinces = Province::all();
-    $mainCategories = MainCategory::withCount('posts')->get();
+    // $mainCategories = MainCategory::whereIn('id', [1, 2, 4,5])->get();
+    $mainCategories = MainCategory::whereIn('id', [1, 2, 4,5])->withCount('posts')->get();
     $asidePosts = Post::orderByDesc('is_ads')
                 ->latest('updated_at')
                 ->take(15)
