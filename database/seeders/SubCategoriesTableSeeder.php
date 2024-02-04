@@ -144,7 +144,7 @@ class SubCategoriesTableSeeder extends Seeder
             ],
             [
                 'main_category_id' => 4,
-                'name' => 'แฟรนไชส์ไอศครีม'
+                'name' => 'แฟรนไชส์การศึกษา'
             ],
             [
                 'main_category_id' => 4,

@@ -101,6 +101,7 @@ class WebsiteScraper
         $scrapedPid = Scraped::where('pid',$orgPostId)->first();
 
         if ($postInfo !== null || $scrapedPid !== null) {
+             PidScrape::where('pid',$orgPostId)->delete();
              return;
         }
 
