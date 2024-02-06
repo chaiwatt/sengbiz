@@ -352,6 +352,10 @@ class PostController extends Controller
             $post->update([
                 'thumb_nail' => $newFileName
             ]);
+        }else{
+            $post->update([
+                'thumb_nail' => "images/sengbiz-thumbnail.webp"
+            ]);
         }
     }
           
