@@ -294,7 +294,7 @@ class DashboardController extends Controller
             $image = $manager->read($filename);
 
             $image->scale(width: 350);
-            $image->cover(350, 200);
+            $image->cover(300, 200);
 
             $newFileName = str_replace('.webp', '-thumbnail.webp', $fname);
 

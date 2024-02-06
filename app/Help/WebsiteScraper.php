@@ -488,10 +488,10 @@ class WebsiteScraper
 public function createThumbnail($filePrefix,$image)
 {
     // ปรับขนาดภาพ
-    $image->scale(width: 350);
+    $image->scale(width: 300);
 
 
-    $image->cover(350, 200);
+    $image->cover(300, 200);
 
     $fname = "images/{$filePrefix}-thumbnail.webp";
     $output = public_path($fname);
