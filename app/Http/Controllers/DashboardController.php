@@ -61,7 +61,7 @@ class DashboardController extends Controller
  
             $image->cover(600, 366);
             $webpFilename = $rawFilename.'.webp';
-            $image->toWebp()->save(public_path('/images/'.$webpFilename));
+            $image->toWebp(60)->save(public_path('/images/'.$webpFilename));
             unlink($sPath);
 
             $fileSize = filesize(public_path('/images/'.$webpFilename));
@@ -102,7 +102,7 @@ class DashboardController extends Controller
             $timestamp = Carbon::now()->timestamp;
             $webpFilename = "images/{$rawFilename}_{$timestamp}.webp";
             $output = public_path($webpFilename);
-            $image->toWebp()->save($output);
+            $image->toWebp(60)->save($output);
 
             // ลบไฟล์ที่อัพโหลดและไฟล์ที่ดาวน์โหลดมา ยกเว้นไฟล์ .webp
             unlink($filename); // ลบไฟล์ที่อัพโหลด

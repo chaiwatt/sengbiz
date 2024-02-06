@@ -347,7 +347,7 @@ class PostController extends Controller
             $newFileName = str_replace('.webp', '-thumbnail.webp', $fname);
 
             $output = public_path($newFileName);
-            $image->toWebp()->save($output);
+            $image->toWebp(60)->save($output);
 
             $post->update([
                 'thumb_nail' => $newFileName

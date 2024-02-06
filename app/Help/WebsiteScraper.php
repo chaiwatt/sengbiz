@@ -328,7 +328,7 @@ class WebsiteScraper
                 }
                 $fname = "images/{$filePrefix}-{$index}.webp";
                 $output = public_path($fname);
-                $image->toWebp()->save($output);
+                $image->toWebp(60)->save($output);
                 unlink($filename);
                 $filenames[] = $fname;
                 $index++;
@@ -495,7 +495,7 @@ public function createThumbnail($filePrefix,$image)
 
     $fname = "images/{$filePrefix}-thumbnail.webp";
     $output = public_path($fname);
-    $image->toWebp()->save($output);
+    $image->toWebp(60)->save($output);
     // dd('ok');
     return $fname;
 }
