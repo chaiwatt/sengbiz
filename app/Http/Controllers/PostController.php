@@ -336,7 +336,7 @@ class PostController extends Controller
 
         $post = Post::whereNull('thumb_nail')->get()->first();
         $postImage = PostImage::where('post_id',$post->id)->get()->first();// $post->postImages->first();
-        dd($post->id,$postImage->id);
+        // dd($post->id,$postImage->id);
         $fname = $postImage->path;
         $filename = public_path($fname);
         $manager = new ImageManager(new Driver());
