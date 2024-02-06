@@ -51,7 +51,7 @@ class CreateScrapCron extends Command
     public function makeThumbnail()
     {
         // $post = Post::where('thumb_nail',null)->first();
-        $postImage = PostImage::find(32998);// $post->postImages->first()->path;
+        $postImage = PostImage::find(32993);// $post->postImages->first()->path;
         $fname = $postImage->path;
         $filename = public_path($fname);
         $manager = new ImageManager(new Driver());
