@@ -84,13 +84,11 @@
                                 style="width:100%"> --}}
                             <a href="{{route('view',['slug' => $asidePost->slug])}}" class="stretched-link z-2"
                                 aria-label="{{$asidePost->title}}">
-                                @if ($asidePost->postImages->first() && $asidePost->postImages->first()->path !==
-                                null)
-                                <img src="{{ asset($asidePost->postImages->first()->path) }}" alt="" class="img-fluid"
-                                    style="width:100%">
+                                @if ($post->thumb_nail !== null)
+                                <img src="{{ asset($post->thumb_nail) }}" alt="" class="img-fluid" style="width:100%">
                                 @else
-                                <img src="{{ asset('assets/images/no-image/no-image-' . rand(1, 2) . '.webp') }}" alt=""
-                                    class="img-fluid" style="width:100%">
+                                <img src="{{ asset('images/sengbiz-thumbnail.webp') }}" alt="" class="img-fluid"
+                                    style="width:100%">
                                 @endif
                             </a>
 
@@ -160,13 +158,12 @@
                                     {{-- --}}
                                     <a href="{{route('view',['slug' => $post->slug])}}" class="stretched-link"
                                         aria-label="{{$post->title}}">
-                                        @if ($post->postImages->first() && $post->postImages->first()->path !==
-                                        null)
-                                        <img src="{{ asset($post->postImages->first()->path) }}" alt="{{$post->title}}"
+                                        @if ($post->thumb_nail !== null)
+                                        <img src="{{ asset($post->thumb_nail) }}" alt="{{$post->title}}"
                                             class="h-100 w-100 object-fit-cover" style="max-height: 200px !important"
                                             decoding="async">
                                         @else
-                                        <img src="{{ asset('assets/images/no-image/no-image-' . rand(1, 2) . '.webp') }}"
+                                        <img src="{{ asset('images/sengbiz-thumbnail.webp') }}"
                                             class="h-100 w-100 object-fit-cover" style="max-height: 200px !important"
                                             alt="{{$post->title}}" decoding="async">
                                         @endif
