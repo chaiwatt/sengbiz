@@ -84,8 +84,9 @@
                                 style="width:100%"> --}}
                             <a href="{{route('view',['slug' => $asidePost->slug])}}" class="stretched-link z-2"
                                 aria-label="{{$asidePost->title}}">
-                                @if ($post->thumb_nail !== null)
-                                <img src="{{ asset($post->thumb_nail) }}" alt="" class="img-fluid" style="width:100%">
+                                @if ($asidePost->thumb_nail !== null)
+                                <img src="{{ asset($asidePost->thumb_nail) }}" alt="" class="img-fluid"
+                                    style="width:100%">
                                 @else
                                 <img src="{{ asset('images/sengbiz-thumbnail.webp') }}" alt="" class="img-fluid"
                                     style="width:100%">
