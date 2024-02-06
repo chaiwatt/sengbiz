@@ -190,6 +190,8 @@ class DashboardController extends Controller
             'name' => $nearPlace
         ]);
 
+        $this->makeThumbnail($post->id);
+
        return response()->json(['success' => $post]);
 
     }
@@ -274,8 +276,35 @@ class DashboardController extends Controller
             'name' => $nearPlace
         ]);
 
+        
+        $this->makeThumbnail($postId);
+
        return response()->json(['success' => 'success']);
 
+    }
+
+    public function makeThumbnail($postId)
+    {
+        $post = Post::find($postId);
+        $postImage = PostImage::where('post_id',$post->id)->get()->first();// $post->postImages->first();
+        if($postImage !== null){
+            $fname = $postImage->path;
+            $filename = public_path($fname);
+            $manager = new ImageManager(new Driver());
+            $image = $manager->read($filename);
+
+            $image->scale(width: 350);
+            $image->cover(350, 200);
+
+            $newFileName = str_replace('.webp', '-thumbnail.webp', $fname);
+
+            $output = public_path($newFileName);
+            $image->toWebp(60)->save($output);
+
+            $post->update([
+                'thumb_nail' => $newFileName
+            ]);
+        }
     }
 
     public function view($id)
