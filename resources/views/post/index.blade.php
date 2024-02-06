@@ -86,10 +86,10 @@
                                 aria-label="{{$asidePost->title}}">
                                 @if ($asidePost->thumb_nail !== null)
                                 <img src="{{ asset($asidePost->thumb_nail) }}" alt="{{$asidePost->title}}"
-                                    class="img-fluid" style="height:100%">
+                                    class="img-fluid" style="width:100%">
                                 @else
                                 <img src="{{ asset('images/sengbiz-thumbnail.webp') }}" alt="{{$asidePost->title}}"
-                                    class="img-fluid" style="height:100%">
+                                    class="img-fluid" style="width:100%">
                                 @endif
                             </a>
 
