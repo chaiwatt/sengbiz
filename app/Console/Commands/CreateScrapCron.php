@@ -42,38 +42,10 @@ class CreateScrapCron extends Command
      */
     public function handle()
     {
-        // $this->scrap();
-        $this->makeThumbnail();
+         $this->scrap();
+        //$this->makeThumbnail();
     }
     
-
-
-    public function makeThumbnail()
-    {
-        $post = Post::whereNull('thumb_nail')->get()->first();
-        $postImage = PostImage::where('post_id',$post->id)->get()->first();// $post->postImages->first();
-        if($postImage !== null){
-            $fname = $postImage->path;
-            $filename = public_path($fname);
-            $manager = new ImageManager(new Driver());
-            $image = $manager->read($filename);
-
-            $image->scale(width: 350);
-            $image->cover(350, 200);
-
-            $newFileName = str_replace('.webp', '-thumbnail.webp', $fname);
-
-            $output = public_path($newFileName);
-            $image->toWebp()->save($output);
-
-            $post->update([
-                'thumb_nail' => $newFileName
-            ]);
-        }
-        
-    }
-
-
     function scrapList()
     {
         $scraper = new WebsiteScraper();
