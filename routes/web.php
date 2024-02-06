@@ -72,6 +72,12 @@ Route::get('search', [PostController::class, 'search'])->name('search');
 Route::get('/{slug}', [PostController::class, 'view'])->name('view');
 Route::get('', [PostController::class, 'index'])->name('index');
 Route::post('contact-store', [PostController::class, 'contactStore'])->name('contact-store');
+Route::get('/revise/make-thumbnail', [PostController::class, 'makeThumbnail'])->name('make-thumbnail');
+
+
+
+
+
 
 
 

@@ -16,8 +16,12 @@ use App\Models\MainCategory;
 use Illuminate\Http\Request;
 use App\Models\ContactMessage;
 use App\Models\SubMinorCategory;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Http;
+use Intervention\Image\ImageManager;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Validator;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class PostController extends Controller
 {
@@ -326,4 +330,20 @@ class PostController extends Controller
         return $validator;
     } 
 
+    public function makeThumbnail()
+    {
+        $fname = "images/ขายและให้เช่าที่ดินพร้อมสิ่งปล-1.webp";
+        $filename = public_path($fname);
+        $manager = new ImageManager(new Driver());
+        $image = $manager->read($filename);
+
+        $image->scale(width: 350);
+        $image->cover(350, 200);
+
+        $newFileName = str_replace('.webp', '-thumbnail.webp', $fname);
+
+        $output = public_path($newFileName);
+        $image->toWebp()->save($output);
+         
+    }
 }
