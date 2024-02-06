@@ -28,6 +28,7 @@ class Post extends Model
         'package_end',
         'title',
         'price',
+        'thumb_nail',
         'org_title',
         'slug',
         'org_slug',

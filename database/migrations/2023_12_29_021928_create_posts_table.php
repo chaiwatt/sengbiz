@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('slug');
             $table->string('org_slug')->nullable();
             $table->string('org_title')->nullable();
+            $table->string('thumb_nail')->nullable();
             $table->string('description');
             $table->longText('body');
             $table->char('need_broker',1)->default(1);

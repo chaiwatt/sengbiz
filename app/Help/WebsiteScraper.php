@@ -304,7 +304,7 @@ class WebsiteScraper
         // if (!File::isWritable(storage_path('download'))) {
         //     chmod(storage_path('download'), 0777);
         // }
-
+        $thumbnail = null;
         if (count($links) > 0) {
             $strFilename = mb_substr($result, 0, 30, 'UTF-8');
             $filePrefix = preg_replace('/\s/', '-', $strFilename);
@@ -317,9 +317,12 @@ class WebsiteScraper
                 file_put_contents($filename, $content);
                 $manager = new ImageManager(new Driver());
                 $image = $manager->read($filename);
+
                 $image->place(public_path("assets/images/logo.png"));
-                if ($index === 1) {
-                    $image->scale(width: 700);
+                // dd($index);
+                if ($index === 0) {
+                    $thumbnail = $this->createThumbnail($filePrefix,$image);
+                    $image->scale(width: 700);     
                 } else {
                     $image->scale(width: 500);
                 }
@@ -408,6 +411,7 @@ class WebsiteScraper
                         'org_title' => $orgTitle,
                         'slug' => $slug,
                         'org_slug' => $orgSlug,
+                        'thumb_nail' => $thumbnail,
                         'price' => $price,
                         'description' => $postDesctiption,
                         'body' => $htmlContent
@@ -480,6 +484,22 @@ class WebsiteScraper
             }
         }    
     }
+
+public function createThumbnail($filePrefix,$image)
+{
+    // ปรับขนาดภาพ
+    $image->scale(width: 350);
+
+
+    $image->cover(350, 200);
+
+    $fname = "images/{$filePrefix}-thumbnail.webp";
+    $output = public_path($fname);
+    $image->toWebp()->save($output);
+    // dd('ok');
+    return $fname;
+}
+
    public function cleanText($text)
     {
          $removePatterns = [
