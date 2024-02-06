@@ -161,12 +161,12 @@
                                         aria-label="{{$post->title}}">
                                         @if ($post->thumb_nail !== null)
                                         <img src="{{ asset($post->thumb_nail) }}" alt="{{$post->title}}"
-                                            class="h-100 w-100 object-fit-cover" style="max-height: 200px !important"
+                                            class="object-fit-cover" style="max-height: 200px !important"
                                             decoding="async">
                                         @else
-                                        <img src="{{ asset('images/sengbiz-thumbnail.webp') }}"
-                                            class="h-100 w-100 object-fit-cover" style="max-height: 200px !important"
-                                            alt="{{$post->title}}" decoding="async">
+                                        <img src="{{ asset('images/sengbiz-thumbnail.webp') }}" class="object-fit-cover"
+                                            style="max-height: 200px !important" alt="{{$post->title}}"
+                                            decoding="async">
                                         @endif
                                     </a>
                                     <!-- end /. image -->
