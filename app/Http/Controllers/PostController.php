@@ -10,6 +10,7 @@ use App\Models\PostInfo;
 use App\Models\PostView;
 use App\Models\Province;
 use App\Rules\ReCaptcha;
+use App\Models\PostImage;
 use App\Models\PriceRange;
 use App\Models\SubCategory;
 use App\Models\MainCategory;
@@ -332,7 +333,11 @@ class PostController extends Controller
 
     public function makeThumbnail()
     {
-        $fname = "images/ขายและให้เช่าที่ดินพร้อมสิ่งปล-1.webp";
+
+        $post = Post::where('thumb_nail',null)->get()->first();
+        $postImage = PostImage::where('post_id',$post->id)->get()->first();// $post->postImages->first();
+        dd($post->id,$postImage->id);
+        $fname = $postImage->path;
         $filename = public_path($fname);
         $manager = new ImageManager(new Driver());
         $image = $manager->read($filename);
@@ -344,6 +349,11 @@ class PostController extends Controller
 
         $output = public_path($newFileName);
         $image->toWebp()->save($output);
-         
+
+        $post->update([
+            'thumb_nail' => $newFileName
+        ]);
     }
+         
+    
 }
