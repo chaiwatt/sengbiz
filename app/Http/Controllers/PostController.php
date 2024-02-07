@@ -16,6 +16,7 @@ use App\Models\SubCategory;
 use App\Models\MainCategory;
 use Illuminate\Http\Request;
 use App\Models\ContactMessage;
+use App\Models\PidScrape;
 use App\Models\SubMinorCategory;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
@@ -357,6 +358,19 @@ class PostController extends Controller
                 'thumb_nail' => "images/sengbiz-thumbnail.webp"
             ]);
         }
+    }
+
+    public function clearPost()
+    {
+        $pidScrapIds = PidScrape::pluck('id')->toArray();
+     
+        $postInfoIds = PostInfo::pluck('org_id')->toArray();
+
+        $commonIds = array_intersect($pidScrapIds, $postInfoIds);
+        // dd($commonIds);
+
+        PidScrape::whereIn('id',$commonIds)->delete();
+
     }
           
 }
