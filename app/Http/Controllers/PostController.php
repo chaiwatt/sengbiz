@@ -362,14 +362,14 @@ class PostController extends Controller
 
     public function clearPost()
     {
-        $pidScrapIds = PidScrape::pluck('id')->toArray();
+        $pidScrapIds = PidScrape::pluck('pid')->toArray();
      
         $postInfoIds = PostInfo::pluck('org_id')->toArray();
 
         $commonIds = array_intersect($pidScrapIds, $postInfoIds);
         // dd($commonIds);
 
-        PidScrape::whereIn('id',$commonIds)->delete();
+        PidScrape::whereIn('pid',$commonIds)->delete();
 
     }
           
