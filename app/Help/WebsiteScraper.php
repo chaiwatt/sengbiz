@@ -317,9 +317,7 @@ class WebsiteScraper
                 file_put_contents($filename, $content);
                 $manager = new ImageManager(new Driver());
                 $image = $manager->read($filename);
-                if ($index === 0) {
-                    $thumbnail = $this->createThumbnail($filePrefix,$image);
-                }
+
                 $image->scale(width: 900);
                 $image->cover(900, 550);
                 $image->place(public_path("assets/images/logo.png"));
@@ -328,6 +326,9 @@ class WebsiteScraper
                 $fname = "images/{$filePrefix}-{$index}.webp";
                 $output = public_path($fname);
                 $image->toWebp(60)->save($output);
+                if ($index === 0) {
+                    $thumbnail = $this->createThumbnail($filePrefix,$image);
+                }
                 unlink($filename);
                 $filenames[] = $fname;
                 $index++;
@@ -494,7 +495,7 @@ public function createThumbnail($filePrefix,$image)
 
     $fname = "images/{$filePrefix}-thumbnail.webp";
     $output = public_path($fname);
-    $image->toWebp(60)->save($output);
+    $image->toWebp()->save($output);
     // dd('ok');
     return $fname;
 }
