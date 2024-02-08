@@ -319,10 +319,9 @@ class WebsiteScraper
                 $image = $manager->read($filename);
                 if ($index === 0) {
                     $thumbnail = $this->createThumbnail($filePrefix,$image);
-                    $image->scale(width: 700);     
-                } else {
-                    $image->scale(width: 500);
                 }
+                $image->scale(width: 900);
+                $image->cover(900, 550);
                 $image->place(public_path("assets/images/logo.png"));
                 // dd($index);
 
