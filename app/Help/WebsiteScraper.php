@@ -317,15 +317,15 @@ class WebsiteScraper
                 file_put_contents($filename, $content);
                 $manager = new ImageManager(new Driver());
                 $image = $manager->read($filename);
-
-                $image->place(public_path("assets/images/logo.png"));
-                // dd($index);
                 if ($index === 0) {
                     $thumbnail = $this->createThumbnail($filePrefix,$image);
                     $image->scale(width: 700);     
                 } else {
                     $image->scale(width: 500);
                 }
+                $image->place(public_path("assets/images/logo.png"));
+                // dd($index);
+
                 $fname = "images/{$filePrefix}-{$index}.webp";
                 $output = public_path($fname);
                 $image->toWebp(60)->save($output);
