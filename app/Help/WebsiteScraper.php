@@ -55,7 +55,7 @@ class WebsiteScraper
             $unmatchedIds = array_diff($ids, $postInfoIds);
 
             $uniqueUnmatchedIds = array_unique($unmatchedIds);
-            PidScrape::all()->delete();
+            PidScrape::query()->delete();
             $recordsToInsert = array_map(function ($pid) {
                 return ['pid' => $pid];
             }, $uniqueUnmatchedIds);
