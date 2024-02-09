@@ -27,8 +27,8 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 //     return view('welcome');
 // });
 Route::get('sitemap.xml', [SiteMapController::class, 'index'])->name('sitemap');
-Route::get('scrap', [ScraperController::class, 'scrap'])->name('scrap');
-Route::get('scrap-list', [ScraperController::class, 'scrapList'])->name('scrap-list');
+// Route::get('scrap', [ScraperController::class, 'scrap'])->name('scrap');
+// Route::get('scrap-list', [ScraperController::class, 'scrapList'])->name('scrap-list');
 
 Auth::routes();
 
