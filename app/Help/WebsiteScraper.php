@@ -455,7 +455,7 @@ class WebsiteScraper
 
                 PostView::create([
                     'post_id' => $post->id,
-                    'view' => rand(50, 650)
+                    'view' => rand(30, 150)
                 ]);
 
                 if (count($filenames) != 0){
