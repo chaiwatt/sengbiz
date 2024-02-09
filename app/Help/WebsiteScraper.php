@@ -54,9 +54,11 @@ class WebsiteScraper
             $postInfoIds = PostInfo::pluck('org_id')->toArray();
             $unmatchedIds = array_diff($ids, $postInfoIds);
 
+            $uniqueUnmatchedIds = array_unique($unmatchedIds);
+            PidScrape::all()->delete();
             $recordsToInsert = array_map(function ($pid) {
                 return ['pid' => $pid];
-            }, $unmatchedIds);
+            }, $uniqueUnmatchedIds);
 
             PidScrape::insert($recordsToInsert);
             
