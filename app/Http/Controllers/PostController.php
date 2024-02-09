@@ -335,7 +335,7 @@ class PostController extends Controller
     public function makeThumbnail()
     {
         $post = Post::whereNull('thumb_nail')->get()->first();
-        $postImage = PostImage::where('post_id',$post->id)->get()->first();// $post->postImages->first();
+        $postImage = PostImage::where('post_id',$post->id)->get()->first();
         if($postImage !== null){
             $fname = $postImage->path;
             $filename = public_path($fname);

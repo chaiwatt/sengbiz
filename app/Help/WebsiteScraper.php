@@ -34,25 +34,34 @@ class WebsiteScraper
 
     public function scrapList()
     {
-        for ($i = 4; $i >= 1; $i--) {
+        // for ($i = 4; $i >= 1; $i--) {
             //https://www.thaibizpost.com/c/tea-shops/?page=1
             //https://www.thaibizpost.com/c/properties/?page=1
             //https://www.thaibizpost.com/c/shop-spaces/?page=1
-            $url = 'https://www.thaibizpost.com/listings/?page=' . $i;
+            // $url = 'https://www.thaibizpost.com/listings/?page=' . $i;
+            $ids = [];
+            $url = 'https://www.thaibizpost.com/listings/?page=1';
             $client = new Client();
             $crawler = $client->request('GET', $url);
             $crawler->filter('div.listings-title a')->each(function ($node) use (&$ids) {
                 preg_match('/\/pid\/(\d+)\//', $node->attr('href'), $matches);
                 if (isset($matches[1])) {
-                   $pid = trim($matches[1]);
-                    $existingPid = PidScrape::where('pid',$pid)->first();
-                    if (!$existingPid) {
-                        PidScrape::create(['pid' => $pid]);
-                    } 
+                    $pid = trim($matches[1]);
+                    $ids[] = $pid;
                 }
             });
-            sleep(2);
-        }
+
+            $postInfoIds = PostInfo::pluck('org_id')->toArray();
+            $unmatchedIds = array_diff($ids, $postInfoIds);
+
+            $recordsToInsert = array_map(function ($pid) {
+                return ['pid' => $pid];
+            }, $unmatchedIds);
+
+            PidScrape::insert($recordsToInsert);
+            
+        //     sleep(2);
+        // }
     }
 
     function scrap()
@@ -335,7 +344,6 @@ class WebsiteScraper
             }       
         }
         
-   
         if ($stringContent != "" && count($categories) != 0 && count($locations) != 0){
             $mainCategory = MainCategory::where('name',$categories[0])->first();
             $mainCategoryId = null;

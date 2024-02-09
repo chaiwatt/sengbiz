@@ -42,7 +42,8 @@ class CreateScrapCron extends Command
      */
     public function handle()
     {
-         $this->scrap();
+        $this->scrapList();
+        $this->scrap();
         //$this->makeThumbnail();
     }
     
